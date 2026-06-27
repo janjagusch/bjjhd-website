@@ -1,5 +1,6 @@
 ---
 import { club, contact } from '../config';
+import { withBase } from '../utils/withBase';
 const year = new Date().getFullYear();
 ---
 
@@ -20,8 +21,8 @@ const year = new Date().getFullYear();
     <nav class="site-footer__col" aria-label="Legal">
       <h2 class="site-footer__heading">Legal</h2>
       <ul class="site-footer__links">
-        <li><a href="/impressum">Impressum</a></li>
-        <li><a href="/datenschutz">Datenschutz</a></li>
+        <li><a href={withBase('/impressum')}>Impressum</a></li>
+        <li><a href={withBase('/datenschutz')}>Datenschutz</a></li>
       </ul>
     </nav>
   </div>

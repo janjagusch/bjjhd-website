@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CoachCard from '../components/CoachCard.astro';
 import { about, coaches, headCoach } from '../config';
+import { withBase } from '../utils/withBase';
 ---
 
 <BaseLayout
@@ -24,7 +25,7 @@ import { about, coaches, headCoach } from '../config';
       <article class="head-coach">
         <img
           class="head-coach__photo"
-          src={headCoach.photo}
+          src={withBase(headCoach.photo)}
           alt={headCoach.photoAlt}
           width="320"
           height="320"

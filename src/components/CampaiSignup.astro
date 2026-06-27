@@ -1,5 +1,6 @@
 ---
 import { campai } from '../config';
+import { withBase } from '../utils/withBase';
 ---
 
 <div class="campai">
@@ -19,7 +20,7 @@ import { campai } from '../config';
   <p class="campai__hint">
     Note: This form is provided by Campai. By submitting it, your details are
     processed to handle your request. Learn more in our
-    <a href="/datenschutz">privacy policy</a>.
+    <a href={withBase('/datenschutz')}>privacy policy</a>.
   </p>
 </div>
 

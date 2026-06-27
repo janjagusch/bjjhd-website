@@ -1,12 +1,13 @@
 ---
 import { club, nav } from '../config';
+import { withBase } from '../utils/withBase';
 ---
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href="/" class="brand" aria-label={`${club.name} – Home`}>
+    <a href={withBase('/')} class="brand" aria-label={`${club.name} – Home`}>
       <img
-        src={club.logo}
+        src={withBase(club.logo)}
         alt={club.logoAlt}
         width="40"
         height="40"
@@ -31,14 +32,14 @@ import { club, nav } from '../config';
         {
           nav.map((item) => (
             <li>
-              <a href={item.href} class="site-nav__link">
+              <a href={withBase(item.href)} class="site-nav__link">
                 {item.label}
               </a>
             </li>
           ))
         }
         <li>
-          <a href="/#signup" class="btn btn--primary site-nav__cta"
+          <a href={withBase('/#signup')} class="btn btn--primary site-nav__cta"
             >Become a member</a
           >
         </li>

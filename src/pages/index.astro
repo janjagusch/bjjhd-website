@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import TrainingSchedule from '../components/TrainingSchedule.astro';
 import CampaiSignup from '../components/CampaiSignup.astro';
 import { contact, pricing } from '../config';
+import { withBase } from '../utils/withBase';
 ---
 
 <BaseLayout>
@@ -18,7 +19,7 @@ import { contact, pricing } from '../config';
         martial arts). Beginners are welcome any time, minimum age 16. For your
         <a href="#signup">trial session</a> you can come in regular sportswear –
         if you message us beforehand, we can probably lend you a Gi. Please also
-        read our <a href="/rules">rules</a>.
+        read our <a href={withBase('/rules')}>rules</a>.
       </p>
       <p class="info-box" role="note">
         <span class="info-box__icon" aria-hidden="true">★</span>

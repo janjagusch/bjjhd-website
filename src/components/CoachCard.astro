@@ -1,5 +1,6 @@
 ---
 import type { Coach } from '../config';
+import { withBase } from '../utils/withBase';
 
 interface Props {
   coach: Coach;
@@ -11,7 +12,7 @@ const { coach } = Astro.props;
 <article class="coach card">
   <img
     class="coach__photo"
-    src={coach.photo}
+    src={withBase(coach.photo)}
     alt={coach.photoAlt}
     width="320"
     height="320"
