@@ -16,6 +16,9 @@ const {
   description = club.tagline,
   lang = 'en',
 } = Astro.props;
+
+// Map the page language to an Open Graph locale.
+const ogLocale = lang === 'de' ? 'de_DE' : 'en_US';
 ---
 
 <!doctype html>
@@ -41,7 +44,7 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:locale" content="en" />
+    <meta property="og:locale" content={ogLocale} />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>

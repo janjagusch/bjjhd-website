@@ -26,6 +26,8 @@ export interface Coach {
   role: string;
   belt: string;
   bio?: string;
+  /** Optional short italic tagline shown under the belt. */
+  tagline?: string;
   /** Path relative to /public, e.g. "/images/coach-1.svg" */
   photo: string;
   /** Alt text describing the photo for screen readers. */
@@ -59,9 +61,6 @@ export const contact = {
   city: 'Heidelberg',
   country: 'Deutschland',
   email: 'info@bjjheidelberg.de',
-  phone: '+49 6221 0000000',
-  // Plain digits for tel: links.
-  phoneTel: '+4962210000000',
   // Trainingsort (kann von der Vereinsanschrift abweichen) – Abschnitt "Ort"
   venue: 'TSG 78 Heidelberg',
   venueStreet: 'Tiergartenstraße 9–11',
