@@ -1,0 +1,15 @@
+[workspace]
+authors = ["Jan-Bendikt Jagusch <jan.jagusch@quantco.com>"]
+channels = ["https://quantco.jfrog.io/artifactory/api/conda/qc-internal", "conda-forge"]
+name = "bjjhd-website"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+install = "npm install"
+dev = "npm run dev"
+build = "npm run build"
+preview = "npm run preview"
+
+[dependencies]
+nodejs = ">=20"

@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CoachCard from '../components/CoachCard.astro';
+import { about, coaches, headCoach } from '../config';
+import { withBase } from '../utils/withBase';
+---
+
+<BaseLayout
+  title="About"
+  description="About BJJ Heidelberg and our coaching team."
+>
+  <section class="section">
+    <div class="container">
+      <h1>About</h1>
+      <div class="about__intro">
+        {about.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2>Team</h2>
+
+      <article class="head-coach">
+        <img
+          class="head-coach__photo"
+          src={withBase(headCoach.photo)}
+          alt={headCoach.photoAlt}
+          width="320"
+          height="320"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="head-coach__body">
+          <h3 class="head-coach__name">{headCoach.name}</h3>
+          <p class="head-coach__meta">
+            <span>{headCoach.role}</span>
+            <span class="head-coach__belt">{headCoach.belt}</span>
+          </p>
+          {headCoach.paragraphs.map((p) => <p class="head-coach__text">{p}</p>)}
+        </div>
+      </article>
+
+      <div class="grid grid--3" style="margin-top: var(--space-2xl);">
+        {coaches.map((coach) => <CoachCard coach={coach} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about__intro {
+    max-width: 70ch;
+    margin-top: var(--space-lg);
+    display: grid;
+    gap: var(--space-md);
+    font-size: var(--fs-500);
+    color: var(--color-text-muted);
+  }
+
+  .head-coach {
+    margin-top: var(--space-xl);
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+  @media (min-width: 760px) {
+    .head-coach {
+      grid-template-columns: 300px 1fr;
+    }
+  }
+  .head-coach__photo {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-elevated);
+  }
+  .head-coach__name {
+    font-size: var(--fs-700);
+  }
+  .head-coach__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin: var(--space-xs) 0 var(--space-md);
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+  .head-coach__belt {
+    color: var(--color-warm);
+  }
+  .head-coach__belt::before {
+    content: '·';
+    margin-right: var(--space-sm);
+    color: var(--color-text-muted);
+  }
+  .head-coach__text {
+    margin-bottom: var(--space-md);
+    color: var(--color-text-muted);
+    max-width: 65ch;
+  }
+</style>

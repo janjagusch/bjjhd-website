@@ -1,0 +1,199 @@
+---
+import { club, nav } from '../config';
+import { withBase } from '../utils/withBase';
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href={withBase('/')} class="brand" aria-label={`${club.name} – Home`}>
+      <img
+        src={withBase(club.logo)}
+        alt={club.logoAlt}
+        width="40"
+        height="40"
+        class="brand__logo"
+      />
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Open menu"
+    >
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <nav id="primary-nav" class="site-nav" aria-label="Main navigation">
+      <ul class="site-nav__list">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={withBase(item.href)} class="site-nav__link">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a href={withBase('/#signup')} class="btn btn--primary site-nav__cta"
+            >Become a member</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4.5rem;
+    gap: var(--space-md);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-heading);
+    font-weight: 800;
+    font-size: var(--fs-500);
+  }
+  .brand:hover {
+    color: var(--color-heading);
+  }
+  .brand__logo {
+    border-radius: var(--radius-sm);
+  }
+
+  .site-nav__list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin: 0;
+    padding: 0;
+  }
+
+  .site-nav__link {
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: var(--fs-400);
+  }
+  .site-nav__link:hover {
+    color: var(--color-warm);
+  }
+
+  .site-nav__cta {
+    padding: 0.55rem 1.1rem;
+  }
+
+  /* --- Mobile toggle button --- */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+  .nav-toggle__bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    margin-inline: auto;
+    background: var(--color-text);
+    transition: transform var(--transition), opacity var(--transition);
+  }
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle[aria-expanded='true'] .nav-toggle__bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* --- Mobile layout --- */
+  @media (max-width: 860px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .site-nav {
+      position: absolute;
+      inset: 4.5rem 0 auto 0;
+      background-color: var(--color-bg-elevated);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-md);
+      display: none;
+    }
+    .site-nav.is-open {
+      display: block;
+    }
+
+    .site-nav__list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: var(--space-md) var(--container-pad);
+    }
+    .site-nav__list li {
+      border-bottom: 1px solid var(--color-border);
+    }
+    .site-nav__list li:last-child {
+      border-bottom: 0;
+    }
+    .site-nav__link {
+      display: block;
+      padding: var(--space-md) 0;
+    }
+    .site-nav__cta {
+      margin-top: var(--space-md);
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const navMenu = document.getElementById('primary-nav');
+
+  if (toggle && navMenu) {
+    toggle.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+
+    // Close the menu after choosing a link (mobile).
+    navMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+      });
+    });
+  }
+</script>

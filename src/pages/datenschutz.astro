@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { contact } from '../config';
+---
+
+<BaseLayout
+  title="Datenschutzerklärung"
+  description="Informationen zum Datenschutz nach DSGVO"
+  lang="de"
+>  <section class="section">
+    <div class="container prose">
+      <h1>Datenschutzerklärung</h1>
+
+      <h2>1. Verantwortlicher</h2>
+      <p>
+        Verantwortlich für die Datenverarbeitung auf dieser Website ist:
+      </p>
+      <p>
+        {contact.legalEntity}<br />
+        {contact.street}<br />
+        {contact.zip} {contact.city}<br />
+        {contact.country}<br />
+        E-Mail: <a href={`mailto:${contact.email}`}>{contact.email}</a>
+      </p>
+
+      <h2>2. Kontakt für Datenschutzfragen</h2>
+      <p>
+        Bei Fragen zum Datenschutz erreichst du uns unter
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>. Ein:e
+        Datenschutzbeauftragte:r ist gesetzlich nicht erforderlich und wurde
+        nicht bestellt.
+      </p>
+
+      <h2>3. Hosting über GitHub Pages</h2>
+      <p>
+        Diese Website wird als statische Seite über <strong>GitHub Pages</strong>
+        gehostet, einen Dienst der GitHub, Inc. (88 Colin P. Kelly Jr. Street,
+        San Francisco, CA 94107, USA). Beim Aufruf der Website verarbeitet GitHub
+        technisch notwendige Daten (z. B. IP-Adresse, Datum und Uhrzeit des
+        Zugriffs), um die Seite ausliefern und die Sicherheit gewährleisten zu
+        können. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes
+        Interesse an einer sicheren und effizienten Bereitstellung).
+      </p>
+      <p>
+        Die Übermittlung in die USA erfolgt auf Grundlage geeigneter Garantien.
+        GitHub, Inc. bzw. die zuständige Konzerngesellschaft ist unter dem
+        EU-US Data Privacy Framework zertifiziert; ergänzend kommen
+        EU-Standardvertragsklauseln zur Anwendung. Weitere Informationen findest
+        du in der Datenschutzerklärung von GitHub:
+        <a
+          href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub Privacy Statement</a
+        >.
+      </p>
+
+      <h2>4. Server-Logfiles</h2>
+      <p>
+        Beim Besuch der Website werden durch den Hosting-Anbieter automatisch
+        Informationen in sogenannten Server-Logfiles erfasst, die dein Browser
+        übermittelt. Dies sind in der Regel:
+      </p>
+      <ul>
+        <li>Browsertyp und Browserversion</li>
+        <li>verwendetes Betriebssystem</li>
+        <li>Referrer-URL</li>
+        <li>Datum und Uhrzeit der Serveranfrage</li>
+        <li>IP-Adresse (ggf. gekürzt)</li>
+      </ul>
+      <p>
+        Diese Daten werden nicht mit anderen Datenquellen zusammengeführt.
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Die Verarbeitung der
+        Logfiles erfolgt durch den Hosting-Anbieter (GitHub); wir selbst haben
+        keinen Zugriff auf diese Daten. Die Speicherdauer richtet sich nach den
+        Vorgaben von GitHub und beträgt in der Regel nur wenige Tage.
+      </p>
+
+      <h2>5. Kontaktaufnahme per E-Mail</h2>
+      <p>
+        Wenn du uns per E-Mail kontaktierst, werden deine Angaben
+        zur Bearbeitung der Anfrage und für mögliche Anschlussfragen gespeichert.
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Anbahnung/Erfüllung eines
+        Vertrags) bzw. lit. f DSGVO (berechtigtes Interesse an der Bearbeitung
+        deiner Anfrage). Die Daten werden gelöscht, sobald sie für die Erreichung
+        des Zwecks nicht mehr erforderlich sind, soweit keine gesetzlichen
+        Aufbewahrungsfristen entgegenstehen. In der Regel löschen wir
+        E-Mail-Anfragen, die nicht zu einer Mitgliedschaft führen, spätestens
+        sechs Monate nach abschließender Bearbeitung.
+      </p>
+
+      <h2>6. Anmeldeformular über Campai</h2>
+      <div class="note">
+        <strong>Dieser Abschnitt muss geprüft werden.</strong> Bitte gleiche die
+        Angaben mit den Vorgaben und der Auftragsverarbeitung von Campai ab.
+      </div>
+      <p>
+        Auf der Seite ist ein Anmeldeformular eingebettet, das vom Dienst
+        <strong>Campai</strong> bereitgestellt wird (campai GmbH, Schönhauser
+        Allee 163, 10435 Berlin, Deutschland). Das Formular wird über einen
+        iframe von Servern von Campai geladen. Die von dir in das Formular
+        eingegebenen Daten (z. B. Name, Kontaktdaten und weitere Angaben) werden
+        durch Campai und/oder den Verein verarbeitet, um deine Mitgliedsanfrage
+        zu bearbeiten. Einzelheiten zur Datenverarbeitung
+        durch Campai findest du in deren Datenschutzerklärung:
+        <a
+          href="https://www.campai.com/de/rechtlich/datenschutz"
+          target="_blank"
+          rel="noopener noreferrer"
+          >campai.com/de/rechtlich/datenschutz</a
+        >.
+      </p>
+      <p>
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Durchführung
+        vorvertraglicher Maßnahmen) bzw. lit. f DSGVO. Sofern Campai als
+        Auftragsverarbeiter tätig wird, besteht ein Vertrag zur
+        Auftragsverarbeitung nach Art. 28 DSGVO.
+        <span class="placeholder">[Bitte prüfen: Verantwortlichkeit, AV-Vertrag,
+        Speicherdauer, mögliche Drittlandübermittlung sowie Link zur
+        Datenschutzerklärung von Campai ergänzen.]</span>
+      </p>
+
+      <h2>7. Soziale Netzwerke</h2>
+      <p>
+        Auf dieser Website werden keine Social-Media-Plugins oder -Widgets
+        eingebunden und es findet keine Einbettung sozialer Netzwerke statt.
+      </p>
+
+      <h2>8. Karten / Anfahrt (Google Maps)</h2>
+      <p>
+        Wir binden <strong>keine</strong> Google-Maps-Karte direkt ein, um eine
+        Datenübertragung ohne deine Einwilligung zu vermeiden. Stattdessen findest
+        du auf der Seite einen normalen externen Link zu Google Maps. Erst durch
+        Klick auf diesen Link werden Daten an Google übertragen; es gelten dann die
+        Datenschutzbestimmungen von Google.
+      </p>
+
+      <h2>9. Keine Analyse-Tools, kein Tracking</h2>
+      <p>
+        Diese Website verwendet <strong>keine</strong> Analyse-Dienste (z. B.
+        Google Analytics), <strong>keine</strong> Tracking-Pixel und
+        <strong>keine</strong> Tracking-Cookies. Es werden keine Cookies zu
+        Marketing- oder Statistikzwecken gesetzt.
+      </p>
+
+      <h2>10. Speicherdauer</h2>
+      <p>
+        Personenbezogene Daten werden nur so lange gespeichert, wie es für die
+        jeweiligen Zwecke erforderlich ist oder gesetzliche Aufbewahrungsfristen
+        bestehen. Mitgliedsbezogene Daten werden für die Dauer der Mitgliedschaft
+        verarbeitet und nach deren Ende gelöscht, soweit keine gesetzlichen
+        Aufbewahrungsfristen entgegenstehen. Buchhaltungs- und steuerrelevante
+        Unterlagen bewahren wir entsprechend den gesetzlichen Fristen (in der
+        Regel sechs bis zehn Jahre) auf.
+      </p>
+
+      <h2>11. Deine Rechte als betroffene Person</h2>
+      <p>Dir stehen nach der DSGVO insbesondere folgende Rechte zu:</p>
+      <ul>
+        <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+        <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+        <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+        <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Widerspruchsrecht gegen die Verarbeitung (Art. 21 DSGVO)</li>
+        <li>
+          Recht auf Widerruf einer erteilten Einwilligung mit Wirkung für die
+          Zukunft (Art. 7 Abs. 3 DSGVO)
+        </li>
+      </ul>
+      <p>
+        Zur Ausübung deiner Rechte genügt eine Nachricht an
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+      </p>
+
+      <h2>12. Beschwerderecht bei einer Aufsichtsbehörde</h2>
+      <p>
+        Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde über die
+        Verarbeitung deiner personenbezogenen Daten zu beschweren (Art. 77 DSGVO).
+      </p>
+      <p>
+        Die für uns zuständige Aufsichtsbehörde ist:
+      </p>
+      <p>
+        Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit
+        Baden-Württemberg<br />
+        Lautenschlagerstraße 20<br />
+        70173 Stuttgart
+      </p>
+
+      <h2>13. Aktualität und Änderung dieser Datenschutzerklärung</h2>
+      <p>
+        Diese Datenschutzerklärung ist aktuell gültig. Durch Weiterentwicklung der
+        Website oder geänderte gesetzliche Vorgaben kann eine Anpassung notwendig
+        werden.
+      </p>
+      <p>Stand: Juni 2026</p>
+    </div>
+  </section>
+</BaseLayout>
