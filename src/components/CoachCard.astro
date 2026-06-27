@@ -1,0 +1,81 @@
+---
+import type { Coach } from '../config';
+
+interface Props {
+  coach: Coach;
+}
+
+const { coach } = Astro.props;
+---
+
+<article class="coach card">
+  <img
+    class="coach__photo"
+    src={coach.photo}
+    alt={coach.photoAlt}
+    width="320"
+    height="320"
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="coach__body">
+    <h3 class="coach__name">{coach.name}</h3>
+    <p class="coach__meta">
+      <span class="coach__role">{coach.role}</span>
+      <span class="coach__belt">{coach.belt}</span>
+    </p>
+    {coach.tagline && <p class="coach__tagline">{coach.tagline}</p>}
+    {coach.bio && <p class="coach__bio">{coach.bio}</p>}
+  </div>
+</article>
+
+<style>
+  .coach {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .coach__photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    background-color: var(--color-bg-elevated);
+  }
+
+  .coach__body {
+    padding: var(--space-lg);
+  }
+
+  .coach__name {
+    font-size: var(--fs-600);
+  }
+
+  .coach__meta {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-xs);
+  }
+
+  .coach__role {
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .coach__belt {
+    color: var(--color-warm);
+    font-weight: 600;
+  }
+
+  .coach__bio {
+    margin-top: var(--space-sm);
+    color: var(--color-text-muted);
+  }
+
+  .coach__tagline {
+    margin-top: var(--space-xs);
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+</style>

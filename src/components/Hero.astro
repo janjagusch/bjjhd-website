@@ -1,0 +1,50 @@
+---
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <h1 id="hero-title">
+        Brazilian Jiu-Jitsu in <span class="hero__accent">Heidelberg</span>
+      </h1>
+      <div class="hero__actions">
+        <a href="#signup" class="btn btn--primary">Become a member</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--space-3xl);
+    background:
+      radial-gradient(
+        80% 120% at 80% 0%,
+        rgba(181, 86, 43, 0.06),
+        transparent 60%
+      ),
+      linear-gradient(180deg, var(--color-bg-elevated), var(--color-bg));
+  }
+
+  .hero__content {
+    max-width: 38ch;
+  }
+
+  .hero__accent {
+    color: var(--color-warm);
+  }
+
+  .hero__lead {
+    margin-top: var(--space-md);
+    max-width: 50ch;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+  }
+</style>

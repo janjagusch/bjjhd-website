@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="Platzhalter Trainerfoto">
+  <rect width="320" height="320" fill="#f0efec"/>
+  <circle cx="160" cy="125" r="55" fill="#d6d3cc"/>
+  <rect x="80" y="195" width="160" height="110" rx="55" fill="#d6d3cc"/>
+  <text x="160" y="290" font-family="system-ui, sans-serif" font-size="16" fill="#9a958c" text-anchor="middle">Foto-Platzhalter</text>
+</svg>

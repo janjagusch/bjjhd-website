@@ -1,0 +1,119 @@
+---
+import { trainingSchedule } from '../config';
+---
+
+<div class="schedule">
+  <table class="schedule__table">
+    <caption class="visually-hidden">Weekly training times</caption>
+    <thead>
+      <tr>
+        <th scope="col">Day</th>
+        <th scope="col">Time</th>
+        <th scope="col">Class</th>
+        <th scope="col">Room</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        trainingSchedule.map((slot) => (
+          <tr>
+            <th scope="row" data-label="Day">{slot.day}</th>
+            <td data-label="Time">{slot.time}</td>
+            <td data-label="Class">{slot.title}</td>
+            <td data-label="Room">
+              {slot.roomUrl ? (
+                <a href={slot.roomUrl} target="_blank" rel="noopener noreferrer">
+                  {slot.room} ↗
+                </a>
+              ) : (
+                slot.room
+              )}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .schedule {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--color-surface);
+  }
+
+  .schedule__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .schedule__table th,
+  .schedule__table td {
+    text-align: left;
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .schedule__table thead th {
+    background-color: var(--color-bg-elevated);
+    color: var(--color-text-muted);
+    font-size: var(--fs-300);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .schedule__table tbody tr {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .schedule__table tbody th[scope='row'] {
+    color: var(--color-heading);
+    font-weight: 700;
+  }
+
+  .schedule__level {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-full);
+    background-color: rgba(181, 86, 43, 0.1);
+    color: var(--color-warm);
+    font-size: var(--fs-300);
+    font-weight: 600;
+  }
+
+  /* --- Card layout on small screens --- */
+  @media (max-width: 640px) {
+    .schedule__table thead {
+      display: none;
+    }
+    .schedule__table,
+    .schedule__table tbody,
+    .schedule__table tr,
+    .schedule__table th,
+    .schedule__table td {
+      display: block;
+      width: 100%;
+    }
+    .schedule__table tr {
+      padding: var(--space-sm) 0;
+    }
+    .schedule__table tbody th[scope='row'] {
+      font-size: var(--fs-500);
+      padding-bottom: var(--space-xs);
+    }
+    .schedule__table td {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding-block: 0.35rem;
+    }
+    .schedule__table td::before {
+      content: attr(data-label);
+      color: var(--color-text-muted);
+      font-size: var(--fs-300);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+</style>
