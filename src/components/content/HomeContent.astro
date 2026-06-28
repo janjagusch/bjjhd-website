@@ -19,6 +19,36 @@ const t = ui[lang];
 <StructuredData />
 <Hero lang={lang} />
 
+<!-- 0. What is BJJ? (intro + link to the beginner's guide) -->
+<section id="what" class="section section--alt">
+  <div class="container">
+    <h2>{t.whatHeading}</h2>
+    {
+      lang === 'de' ? (
+        <p class="section__intro">
+          Brazilian Jiu-Jitsu (BJJ) ist eine Kampfsportart, die sich auf
+          Bodenkampf, Hebel und Würger konzentriert. Mit Technik, Timing und
+          Hebelwirkung statt roher Kraft kannst du auch größere und stärkere
+          Partner kontrollieren. BJJ ist für alle da – egal ob du fit werden,
+          dich verteidigen lernen oder einfach Teil einer Gemeinschaft sein
+          möchtest. Du brauchst keine Vorerfahrung.
+        </p>
+      ) : (
+        <p class="section__intro">
+          Brazilian Jiu-Jitsu (BJJ) is a martial art focused on ground
+          fighting, joint locks and chokes. Using technique, timing and leverage
+          instead of raw strength, you can control bigger and stronger partners.
+          BJJ is for everyone – whether you want to get fit, learn to defend
+          yourself, or simply be part of a community. No prior experience needed.
+        </p>
+      )
+    }
+    <p style="margin-top: var(--space-md);">
+      <a href={withBase(routes.beginners[lang])}>{t.whatLink}</a>
+    </p>
+  </div>
+</section>
+
 <!-- 1 + 2. Training: Gi + days -->
 <section id="training" class="section">
   <div class="container">
@@ -26,8 +56,7 @@ const t = ui[lang];
     {
       lang === 'de' ? (
         <p class="section__intro">
-          Wir trainieren Brazilian Jiu-Jitsu im Gi (der Anzug, der in
-          fernöstlichen Kampfkünsten getragen wird). Anfänger sind jederzeit
+          Wir trainieren Brazilian Jiu-Jitsu im Gi. Anfänger sind jederzeit
           willkommen, Mindestalter 16. Für dein
           <a href={homeAnchor(lang, 'trial')}>Probetraining</a> kannst du in
           normaler Sportkleidung kommen – wenn du dich vorher meldest, können wir
@@ -36,8 +65,8 @@ const t = ui[lang];
         </p>
       ) : (
         <p class="section__intro">
-          We train Brazilian Jiu-Jitsu in the Gi (the uniform worn in far-eastern
-          martial arts). Beginners are welcome any time, minimum age 16. For your
+          We train Brazilian Jiu-Jitsu in the Gi. Beginners are welcome any
+          time, minimum age 16. For your
           <a href={homeAnchor(lang, 'trial')}>trial session</a> you can come in
           regular sportswear – if you message us beforehand, we can probably lend
           you a Gi. Please also read our

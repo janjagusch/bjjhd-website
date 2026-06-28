@@ -1,0 +1,322 @@
+---
+import { withBase } from '../../utils/withBase';
+import { ui, routes, homeAnchor, defaultLocale } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const t = ui[lang];
+const de = lang === 'de';
+---
+
+<section class="section">
+  <div class="container">
+    <h1>{t.beginnersHeading}</h1>
+    <p class="section__intro">{t.beginnersIntro}</p>
+
+    <div class="guide">
+      <!-- What is BJJ -->
+      <section class="guide__block" aria-labelledby="guide-what">
+        <h2 id="guide-what">
+          {de ? 'Was ist Brazilian Jiu-Jitsu?' : 'What is Brazilian Jiu-Jitsu?'}
+        </h2>
+        {
+          de ? (
+            <>
+              <p>
+                Brazilian Jiu-Jitsu (BJJ) ist eine Kampfsportart, die sich auf
+                Bodenkampf und Hebel- bzw. Würgetechniken konzentriert. Das Ziel
+                ist es, deinen Partner zu kontrollieren und ihn mit einer
+                Submission zum Aufgeben zu bewegen – ohne Schläge oder Tritte.
+                Technik, Timing und Hebel schlagen dabei rohe Kraft, weshalb auch
+                kleinere Personen größere und stärkere Partner kontrollieren
+                können.
+              </p>
+              <p>
+                BJJ hat seine Wurzeln im japanischen Jiu-Jitsu und im Judo. Anfang
+                des 20. Jahrhunderts brachte der japanische Judoka Mitsuyo Maeda
+                die Kunst nach Brasilien, wo die Familie Gracie sie weiter­
+                entwickelte und den Fokus auf den Bodenkampf legte. International
+                bekannt wurde BJJ in den 1990er-Jahren, als Royce Gracie die ersten
+                UFC-Turniere gewann – und damit zeigte, wie effektiv Grappling ist.
+              </p>
+            </>
+          ) : (
+            <>
+              <p>
+                Brazilian Jiu-Jitsu (BJJ) is a martial art that focuses on ground
+                fighting and joint locks and chokes. The goal is to control your
+                partner and force them to give up with a submission – without
+                strikes or kicks. Technique, timing and leverage beat raw strength,
+                which is why smaller people can control bigger, stronger partners.
+              </p>
+              <p>
+                BJJ has its roots in Japanese jiu-jitsu and judo. In the early 20th
+                century the Japanese judoka Mitsuyo Maeda brought the art to Brazil,
+                where the Gracie family developed it further with a focus on ground
+                fighting. BJJ gained worldwide recognition in the 1990s when Royce
+                Gracie won the first UFC tournaments – proving just how effective
+                grappling is.
+              </p>
+            </>
+          )
+        }
+      </section>
+
+      <!-- Who it's for -->
+      <section class="guide__block" aria-labelledby="guide-who">
+        <h2 id="guide-who">{de ? 'Für wen ist BJJ?' : 'Who is BJJ for?'}</h2>
+        {
+          de ? (
+            <p>
+              BJJ ist für alle da – unabhängig von Alter, Geschlecht, Fitness oder
+              Vorerfahrung. Du brauchst keine Kampfsporterfahrung, um anzufangen.
+              Viele kommen, um fit zu werden, sich selbst verteidigen zu können
+              oder einfach Teil einer Gemeinschaft zu sein. Bei uns ist das
+              Mindestalter 16 Jahre. Wenn du unsicher bist: Komm zu einem
+              <a href={withBase(homeAnchor(lang, 'trial'))}>kostenlosen Probetraining</a>
+              und probier es einfach aus.
+            </p>
+          ) : (
+            <p>
+              BJJ is for everyone – regardless of age, gender, fitness or prior
+              experience. You don’t need any martial arts background to start. Many
+              people come to get fit, to be able to defend themselves, or simply to
+              be part of a community. Our minimum age is 16. If you’re unsure, come
+              to a
+              <a href={withBase(homeAnchor(lang, 'trial'))}>free trial class</a>
+              and just give it a try.
+            </p>
+          )
+        }
+      </section>
+
+      <!-- Rules & objective -->
+      <section class="guide__block" aria-labelledby="guide-rules">
+        <h2 id="guide-rules">
+          {de ? 'Regeln & Ziel des Sports' : 'Rules & objective'}
+        </h2>
+        {
+          de ? (
+            <>
+              <p>
+                Ein Match beginnt im Stand. Ziel ist es, den Partner zu Boden zu
+                bringen, eine dominante Position einzunehmen und ihn schließlich mit
+                einer Submission – einem Hebel oder Würger – zum Abklopfen zu
+                bringen. „Abklopfen“ (tap) signalisiert die Aufgabe; der Partner
+                lässt dann sofort los.
+              </p>
+              <p>
+                Endet eine Runde ohne Submission, entscheiden Punkte über den Sieg.
+                Punkte gibt es für das Erreichen dominanter Positionen wie das
+                Passieren der Guard, die Mount oder die Rückenkontrolle. Schläge,
+                Tritte und Slams sind verboten – BJJ ist kein MMA. Lockeres Sparring
+                nennen wir „Rollen“ (rolling), und es gehört zu jedem Training dazu.
+              </p>
+            </>
+          ) : (
+            <>
+              <p>
+                A match starts standing. The objective is to take your partner down,
+                establish a dominant position and eventually force a submission – a
+                joint lock or choke – making them tap. The “tap” signals surrender,
+                and your partner releases immediately.
+              </p>
+              <p>
+                If a round ends without a submission, points decide the winner.
+                Points are awarded for reaching dominant positions such as passing
+                the guard, the mount or back control. Strikes, kicks and slams are
+                forbidden – BJJ is not MMA. Light sparring is called “rolling” and is
+                part of every session.
+              </p>
+            </>
+          )
+        }
+      </section>
+
+      <!-- Health & safety -->
+      <section class="guide__block" aria-labelledby="guide-safety">
+        <h2 id="guide-safety">
+          {de ? 'Gesundheit & Sicherheit' : 'Health & safety'}
+        </h2>
+        {
+          de ? (
+            <p>
+              BJJ ist sicherer, als viele denken. Kleinere Blessuren kommen vor,
+              ernsthafte Verletzungen sind selten – vorausgesetzt, alle trainieren
+              verantwortungsvoll. Die wichtigste Regel: <strong>Klopf früh und
+              jederzeit ab.</strong> Deine Gesundheit ist wichtiger als dein Ego.
+              Position vor Submission, kontrolliertes Ansetzen von Techniken und
+              gegenseitiger Respekt halten die Matte sicher. Bestimmte Techniken
+              (z. B. Heel Hooks oder Neck Cranks) lassen wir im normalen Training
+              weg. Alle Details findest du in unseren
+              <a href={withBase(routes.rules[lang])}>Regeln & Richtlinien</a>.
+            </p>
+          ) : (
+            <p>
+              BJJ is safer than many people think. Minor knocks happen, but serious
+              injuries are rare – as long as everyone trains responsibly. The most
+              important rule: <strong>tap early and any time.</strong> Your health is
+              more important than your ego. Position before submission, applying
+              techniques under control, and mutual respect keep the mat safe. Certain
+              techniques (e.g. heel hooks or neck cranks) are left out of regular
+              training. You’ll find all the details in our
+              <a href={withBase(routes.rules[lang])}>rules & guidelines</a>.
+            </p>
+          )
+        }
+      </section>
+
+      <!-- Hygiene -->
+      <section class="guide__block" aria-labelledby="guide-hygiene">
+        <h2 id="guide-hygiene">
+          {de ? 'Hygiene & Hautpflege' : 'Hygiene & skincare'}
+        </h2>
+        {
+          de ? (
+            <p>
+              Weil BJJ ein Sport mit engem Körperkontakt ist, ist Hygiene
+              entscheidend, um Hautinfektionen zu vermeiden. Komm mit sauberem Gi
+              und sauberer Kleidung zum Training und wasch beides nach jeder
+              Einheit. Halte deine Finger- und Fußnägel kurz, geh nicht barfuß von
+              der Matte (besonders nicht zur Toilette) und bleib zu Hause, wenn du
+              krank bist oder offene Wunden hast. So schützt du dich und deine
+              Trainingspartner.
+            </p>
+          ) : (
+            <p>
+              Because BJJ is a close-contact sport, hygiene is essential to prevent
+              skin infections. Come to training with a clean Gi and clean clothing,
+              and wash both after every session. Keep your finger- and toenails
+              short, don’t walk barefoot off the mat (especially not to the
+              bathroom), and stay home if you’re sick or have open wounds. This
+              protects both you and your training partners.
+            </p>
+          )
+        }
+      </section>
+
+      <!-- Equipment -->
+      <section class="guide__block" aria-labelledby="guide-equipment">
+        <h2 id="guide-equipment">
+          {de ? 'Welche Ausrüstung brauche ich?' : 'What equipment do I need?'}
+        </h2>
+        {
+          de ? (
+            <>
+              <p>
+                Für den Einstieg brauchst du kaum Ausrüstung – einer der Gründe,
+                warum BJJ so zugänglich ist. Wir trainieren im Gi (dem Anzug, der in
+                fernöstlichen Kampfkünsten getragen wird); ein Judo-Gi funktioniert
+                ebenfalls. Für dein erstes Probetraining reicht normale Sportkleidung,
+                und wenn du dich vorher meldest, können wir dir wahrscheinlich einen
+                Gi leihen.
+              </p>
+              <ul class="guide__list">
+                <li>
+                  <strong>Pflicht:</strong> ein Gi (Kimono), darunter idealerweise
+                  ein Rashguard
+                </li>
+                <li>
+                  <strong>Empfohlen:</strong> ein Mundschutz
+                </li>
+                <li>
+                  <strong>Optional:</strong> Ohrenschützer (gegen Blumenkohlohren),
+                  Tiefschutz
+                </li>
+              </ul>
+            </>
+          ) : (
+            <>
+              <p>
+                You need very little equipment to get started – one of the reasons
+                BJJ is so accessible. We train in the Gi (the uniform worn in
+                far-eastern martial arts); a judo Gi works too. For your first trial
+                class, regular sportswear is fine, and if you message us beforehand we
+                can probably lend you a Gi.
+              </p>
+              <ul class="guide__list">
+                <li>
+                  <strong>Required:</strong> a Gi (kimono), ideally with a rash guard
+                  underneath
+                </li>
+                <li>
+                  <strong>Recommended:</strong> a mouthguard
+                </li>
+                <li>
+                  <strong>Optional:</strong> ear guards (to prevent cauliflower ear),
+                  groin guard
+                </li>
+              </ul>
+            </>
+          )
+        }
+      </section>
+
+      <!-- CTA -->
+      <section class="guide__cta" aria-labelledby="guide-cta">
+        <h2 id="guide-cta">
+          {de ? 'Bereit, es auszuprobieren?' : 'Ready to give it a try?'}
+        </h2>
+        <p>
+          {
+            de
+              ? 'Die beste Art, BJJ kennenzulernen, ist, einfach auf die Matte zu kommen. Dein erstes Training ist kostenlos.'
+              : 'The best way to get to know BJJ is to simply step on the mat. Your first class is free.'
+          }
+        </p>
+        <a href={withBase(homeAnchor(lang, 'trial'))} class="btn btn--primary">
+          {t.ctaTrial}
+        </a>
+      </section>
+    </div>
+  </div>
+</section>
+
+<style>
+  .guide {
+    margin-top: var(--space-2xl);
+    display: grid;
+    gap: var(--space-2xl);
+    max-width: 70ch;
+  }
+
+  .guide__block h2 {
+    font-size: var(--fs-600);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-border);
+    margin-bottom: var(--space-md);
+  }
+
+  .guide__block p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .guide__list {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: var(--space-xs);
+    color: var(--color-text-muted);
+  }
+
+  .guide__cta {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+  }
+  .guide__cta h2 {
+    font-size: var(--fs-600);
+    margin-bottom: var(--space-sm);
+  }
+  .guide__cta p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    max-width: 60ch;
+  }
+</style>
