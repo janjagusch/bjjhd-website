@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import TrainingSchedule from '../components/TrainingSchedule.astro';
 import CampaiSignup from '../components/CampaiSignup.astro';
-import { contact, pricing } from '../config';
+import { campai, contact, pricing } from '../config';
 import { withBase } from '../utils/withBase';
 ---
 
@@ -17,7 +17,7 @@ import { withBase } from '../utils/withBase';
       <p class="section__intro">
         We train Brazilian Jiu-Jitsu in the Gi (the uniform worn in far-eastern
         martial arts). Beginners are welcome any time, minimum age 16. For your
-        <a href="#signup">trial session</a> you can come in regular sportswear –
+        <a href="#trial">trial session</a> you can come in regular sportswear –
         if you message us beforehand, we can probably lend you a Gi. Please also
         read our <a href={withBase('/rules')}>rules</a>.
       </p>
@@ -69,16 +69,18 @@ import { withBase } from '../utils/withBase';
     </div>
   </section>
 
-  <!-- 4. Trial / visitors -->
-  <section id="contact" class="section">
+  <!-- 4. Free trial class -->
+  <section id="trial" class="section">
     <div class="container">
-      <h2>Trial sessions &amp; visitors</h2>
+      <h2>Book a free trial class</h2>
       <p class="section__intro">
-        Visitors and people wanting a trial session are very welcome. The trial
-        is <strong>free</strong>. Just drop us a message at
-        <a href={`mailto:${contact.email}`}>{contact.email}</a> and we’ll get
-        back to you.
+        Visitors and people wanting a trial session are very welcome – your
+        first class is <strong>free</strong>. Register below and we’ll get back
+        to you.
       </p>
+      <div style="margin-top: var(--space-xl);">
+        <CampaiSignup src={campai.trialFormSrc} />
+      </div>
     </div>
   </section>
 
@@ -100,12 +102,18 @@ import { withBase } from '../utils/withBase';
     </div>
   </section>
 
-  <!-- 6. Sign up -->
+  <!-- 6. Become a member -->
   <section id="signup" class="section">
     <div class="container">
-      <h2>Sign up</h2>
+      <h2>Ready to join?</h2>
+      <p class="section__intro">
+        Loved your trial and want to train with us regularly? Become a member
+        and join the club.
+      </p>
       <div style="margin-top: var(--space-xl);">
-        <CampaiSignup />
+        <a href={withBase('/signup')} class="btn btn--primary"
+          >Become a member</a
+        >
       </div>
     </div>
   </section>

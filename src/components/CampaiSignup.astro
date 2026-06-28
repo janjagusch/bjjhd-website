@@ -1,16 +1,23 @@
 ---
 import { campai } from '../config';
 import { withBase } from '../utils/withBase';
+
+interface Props {
+  /** Campai application form URL to embed. */
+  src?: string;
+  /** Short introductory line shown above the form. */
+  intro?: string;
+}
+
+const { src = campai.membershipFormSrc, intro } = Astro.props;
 ---
 
 <div class="campai">
-  <p class="campai__intro">
-    Want to become a member? Just fill in the form below.
-  </p>
+  {intro && <p class="campai__intro">{intro}</p>}
 
   <div class="campai__frame">
     <iframe
-      src={campai.iframeSrc}
+      src={src}
       data-campai-id
       title="Membership application (provided by Campai)"
       loading="lazy"
