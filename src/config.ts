@@ -19,7 +19,8 @@ export interface TrainingSlot {
   day: string;
   time: string;
   title: Localized;
-  level: Localized;
+  /** Optional skill-level tag (e.g. "All levels"). Omit to hide the tag. */
+  level?: Localized;
   room: string;
   /** Optional Google Maps link for the room/building. */
   roomUrl?: string;
@@ -114,7 +115,6 @@ export const trainingSchedule: TrainingSlot[] = [
     day: 'Friday',
     time: '18:30 – 20:30',
     title: { de: 'BJJ-Training', en: 'BJJ Training' },
-    level: { de: 'Alle Level', en: 'All levels' },
     room: 'Gymnastikraum',
     roomUrl:
       'https://www.tsg78-hd.de/images/Abteilungen/Seniorensport/Anfahrt_Athleticon_GyR.png',
@@ -123,7 +123,6 @@ export const trainingSchedule: TrainingSlot[] = [
     day: 'Saturday',
     time: '11:00 – 13:00',
     title: { de: 'Open Mat', en: 'Open Mat' },
-    level: { de: 'Alle Level', en: 'All levels' },
     room: 'Athleticon',
     roomUrl:
       'https://www.tsg78-hd.de/images/Abteilungen/Seniorensport/Anfahrt_Athleticon_GyR.png',

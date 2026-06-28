@@ -46,7 +46,6 @@ interface NavStrings {
   training: string;
   location: string;
   prices: string;
-  beginners: string;
   rules: string;
   signup: string;
 }
@@ -115,7 +114,6 @@ export const ui: Record<Locale, UI> = {
       training: 'Training',
       location: 'Ort',
       prices: 'Preise',
-      beginners: 'Einsteiger',
       rules: 'Regeln',
       signup: 'Mitglied werden',
     },
@@ -182,7 +180,6 @@ export const ui: Record<Locale, UI> = {
       training: 'Training',
       location: 'Location',
       prices: 'Prices',
-      beginners: 'Beginners',
       rules: 'Rules',
       signup: 'Sign up',
     },
@@ -252,7 +249,6 @@ export function getNav(lang: Locale) {
     { label: ui[lang].nav.training, href: homeAnchor(lang, 'training') },
     { label: ui[lang].nav.location, href: homeAnchor(lang, 'location') },
     { label: ui[lang].nav.prices, href: homeAnchor(lang, 'prices') },
-    { label: ui[lang].nav.beginners, href: routes.beginners[lang] },
     { label: ui[lang].nav.rules, href: routes.rules[lang] },
     { label: ui[lang].nav.signup, href: routes.signup[lang] },
   ];
