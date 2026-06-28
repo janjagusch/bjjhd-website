@@ -51,9 +51,12 @@ by impact — nothing else ranks meaningfully until the 🔴 items are done.
 
 ## 🟡 Worth doing
 
-- [ ] **Add substantive homepage content.** A short intro on what BJJ is, who
-      it's for, and why train in Heidelberg — the hero is currently just a
-      headline and two buttons.
+- [x] **Add substantive homepage content.** Added a bilingual beginner's guide
+      (`/einsteiger`, `/en/beginners`) covering what BJJ is, its history, rules,
+      health & safety, hygiene and equipment, with a nav entry and sitemap /
+      hreflang coverage. The homepage now opens with a "What is BJJ?" intro
+      section that links into the guide. Content adapted from the
+      [kimono.guru beginners guide](https://github.com/janjagusch/kimono.guru/blob/main/docs/beginners.md).
 - [ ] **Replace SVG placeholder images with real photos.** Use descriptive
       filenames (`coach-ben-black-belt-heidelberg.jpg`) and good `alt` text for
       image-search traffic and credibility.

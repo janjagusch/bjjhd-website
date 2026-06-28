@@ -27,6 +27,7 @@ export function altLocale(lang: Locale): Locale {
 export const routes = {
   home: { de: '/', en: '/en' },
   about: { de: '/ueber-uns', en: '/en/about' },
+  beginners: { de: '/einsteiger', en: '/en/beginners' },
   rules: { de: '/regeln', en: '/en/rules' },
   signup: { de: '/mitglied-werden', en: '/en/signup' },
 } as const;
@@ -45,6 +46,7 @@ interface NavStrings {
   training: string;
   location: string;
   prices: string;
+  beginners: string;
   rules: string;
   signup: string;
 }
@@ -83,12 +85,18 @@ interface UI {
   priceSuffix: string;
   joinHeading: string;
   joinIntro: string;
+  // Home "What is BJJ?" teaser
+  whatHeading: string;
+  whatLink: string;
   // About / Rules
   aboutHeading: string;
   teamHeading: string;
   rulesHeading: string;
   rulesIntro: string;
   signupHeading: string;
+  // Beginner's guide
+  beginnersHeading: string;
+  beginnersIntro: string;
   // Schedule
   schedule: ScheduleStrings;
   weekdays: Record<string, string>;
@@ -107,6 +115,7 @@ export const ui: Record<Locale, UI> = {
       training: 'Training',
       location: 'Ort',
       prices: 'Preise',
+      beginners: 'Einsteiger',
       rules: 'Regeln',
       signup: 'Mitglied werden',
     },
@@ -134,12 +143,17 @@ export const ui: Record<Locale, UI> = {
     joinHeading: 'Bereit beizutreten?',
     joinIntro:
       'Hat dir dein Probetraining gefallen und du möchtest regelmäßig mit uns trainieren? Werde Mitglied und tritt dem Verein bei.',
+    whatHeading: 'Was ist Brazilian Jiu-Jitsu?',
+    whatLink: 'Zum Einsteiger-Guide →',
     aboutHeading: 'Über uns',
     teamHeading: 'Team',
     rulesHeading: 'Regeln & Richtlinien',
     rulesIntro:
       'Diese Regeln halten unsere Matte sicher, fair und respektvoll für alle. Bitte lies sie – sie gelten für alle, egal ob Anfänger oder Fortgeschrittener.',
     signupHeading: 'Mitglied werden',
+    beginnersHeading: 'Einsteiger-Guide',
+    beginnersIntro:
+      'Neu im Brazilian Jiu-Jitsu? Dieser Guide erklärt, was BJJ ist, wie es funktioniert und was du für dein erstes Training brauchst.',
     schedule: {
       caption: 'Wöchentliche Trainingszeiten',
       day: 'Tag',
@@ -168,6 +182,7 @@ export const ui: Record<Locale, UI> = {
       training: 'Training',
       location: 'Location',
       prices: 'Prices',
+      beginners: 'Beginners',
       rules: 'Rules',
       signup: 'Sign up',
     },
@@ -195,12 +210,17 @@ export const ui: Record<Locale, UI> = {
     joinHeading: 'Ready to join?',
     joinIntro:
       'Loved your trial and want to train with us regularly? Become a member and join the club.',
+    whatHeading: 'What is Brazilian Jiu-Jitsu?',
+    whatLink: 'Read the beginner’s guide →',
     aboutHeading: 'About',
     teamHeading: 'Team',
     rulesHeading: 'Rules & Guidelines',
     rulesIntro:
       'These rules keep our mat safe, fair and respectful for everyone. Please read them – they apply to everybody, whether you’re a beginner or advanced.',
     signupHeading: 'Become a member',
+    beginnersHeading: 'Beginner’s Guide',
+    beginnersIntro:
+      'New to Brazilian Jiu-Jitsu? This guide explains what BJJ is, how it works and what you need for your first session.',
     schedule: {
       caption: 'Weekly training times',
       day: 'Day',
@@ -232,6 +252,7 @@ export function getNav(lang: Locale) {
     { label: ui[lang].nav.training, href: homeAnchor(lang, 'training') },
     { label: ui[lang].nav.location, href: homeAnchor(lang, 'location') },
     { label: ui[lang].nav.prices, href: homeAnchor(lang, 'prices') },
+    { label: ui[lang].nav.beginners, href: routes.beginners[lang] },
     { label: ui[lang].nav.rules, href: routes.rules[lang] },
     { label: ui[lang].nav.signup, href: routes.signup[lang] },
   ];
