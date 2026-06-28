@@ -78,6 +78,7 @@ export const nav: NavLink[] = [
   { label: 'Location', href: '/#location' },
   { label: 'Prices', href: '/#prices' },
   { label: 'Rules', href: '/rules' },
+  { label: 'Sign up', href: '/signup' },
 ];
 
 // === About / Club =========================================================
@@ -148,11 +149,15 @@ export const pricing: PriceItem[] = [
   { name: 'Students', price: '€40 / month', note: 'With valid proof' },
 ];
 
-// === Campai application form ==============================================
+// === Campai application forms =============================================
 export const campai = {
-  iframeSrc:
-    'https://app.campai.com/em/a3f04/applications/6a3149bfd9ff99f706bccaa2',
   scriptSrc: 'https://app.campai.com/scripts/embeddable.js',
+  // Free trial class registration – the primary call to action.
+  trialFormSrc:
+    'https://app.campai.com/em/a3f04/applications/6a40d273f3a3d5b149e14acc',
+  // Full membership application.
+  membershipFormSrc:
+    'https://app.campai.com/em/a3f04/applications/6a3149bfd9ff99f706bccaa2',
 };
 
 // === Guidelines / Trainingsregeln =========================================

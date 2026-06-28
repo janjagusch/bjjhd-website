@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CampaiSignup from '../components/CampaiSignup.astro';
+import { campai } from '../config';
+import { withBase } from '../utils/withBase';
+---
+
+<BaseLayout
+  title="Become a member"
+  description="Apply for membership at BJJ Heidelberg."
+>
+  <section class="section">
+    <div class="container">
+      <h1>Become a member</h1>
+      <p class="section__intro">
+        Ready to train with us regularly? Fill in the form below to apply for
+        membership. New to the club? You can also
+        <a href={withBase('/#trial')}>book a free trial class</a> first.
+      </p>
+      <div style="margin-top: var(--space-xl);">
+        <CampaiSignup src={campai.membershipFormSrc} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
