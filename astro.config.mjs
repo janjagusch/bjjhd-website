@@ -1,10 +1,15 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   // Static output is the default in Astro.
   output: 'static',
+
+  // Generates sitemap-index.xml + sitemap-0.xml at build time using `site`.
+  // Update `site` below to the final domain so the URLs are correct.
+  integrations: [sitemap()],
 
   // === GitHub Pages configuration =========================================
   // Set `site` to your final URL.

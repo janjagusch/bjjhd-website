@@ -1,0 +1,87 @@
+---
+import { guidelines } from '../../config';
+import { ui, defaultLocale } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const t = ui[lang];
+---
+
+<section class="section">
+  <div class="container">
+    <h1 set:html={t.rulesHeading} />
+    <p class="section__intro">{t.rulesIntro}</p>
+
+    <div class="guidelines">
+      {
+        guidelines.map((group) => (
+          <section
+            class="guidelines__group"
+            aria-labelledby={`g-${group.id}`}
+          >
+            <h2 id={`g-${group.id}`} class="guidelines__category">
+              {group.category[lang]}
+            </h2>
+            <ul class="guidelines__list">
+              {group.items.map((item) => (
+                <li class="guidelines__item">
+                  <h3 class="guidelines__title">{item.title[lang]}</h3>
+                  <p class="guidelines__text">{item.text[lang]}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .guidelines {
+    margin-top: var(--space-2xl);
+    display: grid;
+    gap: var(--space-2xl);
+  }
+
+  .guidelines__category {
+    font-size: var(--fs-700);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-border);
+    margin-bottom: var(--space-lg);
+  }
+
+  .guidelines__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 720px) {
+    .guidelines__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .guidelines__item {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+  }
+
+  .guidelines__title {
+    font-size: var(--fs-500);
+    margin-bottom: var(--space-xs);
+  }
+
+  .guidelines__text {
+    color: var(--color-text-muted);
+  }
+</style>

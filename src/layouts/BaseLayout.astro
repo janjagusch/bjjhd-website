@@ -4,21 +4,45 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { club } from '../config';
 import { withBase } from '../utils/withBase';
+import { routes, locales, defaultLocale, ui } from '../i18n';
+import type { Locale, RouteKey } from '../i18n';
 
 interface Props {
   title?: string;
   description?: string;
-  lang?: string;
+  lang?: Locale;
+  /**
+   * If this page exists in multiple languages, pass its route key so the
+   * layout can emit canonical + hreflang alternate links. Omit for
+   * single-language pages (e.g. the German-only legal pages).
+   */
+  routeKey?: RouteKey;
 }
 
 const {
   title = `${club.name} – Brazilian Jiu-Jitsu`,
   description = club.tagline,
-  lang = 'en',
+  lang = defaultLocale,
+  routeKey,
 } = Astro.props;
 
 // Map the page language to an Open Graph locale.
 const ogLocale = lang === 'de' ? 'de_DE' : 'en_US';
+
+// Build absolute URLs for canonical + hreflang. `Astro.site` has no base path,
+// so withBase() supplies it. Falls back to the current URL if `site` is unset.
+function absolute(path: string): string {
+  return new URL(withBase(path), Astro.site ?? Astro.url).href;
+}
+
+const canonical = routeKey
+  ? absolute(routes[routeKey][lang])
+  : Astro.url.href;
+
+// hreflang alternates: one per locale, plus x-default pointing at the default.
+const alternates = routeKey
+  ? locales.map((l) => ({ hreflang: l, href: absolute(routes[routeKey][l]) }))
+  : [];
 ---
 
 <!doctype html>
@@ -31,6 +55,22 @@ const ogLocale = lang === 'de' ? 'de_DE' : 'en_US';
     <meta name="description" content={description} />
     <meta name="theme-color" content="#ffffff" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+
+    <link rel="canonical" href={canonical} />
+    {
+      alternates.map((a) => (
+        <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+      ))
+    }
+    {
+      routeKey && (
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href={absolute(routes[routeKey][defaultLocale])}
+        />
+      )
+    }
 
     <!-- Fonts: Newsreader (headings) + Inter (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,13 +85,14 @@ const ogLocale = lang === 'de' ? 'de_DE' : 'en_US';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={ogLocale} />
+    <meta property="og:url" content={canonical} />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <Header />
+    <a class="skip-link" href="#main">{ui[lang].skip}</a>
+    <Header lang={lang} routeKey={routeKey} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
   </body>
 </html>

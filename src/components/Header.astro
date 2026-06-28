@@ -1,11 +1,30 @@
 ---
-import { club, nav } from '../config';
+import { club } from '../config';
 import { withBase } from '../utils/withBase';
+import { ui, getNav, routes, altLocale, defaultLocale, homeAnchor } from '../i18n';
+import type { Locale, RouteKey } from '../i18n';
+
+interface Props {
+  lang?: Locale;
+  /** Used to point the language switch at the same page in the other locale. */
+  routeKey?: RouteKey;
+}
+
+const { lang = defaultLocale, routeKey } = Astro.props;
+const t = ui[lang];
+const nav = getNav(lang);
+const other = altLocale(lang);
+// Switch to the same page in the other language, else fall back to its home.
+const switchHref = withBase(routeKey ? routes[routeKey][other] : routes.home[other]);
 ---
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href={withBase('/')} class="brand" aria-label={`${club.name} – Home`}>
+    <a
+      href={withBase(routes.home[lang])}
+      class="brand"
+      aria-label={`${club.name} – ${t.homeAria}`}
+    >
       <img
         src={withBase(club.logo)}
         alt={club.logoAlt}
@@ -20,14 +39,15 @@ import { withBase } from '../utils/withBase';
       type="button"
       aria-expanded="false"
       aria-controls="primary-nav"
-      aria-label="Open menu"
+      aria-label={t.openMenu}
+      data-close-label={t.closeMenu}
     >
       <span class="nav-toggle__bar"></span>
       <span class="nav-toggle__bar"></span>
       <span class="nav-toggle__bar"></span>
     </button>
 
-    <nav id="primary-nav" class="site-nav" aria-label="Main navigation">
+    <nav id="primary-nav" class="site-nav" aria-label={t.mainNav}>
       <ul class="site-nav__list">
         {
           nav.map((item) => (
@@ -39,8 +59,18 @@ import { withBase } from '../utils/withBase';
           ))
         }
         <li>
-          <a href={withBase('/#trial')} class="btn btn--primary site-nav__cta"
-            >Book free trial class</a
+          <a
+            href={withBase(homeAnchor(lang, 'trial'))}
+            class="btn btn--primary site-nav__cta">{t.ctaTrial}</a
+          >
+        </li>
+        <li>
+          <a
+            href={switchHref}
+            class="site-nav__link site-nav__lang"
+            lang={other}
+            hreflang={other}
+            aria-label={t.langSwitchAria}>{t.langSwitchLabel}</a
           >
         </li>
       </ul>
@@ -101,6 +131,15 @@ import { withBase } from '../utils/withBase';
 
   .site-nav__cta {
     padding: 0.55rem 1.1rem;
+  }
+
+  .site-nav__lang {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: var(--fs-300);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.35rem 0.6rem;
   }
 
   /* --- Mobile toggle button --- */
@@ -181,10 +220,14 @@ import { withBase } from '../utils/withBase';
   const navMenu = document.getElementById('primary-nav');
 
   if (toggle && navMenu) {
+    // Localized labels are provided by the server-rendered aria-label.
+    const openLabel = toggle.getAttribute('aria-label') ?? 'Open menu';
+    const closeLabel = toggle.getAttribute('data-close-label') ?? openLabel;
+
     toggle.addEventListener('click', () => {
       const open = navMenu.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      toggle.setAttribute('aria-label', open ? closeLabel : openLabel);
     });
 
     // Close the menu after choosing a link (mobile).
@@ -192,7 +235,7 @@ import { withBase } from '../utils/withBase';
       link.addEventListener('click', () => {
         navMenu.classList.remove('is-open');
         toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Open menu');
+        toggle.setAttribute('aria-label', openLabel);
       });
     });
   }

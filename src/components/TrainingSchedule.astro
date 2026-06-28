@@ -1,29 +1,44 @@
 ---
 import { trainingSchedule } from '../config';
+import { ui, defaultLocale } from '../i18n';
+import type { Locale } from '../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const t = ui[lang];
+
+// Localized weekday label from the canonical English `day` field.
+const dayLabel = (day: string) =>
+  t.weekdays[day.toLowerCase()] ?? day;
 ---
 
 <div class="schedule">
   <table class="schedule__table">
-    <caption class="visually-hidden">Weekly training times</caption>
+    <caption class="visually-hidden">{t.schedule.caption}</caption>
     <thead>
       <tr>
-        <th scope="col">Day</th>
-        <th scope="col">Time</th>
-        <th scope="col">Class</th>
-        <th scope="col">Room</th>
+        <th scope="col">{t.schedule.day}</th>
+        <th scope="col">{t.schedule.time}</th>
+        <th scope="col">{t.schedule.class}</th>
+        <th scope="col">{t.schedule.room}</th>
       </tr>
     </thead>
     <tbody>
       {
         trainingSchedule.map((slot) => (
           <tr>
-            <th scope="row" data-label="Day">{slot.day}</th>
-            <td data-label="Time">{slot.time}</td>
-            <td data-label="Class">
-              {slot.title}
-              {slot.level && <span class="schedule__level">{slot.level}</span>}
+            <th scope="row" data-label={t.schedule.day}>{dayLabel(slot.day)}</th>
+            <td data-label={t.schedule.time}>{slot.time}</td>
+            <td data-label={t.schedule.class}>
+              {slot.title[lang]}
+              {slot.level && (
+                <span class="schedule__level">{slot.level[lang]}</span>
+              )}
             </td>
-            <td data-label="Room">
+            <td data-label={t.schedule.room}>
               {slot.roomUrl ? (
                 <a href={slot.roomUrl} target="_blank" rel="noopener noreferrer">
                   {slot.room} ↗
