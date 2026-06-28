@@ -6,16 +6,20 @@
  *   prices live here so you rarely have to touch the components.
  */
 
+import type { Localized } from './i18n';
+
 export interface NavLink {
   label: string;
   href: string;
 }
 
 export interface TrainingSlot {
+  /** Canonical English weekday (e.g. "Friday") – used for schema.org mapping
+   *  and to look up the localized label. */
   day: string;
   time: string;
-  title: string;
-  level: string;
+  title: Localized;
+  level: Localized;
   room: string;
   /** Optional Google Maps link for the room/building. */
   roomUrl?: string;
@@ -23,21 +27,21 @@ export interface TrainingSlot {
 
 export interface Coach {
   name: string;
-  role: string;
-  belt: string;
-  bio?: string;
+  role: Localized;
+  belt: Localized;
+  bio?: Localized;
   /** Optional short italic tagline shown under the belt. */
-  tagline?: string;
+  tagline?: Localized;
   /** Path relative to /public, e.g. "/images/coach-1.svg" */
   photo: string;
   /** Alt text describing the photo for screen readers. */
-  photoAlt: string;
+  photoAlt: Localized;
 }
 
 export interface PriceItem {
-  name: string;
+  name: Localized;
   price: string;
-  note?: string;
+  note?: Localized;
 }
 
 // === Club / brand =========================================================
@@ -71,35 +75,37 @@ export const contact = {
     'https://maps.google.com/?q=Tiergartenstra%C3%9Fe+9-11+69120+Heidelberg',
 };
 
-// === Navigation ===========================================================
-export const nav: NavLink[] = [
-  { label: 'About', href: '/about' },
-  { label: 'Training', href: '/#training' },
-  { label: 'Location', href: '/#location' },
-  { label: 'Prices', href: '/#prices' },
-  { label: 'Rules', href: '/rules' },
-  { label: 'Sign up', href: '/signup' },
-];
-
 // === About / Club =========================================================
 export const about = {
   founded: '2026',
   paragraphs: [
-    'BJJ Heidelberg was founded in 2026. Our goal is to teach you solid Brazilian Jiu-Jitsu in an atmosphere where complete beginners and experienced martial artists feel equally welcome.',
-    'We are a community-driven club. Clean Jiu-Jitsu, mutual respect and having fun on the mat come first – not the ego.',
-  ],
+    {
+      de: 'BJJ Heidelberg wurde 2026 gegründet. Unser Ziel ist es, dir solides Brazilian Jiu-Jitsu in einer Atmosphäre beizubringen, in der sich absolute Anfänger und erfahrene Kampfsportler gleichermaßen willkommen fühlen.',
+      en: 'BJJ Heidelberg was founded in 2026. Our goal is to teach you solid Brazilian Jiu-Jitsu in an atmosphere where complete beginners and experienced martial artists feel equally welcome.',
+    },
+    {
+      de: 'Wir sind ein gemeinschaftlich geführter Verein. Sauberes Jiu-Jitsu, gegenseitiger Respekt und Spaß auf der Matte stehen an erster Stelle – nicht das Ego.',
+      en: 'We are a community-driven club. Clean Jiu-Jitsu, mutual respect and having fun on the mat come first – not the ego.',
+    },
+  ] satisfies Localized[],
 };
 
 // === Head coach ===========================================================
 export const headCoach = {
   name: 'Ben',
-  role: 'Head Coach',
-  belt: 'Black Belt',
+  role: { de: 'Cheftrainer', en: 'Head Coach' } satisfies Localized,
+  belt: { de: 'Schwarzgurt', en: 'Black Belt' } satisfies Localized,
   photo: '/images/coach-1.svg', // TODO: add a real photo under /public/images
-  photoAlt: 'Portrait photo of head coach Ben',
+  photoAlt: {
+    de: 'Porträtfoto von Cheftrainer Ben',
+    en: 'Portrait photo of head coach Ben',
+  } satisfies Localized,
   paragraphs: [
-    'Ben has been training Brazilian Jiu-Jitsu for over 14 years. He received his black belt in 2023.',
-  ],
+    {
+      de: 'Ben trainiert seit über 14 Jahren Brazilian Jiu-Jitsu. Seinen schwarzen Gurt erhielt er 2023.',
+      en: 'Ben has been training Brazilian Jiu-Jitsu for over 14 years. He received his black belt in 2023.',
+    },
+  ] satisfies Localized[],
 };
 
 // === Training schedule ====================================================
@@ -107,8 +113,8 @@ export const trainingSchedule: TrainingSlot[] = [
   {
     day: 'Friday',
     time: '18:30 – 20:30',
-    title: 'BJJ Training',
-    level: 'All levels',
+    title: { de: 'BJJ-Training', en: 'BJJ Training' },
+    level: { de: 'Alle Level', en: 'All levels' },
     room: 'Gymnastikraum',
     roomUrl:
       'https://www.tsg78-hd.de/images/Abteilungen/Seniorensport/Anfahrt_Athleticon_GyR.png',
@@ -116,8 +122,8 @@ export const trainingSchedule: TrainingSlot[] = [
   {
     day: 'Saturday',
     time: '11:00 – 13:00',
-    title: 'Open Mat',
-    level: 'All levels',
+    title: { de: 'Open Mat', en: 'Open Mat' },
+    level: { de: 'Alle Level', en: 'All levels' },
     room: 'Athleticon',
     roomUrl:
       'https://www.tsg78-hd.de/images/Abteilungen/Seniorensport/Anfahrt_Athleticon_GyR.png',
@@ -128,25 +134,43 @@ export const trainingSchedule: TrainingSlot[] = [
 export const coaches: Coach[] = [
   {
     name: 'Bjarne',
-    role: 'Coach',
-    belt: 'Purple Belt (BJJ) · Brown Belt (Judo)',
+    role: { de: 'Trainer', en: 'Coach' },
+    belt: {
+      de: 'Lila Gurt (BJJ) · Brauner Gurt (Judo)',
+      en: 'Purple Belt (BJJ) · Brown Belt (Judo)',
+    },
     photo: '/images/coach-2.svg',
-    photoAlt: 'Portrait photo of coach Bjarne',
+    photoAlt: {
+      de: 'Porträtfoto von Trainer Bjarne',
+      en: 'Portrait photo of coach Bjarne',
+    },
   },
   {
     name: 'Jan',
-    role: 'Coach',
-    belt: 'Purple Belt',
+    role: { de: 'Trainer', en: 'Coach' },
+    belt: { de: 'Lila Gurt', en: 'Purple Belt' },
     photo: '/images/coach-3.svg',
-    photoAlt: 'Portrait photo of coach Jan',
+    photoAlt: {
+      de: 'Porträtfoto von Trainer Jan',
+      en: 'Portrait photo of coach Jan',
+    },
   },
 ];
 
 // === Pricing ==============================================================
+// `price` carries only the amount; the "/ month" suffix is localized in the UI.
 export const pricing: PriceItem[] = [
-  { name: 'Adults', price: '€50 / month' },
-  { name: 'Youth', price: '€40 / month', note: 'Under 18 years' },
-  { name: 'Students', price: '€40 / month', note: 'With valid proof' },
+  { name: { de: 'Erwachsene', en: 'Adults' }, price: '€50' },
+  {
+    name: { de: 'Jugendliche', en: 'Youth' },
+    price: '€40',
+    note: { de: 'Unter 18 Jahren', en: 'Under 18 years' },
+  },
+  {
+    name: { de: 'Studierende', en: 'Students' },
+    price: '€40',
+    note: { de: 'Mit gültigem Nachweis', en: 'With valid proof' },
+  },
 ];
 
 // === Campai application forms =============================================
@@ -184,133 +208,289 @@ export const documents: ClubDocument[] = [
 
 // === Guidelines / Trainingsregeln =========================================
 export interface GuidelineItem {
-  title: string;
-  text: string;
+  title: Localized;
+  text: Localized;
 }
 
 export interface GuidelineGroup {
-  category: string;
+  /** Stable, language-neutral id used for the section anchor. */
+  id: string;
+  category: Localized;
   items: GuidelineItem[];
 }
 
 export const guidelines: GuidelineGroup[] = [
   {
-    category: 'Hygiene',
+    id: 'hygiene',
+    category: { de: 'Hygiene', en: 'Hygiene' },
     items: [
       {
-        title: 'Stay home if you are sick',
-        text: 'If you notice any signs of a cold or illness, please stay home so you don’t infect your training partners.',
+        title: {
+          de: 'Bleib zu Hause, wenn du krank bist',
+          en: 'Stay home if you are sick',
+        },
+        text: {
+          de: 'Wenn du Anzeichen einer Erkältung oder Krankheit bemerkst, bleib bitte zu Hause, um deine Trainingspartner nicht anzustecken.',
+          en: 'If you notice any signs of a cold or illness, please stay home so you don’t infect your training partners.',
+        },
       },
       {
-        title: 'No shoes on the mat',
-        text: 'To keep dirt and bacteria off the mat, take your shoes off before stepping onto it.',
+        title: {
+          de: 'Keine Schuhe auf der Matte',
+          en: 'No shoes on the mat',
+        },
+        text: {
+          de: 'Damit kein Schmutz und keine Bakterien auf die Matte gelangen, zieh deine Schuhe aus, bevor du sie betrittst.',
+          en: 'To keep dirt and bacteria off the mat, take your shoes off before stepping onto it.',
+        },
       },
       {
-        title: 'Don’t walk barefoot off the mat',
-        text: 'Especially not to the bathroom! Use slippers whenever you leave the mat.',
+        title: {
+          de: 'Geh nicht barfuß von der Matte',
+          en: 'Don’t walk barefoot off the mat',
+        },
+        text: {
+          de: 'Vor allem nicht zur Toilette! Nutze Schlappen, wann immer du die Matte verlässt.',
+          en: 'Especially not to the bathroom! Use slippers whenever you leave the mat.',
+        },
       },
       {
-        title: 'Wash your gear',
-        text: 'Wash your Gi and clothing after every session – including your belt.',
+        title: {
+          de: 'Wasch deine Ausrüstung',
+          en: 'Wash your gear',
+        },
+        text: {
+          de: 'Wasch deinen Gi und deine Kleidung nach jedem Training – inklusive deines Gurts.',
+          en: 'Wash your Gi and clothing after every session – including your belt.',
+        },
       },
       {
-        title: 'Keep your nails short',
-        text: 'Long finger- and toenails are an injury risk for your partners. Please trim them before training.',
+        title: {
+          de: 'Halte deine Nägel kurz',
+          en: 'Keep your nails short',
+        },
+        text: {
+          de: 'Lange Finger- und Fußnägel sind ein Verletzungsrisiko für deine Partner. Bitte schneide sie vor dem Training.',
+          en: 'Long finger- and toenails are an injury risk for your partners. Please trim them before training.',
+        },
       },
       {
-        title: 'Remove jewellery and piercings',
-        text: 'They can get caught and injure you or others.',
+        title: {
+          de: 'Schmuck und Piercings ablegen',
+          en: 'Remove jewellery and piercings',
+        },
+        text: {
+          de: 'Sie können sich verfangen und dich oder andere verletzen.',
+          en: 'They can get caught and injure you or others.',
+        },
       },
       {
-        title: 'Use deodorant',
-        text: 'No one likes training with an unpleasant-smelling partner. Please use deodorant before class.',
+        title: {
+          de: 'Benutze Deo',
+          en: 'Use deodorant',
+        },
+        text: {
+          de: 'Niemand trainiert gern mit einem unangenehm riechenden Partner. Bitte benutze vor dem Training Deo.',
+          en: 'No one likes training with an unpleasant-smelling partner. Please use deodorant before class.',
+        },
       },
       {
-        title: 'No training with open wounds',
-        text: 'If you have open wounds or skin rashes, please sit out to avoid spreading anything.',
+        title: {
+          de: 'Kein Training mit offenen Wunden',
+          en: 'No training with open wounds',
+        },
+        text: {
+          de: 'Wenn du offene Wunden oder Hautausschläge hast, setz bitte aus, um nichts zu übertragen.',
+          en: 'If you have open wounds or skin rashes, please sit out to avoid spreading anything.',
+        },
       },
     ],
   },
   {
-    category: 'Safety',
+    id: 'safety',
+    category: { de: 'Sicherheit', en: 'Safety' },
     items: [
       {
-        title: 'Don’t injure your partners',
-        text: 'The safety of you and your training partners comes above everything else.',
+        title: {
+          de: 'Verletze deine Partner nicht',
+          en: 'Don’t injure your partners',
+        },
+        text: {
+          de: 'Die Sicherheit von dir und deinen Trainingspartnern steht über allem anderen.',
+          en: 'The safety of you and your training partners comes above everything else.',
+        },
       },
       {
-        title: 'Some techniques are not allowed',
-        text: 'For safety reasons we avoid certain techniques, e.g. slams, jumping guard, scissor takedowns, neck cranks and heel hooks in the Gi.',
+        title: {
+          de: 'Manche Techniken sind nicht erlaubt',
+          en: 'Some techniques are not allowed',
+        },
+        text: {
+          de: 'Aus Sicherheitsgründen vermeiden wir bestimmte Techniken, z. B. Slams, Jumping Guard, Scherenwürfe, Neck Cranks und Heel Hooks im Gi.',
+          en: 'For safety reasons we avoid certain techniques, e.g. slams, jumping guard, scissor takedowns, neck cranks and heel hooks in the Gi.',
+        },
       },
       {
-        title: 'Communicate with your partner',
-        text: 'Flow rolling or a competition round? Leg locks allowed or not? Agree on it beforehand.',
+        title: {
+          de: 'Sprich dich mit deinem Partner ab',
+          en: 'Communicate with your partner',
+        },
+        text: {
+          de: 'Flow Rolling oder eine Wettkampfrunde? Beinhebel erlaubt oder nicht? Klärt das vorher.',
+          en: 'Flow rolling or a competition round? Leg locks allowed or not? Agree on it beforehand.',
+        },
       },
       {
-        title: 'Start seated when the mat is full',
-        text: 'When it gets crowded, skip takedowns to avoid stepping on each other.',
+        title: {
+          de: 'Beginnt sitzend, wenn die Matte voll ist',
+          en: 'Start seated when the mat is full',
+        },
+        text: {
+          de: 'Wenn es voll wird, lasst Takedowns weg, um nicht aufeinander zu treten.',
+          en: 'When it gets crowded, skip takedowns to avoid stepping on each other.',
+        },
       },
       {
-        title: 'Watch your surroundings',
-        text: 'On a full mat, keep an eye on each other to avoid collisions.',
+        title: {
+          de: 'Achte auf deine Umgebung',
+          en: 'Watch your surroundings',
+        },
+        text: {
+          de: 'Auf einer vollen Matte achtet aufeinander, um Zusammenstöße zu vermeiden.',
+          en: 'On a full mat, keep an eye on each other to avoid collisions.',
+        },
       },
       {
-        title: 'Mind size differences',
-        text: 'When rolling with smaller partners, use technique instead of strength and control your weight.',
+        title: {
+          de: 'Beachte Größenunterschiede',
+          en: 'Mind size differences',
+        },
+        text: {
+          de: 'Wenn du mit kleineren Partnern rollst, nutze Technik statt Kraft und kontrolliere dein Gewicht.',
+          en: 'When rolling with smaller partners, use technique instead of strength and control your weight.',
+        },
       },
       {
-        title: 'Apply submissions under control',
-        text: 'Training is not competition. Apply submissions slowly and give your partner time to tap.',
+        title: {
+          de: 'Setze Submissions kontrolliert an',
+          en: 'Apply submissions under control',
+        },
+        text: {
+          de: 'Training ist kein Wettkampf. Setze Submissions langsam an und gib deinem Partner Zeit zum Abklopfen.',
+          en: 'Training is not competition. Apply submissions slowly and give your partner time to tap.',
+        },
       },
       {
-        title: 'Tap early and any time',
-        text: 'If you’re caught in a submission, tap. Your health is more important than your ego.',
+        title: {
+          de: 'Klopf früh und jederzeit ab',
+          en: 'Tap early and any time',
+        },
+        text: {
+          de: 'Wenn du in einer Submission gefangen bist, klopf ab. Deine Gesundheit ist wichtiger als dein Ego.',
+          en: 'If you’re caught in a submission, tap. Your health is more important than your ego.',
+        },
       },
       {
-        title: 'Sit out a round if needed',
-        text: 'Need a break? No problem – feel free to sit out a round.',
+        title: {
+          de: 'Setz eine Runde aus, wenn nötig',
+          en: 'Sit out a round if needed',
+        },
+        text: {
+          de: 'Brauchst du eine Pause? Kein Problem – setz ruhig eine Runde aus.',
+          en: 'Need a break? No problem – feel free to sit out a round.',
+        },
       },
       {
-        title: 'Report injuries',
-        text: 'If someone gets injured, let us know immediately so we can help.',
+        title: {
+          de: 'Melde Verletzungen',
+          en: 'Report injuries',
+        },
+        text: {
+          de: 'Wenn sich jemand verletzt, sag uns sofort Bescheid, damit wir helfen können.',
+          en: 'If someone gets injured, let us know immediately so we can help.',
+        },
       },
     ],
   },
   {
-    category: 'Training',
+    id: 'training',
+    category: { de: 'Training', en: 'Training' },
     items: [
       {
-        title: 'Match the intensity',
-        text: 'Not every round is a competition round. Adjust to your partner’s skill, size, age and energy.',
+        title: {
+          de: 'Passe die Intensität an',
+          en: 'Match the intensity',
+        },
+        text: {
+          de: 'Nicht jede Runde ist eine Wettkampfrunde. Passe dich an Können, Größe, Alter und Energie deines Partners an.',
+          en: 'Not every round is a competition round. Adjust to your partner’s skill, size, age and energy.',
+        },
       },
       {
-        title: 'You can turn anyone down',
-        text: 'You don’t have to roll with anyone you don’t want to – for any reason.',
+        title: {
+          de: 'Du darfst jeden ablehnen',
+          en: 'You can turn anyone down',
+        },
+        text: {
+          de: 'Du musst mit niemandem rollen, mit dem du nicht willst – aus welchem Grund auch immer.',
+          en: 'You don’t have to roll with anyone you don’t want to – for any reason.',
+        },
       },
       {
-        title: 'Ask questions',
-        text: 'Before, during and after training. We’re all here to learn – there are no stupid questions.',
+        title: {
+          de: 'Stell Fragen',
+          en: 'Ask questions',
+        },
+        text: {
+          de: 'Vor, während und nach dem Training. Wir sind alle hier, um zu lernen – es gibt keine dummen Fragen.',
+          en: 'Before, during and after training. We’re all here to learn – there are no stupid questions.',
+        },
       },
       {
-        title: 'Cross-training is welcome',
-        text: 'We’re happy when you visit other gyms – and we love having guests on our mat too.',
+        title: {
+          de: 'Cross-Training ist willkommen',
+          en: 'Cross-training is welcome',
+        },
+        text: {
+          de: 'Wir freuen uns, wenn du andere Gyms besuchst – und wir haben auch gerne Gäste auf unserer Matte.',
+          en: 'We’re happy when you visit other gyms – and we love having guests on our mat too.',
+        },
       },
       {
-        title: 'Have fun!',
-        text: 'For most of us, Jiu-Jitsu is a hobby. Strive to improve, but always have fun doing it.',
+        title: {
+          de: 'Hab Spaß!',
+          en: 'Have fun!',
+        },
+        text: {
+          de: 'Für die meisten von uns ist Jiu-Jitsu ein Hobby. Strebe danach, dich zu verbessern, aber hab dabei immer Spaß.',
+          en: 'For most of us, Jiu-Jitsu is a hobby. Strive to improve, but always have fun doing it.',
+        },
       },
     ],
   },
   {
-    category: 'Miscellaneous',
+    id: 'misc',
+    category: { de: 'Sonstiges', en: 'Miscellaneous' },
     items: [
       {
-        title: 'Be on time',
-        text: 'Arrive in good time before training starts. If you’re late, join the ongoing session calmly and respectfully.',
+        title: {
+          de: 'Sei pünktlich',
+          en: 'Be on time',
+        },
+        text: {
+          de: 'Komm rechtzeitig vor Trainingsbeginn. Wenn du zu spät bist, steig ruhig und respektvoll ins laufende Training ein.',
+          en: 'Arrive in good time before training starts. If you’re late, join the ongoing session calmly and respectfully.',
+        },
       },
       {
-        title: 'Give us feedback',
-        text: 'Our members matter most. We always welcome your feedback.',
+        title: {
+          de: 'Gib uns Feedback',
+          en: 'Give us feedback',
+        },
+        text: {
+          de: 'Unsere Mitglieder stehen an erster Stelle. Wir freuen uns immer über dein Feedback.',
+          en: 'Our members matter most. We always welcome your feedback.',
+        },
       },
     ],
   },

@@ -1,0 +1,40 @@
+---
+import CampaiSignup from '../CampaiSignup.astro';
+import { campai } from '../../config';
+import { withBase } from '../../utils/withBase';
+import { ui, homeAnchor, defaultLocale } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const t = ui[lang];
+---
+
+<section class="section">
+  <div class="container">
+    <h1>{t.signupHeading}</h1>
+    {
+      lang === 'de' ? (
+        <p class="section__intro">
+          Bereit, regelmäßig mit uns zu trainieren? Fülle das Formular unten aus,
+          um einen Mitgliedsantrag zu stellen. Neu im Verein? Du kannst auch
+          zuerst ein <a href={withBase(homeAnchor(lang, 'trial'))}>kostenloses
+          Probetraining buchen</a>.
+        </p>
+      ) : (
+        <p class="section__intro">
+          Ready to train with us regularly? Fill in the form below to apply for
+          membership. New to the club? You can also
+          <a href={withBase(homeAnchor(lang, 'trial'))}>book a free trial class</a>{' '}
+          first.
+        </p>
+      )
+    }
+    <div style="margin-top: var(--space-xl);">
+      <CampaiSignup src={campai.membershipFormSrc} />
+    </div>
+  </div>
+</section>

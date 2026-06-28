@@ -1,0 +1,73 @@
+---
+/**
+ * LocalBusiness / SportsActivityLocation JSON-LD for the homepage.
+ *
+ * Powers Google's local pack / map results. Values are pulled from config.ts
+ * so they stay in sync with the rest of the site. Opening hours are derived
+ * from the weekly training schedule.
+ */
+import { club, contact, trainingSchedule } from '../config';
+
+// Map English weekday names (as used in config) to schema.org URIs.
+const DAY_URI: Record<string, string> = {
+  Monday: 'https://schema.org/Monday',
+  Tuesday: 'https://schema.org/Tuesday',
+  Wednesday: 'https://schema.org/Wednesday',
+  Thursday: 'https://schema.org/Thursday',
+  Friday: 'https://schema.org/Friday',
+  Saturday: 'https://schema.org/Saturday',
+  Sunday: 'https://schema.org/Sunday',
+};
+
+// "18:30 – 20:30" / "18:30 - 20:30" -> ["18:30", "20:30"]
+function parseTimeRange(time: string): [string, string] | null {
+  const parts = time.split(/\s*[–-]\s*/);
+  if (parts.length !== 2) return null;
+  return [parts[0].trim(), parts[1].trim()];
+}
+
+const openingHours = trainingSchedule
+  .map((slot) => {
+    const day = DAY_URI[slot.day];
+    const range = parseTimeRange(slot.time);
+    if (!day || !range) return null;
+    return {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: day,
+      opens: range[0],
+      closes: range[1],
+    };
+  })
+  .filter(Boolean);
+
+// Canonical site URL (falls back gracefully if `site` is not yet set).
+const siteUrl = Astro.site?.href ?? 'https://www.bjjheidelberg.de/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsActivityLocation',
+  name: club.name,
+  description: club.tagline,
+  url: siteUrl,
+  email: contact.email,
+  sport: 'Brazilian Jiu-Jitsu',
+  logo: new URL('/images/logo.svg', siteUrl).href,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: contact.venueStreet,
+    postalCode: contact.venueZip,
+    addressLocality: contact.venueCity,
+    addressCountry: 'DE',
+  },
+  // TODO: add exact coordinates of the training venue for better map placement.
+  // geo: { '@type': 'GeoCoordinates', latitude: 49.39, longitude: 8.69 },
+  openingHoursSpecification: openingHours,
+  hasMap: contact.mapsUrl,
+};
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(jsonLd)}
+  is:inline
+/>

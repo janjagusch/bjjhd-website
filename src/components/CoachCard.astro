@@ -1,19 +1,22 @@
 ---
 import type { Coach } from '../config';
 import { withBase } from '../utils/withBase';
+import { defaultLocale } from '../i18n';
+import type { Locale } from '../i18n';
 
 interface Props {
   coach: Coach;
+  lang?: Locale;
 }
 
-const { coach } = Astro.props;
+const { coach, lang = defaultLocale } = Astro.props;
 ---
 
 <article class="coach card">
   <img
     class="coach__photo"
     src={withBase(coach.photo)}
-    alt={coach.photoAlt}
+    alt={coach.photoAlt[lang]}
     width="320"
     height="320"
     loading="lazy"
@@ -22,11 +25,11 @@ const { coach } = Astro.props;
   <div class="coach__body">
     <h3 class="coach__name">{coach.name}</h3>
     <p class="coach__meta">
-      <span class="coach__role">{coach.role}</span>
-      <span class="coach__belt">{coach.belt}</span>
+      <span class="coach__role">{coach.role[lang]}</span>
+      <span class="coach__belt">{coach.belt[lang]}</span>
     </p>
-    {coach.tagline && <p class="coach__tagline">{coach.tagline}</p>}
-    {coach.bio && <p class="coach__bio">{coach.bio}</p>}
+    {coach.tagline && <p class="coach__tagline">{coach.tagline[lang]}</p>}
+    {coach.bio && <p class="coach__bio">{coach.bio[lang]}</p>}
   </div>
 </article>
 

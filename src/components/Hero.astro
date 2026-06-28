@@ -1,5 +1,14 @@
 ---
 import { withBase } from '../utils/withBase';
+import { ui, routes, homeAnchor, defaultLocale } from '../i18n';
+import type { Locale } from '../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const t = ui[lang];
 ---
 
 <section class="hero" aria-labelledby="hero-title">
@@ -9,8 +18,12 @@ import { withBase } from '../utils/withBase';
         Brazilian Jiu-Jitsu in <span class="hero__accent">Heidelberg</span>
       </h1>
       <div class="hero__actions">
-        <a href="#trial" class="btn btn--primary">Book free trial class</a>
-        <a href={withBase('/signup')} class="btn btn--ghost">Become a member</a>
+        <a href={withBase(homeAnchor(lang, 'trial'))} class="btn btn--primary"
+          >{t.ctaTrial}</a
+        >
+        <a href={withBase(routes.signup[lang])} class="btn btn--ghost"
+          >{t.ctaMember}</a
+        >
       </div>
     </div>
   </div>
