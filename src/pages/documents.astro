@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { documents } from '../config';
+import { withBase } from '../utils/withBase';
+---
+
+<BaseLayout
+  title="Dokumente"
+  description="Satzung, Beitragsordnung und weitere Vereinsdokumente von BJJ Heidelberg."
+  lang="de"
+>
+  <section class="section">
+    <div class="container">
+      <h1>Dokumente</h1>
+      <p class="section__intro">
+        Hier findest du die offiziellen Dokumente unseres Vereins zum Download.
+      </p>
+
+      <ul class="documents">
+        {
+          documents.map((doc) => (
+            <li class="documents__item">
+              <a class="documents__link" href={withBase(doc.file)}>
+                <span class="documents__title">{doc.title}</span>
+                <span class="documents__desc">{doc.description}</span>
+                <span class="documents__hint">PDF herunterladen →</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .documents {
+    margin-top: var(--space-2xl);
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 720px) {
+    .documents {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .documents__link {
+    display: grid;
+    gap: var(--space-xs);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    transition: border-color 0.15s ease;
+  }
+
+  .documents__link:hover {
+    border-color: var(--color-heading);
+  }
+
+  .documents__title {
+    color: var(--color-heading);
+    font-size: var(--fs-500);
+    font-weight: 600;
+  }
+
+  .documents__desc {
+    color: var(--color-text-muted);
+  }
+
+  .documents__hint {
+    color: var(--color-text-muted);
+    font-size: var(--fs-300);
+    margin-top: var(--space-xs);
+  }
+</style>
