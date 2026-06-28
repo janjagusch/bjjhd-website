@@ -160,6 +160,28 @@ export const campai = {
     'https://app.campai.com/em/a3f04/applications/6a3149bfd9ff99f706bccaa2',
 };
 
+// === Documents / Vereinsdokumente =========================================
+export interface ClubDocument {
+  title: string;
+  /** Short description shown under the title. */
+  description: string;
+  /** Path relative to /public, e.g. "/documents/satzung.pdf". */
+  file: string;
+}
+
+export const documents: ClubDocument[] = [
+  {
+    title: 'Satzung',
+    description: 'Die Vereinssatzung von BJJ Heidelberg.',
+    file: '/documents/satzung.pdf',
+  },
+  {
+    title: 'Beitragsordnung',
+    description: 'Übersicht der Mitgliedsbeiträge und Gebühren.',
+    file: '/documents/beitragsordnung.pdf',
+  },
+];
+
 // === Guidelines / Trainingsregeln =========================================
 export interface GuidelineItem {
   title: string;
