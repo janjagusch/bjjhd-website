@@ -10,5 +10,13 @@ import ConfirmationContent from '../components/content/ConfirmationContent.astro
   routeKey="confirmation"
   noindex
 >
+  <!-- Frame-buster: if the form redirected here inside the embedded Campai
+       iframe, break out so the page takes over the whole tab. The parent page
+       is same-origin, so this navigation is allowed. -->
+  <script is:inline slot="head">
+    if (window.top !== window.self) {
+      window.top.location = window.self.location.href;
+    }
+  </script>
   <ConfirmationContent lang="de" />
 </BaseLayout>
