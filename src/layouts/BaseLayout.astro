@@ -90,6 +90,9 @@ const alternates = routeKey
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:url" content={canonical} />
+
+    <!-- Optional per-page <head> content (e.g. scripts that must run early). -->
+    <slot name="head" />
   </head>
   <body>
     <a class="skip-link" href="#main">{ui[lang].skip}</a>
