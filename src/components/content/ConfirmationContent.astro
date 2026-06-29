@@ -1,0 +1,45 @@
+---
+import { withBase } from '../../utils/withBase';
+import { ui, routes, defaultLocale } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const t = ui[lang];
+---
+
+<section class="section">
+  <div class="container confirmation">
+    <p class="confirmation__icon" aria-hidden="true">✓</p>
+    <h1>{t.confirmationHeading}</h1>
+    <p class="section__intro">{t.confirmationBody}</p>
+    <p style="margin-top: var(--space-xl);">
+      <a href={withBase(routes.home[lang])} class="btn btn--primary"
+        >{t.confirmationBack}</a
+      >
+    </p>
+  </div>
+</section>
+
+<style>
+  .confirmation {
+    text-align: center;
+    max-width: 60ch;
+  }
+  .confirmation__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    margin-inline: auto;
+    border-radius: 50%;
+    background-color: rgba(181, 86, 43, 0.12);
+    color: var(--color-warm);
+    font-size: var(--fs-700);
+    line-height: 1;
+  }
+</style>

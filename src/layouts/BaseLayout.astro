@@ -17,6 +17,8 @@ interface Props {
    * single-language pages (e.g. the German-only legal pages).
    */
   routeKey?: RouteKey;
+  /** Set to true to keep the page out of search indexes (e.g. confirmation pages). */
+  noindex?: boolean;
 }
 
 const {
@@ -24,6 +26,7 @@ const {
   description = club.tagline,
   lang = defaultLocale,
   routeKey,
+  noindex = false,
 } = Astro.props;
 
 // Map the page language to an Open Graph locale.
@@ -54,6 +57,7 @@ const alternates = routeKey
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#ffffff" />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
 
     <link rel="canonical" href={canonical} />

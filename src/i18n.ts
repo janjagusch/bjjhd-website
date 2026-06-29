@@ -30,6 +30,7 @@ export const routes = {
   beginners: { de: '/einsteiger', en: '/en/beginners' },
   rules: { de: '/regeln', en: '/en/rules' },
   signup: { de: '/mitglied-werden', en: '/en/signup' },
+  confirmation: { de: '/danke', en: '/en/thank-you' },
 } as const;
 
 export type RouteKey = keyof typeof routes;
@@ -93,6 +94,10 @@ interface UI {
   rulesHeading: string;
   rulesIntro: string;
   signupHeading: string;
+  // Confirmation page
+  confirmationHeading: string;
+  confirmationBody: string;
+  confirmationBack: string;
   // Beginner's guide
   beginnersHeading: string;
   beginnersIntro: string;
@@ -149,6 +154,10 @@ export const ui: Record<Locale, UI> = {
     rulesIntro:
       'Diese Regeln halten unsere Matte sicher, fair und respektvoll für alle. Bitte lies sie – sie gelten für alle, egal ob Anfänger oder Fortgeschrittener.',
     signupHeading: 'Mitglied werden',
+    confirmationHeading: 'Vielen Dank!',
+    confirmationBody:
+      'Wir haben deine Anmeldung erhalten und melden uns so bald wie möglich bei dir. Bitte prüfe auch deinen Spam-Ordner, falls du nichts von uns hörst.',
+    confirmationBack: 'Zurück zur Startseite',
     beginnersHeading: 'Einsteiger-Guide',
     beginnersIntro:
       'Neu im Brazilian Jiu-Jitsu? Dieser Guide erklärt, was BJJ ist, wie es funktioniert und was du für dein erstes Training brauchst.',
@@ -215,6 +224,10 @@ export const ui: Record<Locale, UI> = {
     rulesIntro:
       'These rules keep our mat safe, fair and respectful for everyone. Please read them – they apply to everybody, whether you’re a beginner or advanced.',
     signupHeading: 'Become a member',
+    confirmationHeading: 'Thank you!',
+    confirmationBody:
+      'We’ve received your registration and will get back to you as soon as possible. Please also check your spam folder in case you don’t hear from us.',
+    confirmationBack: 'Back to home',
     beginnersHeading: 'Beginner’s Guide',
     beginnersIntro:
       'New to Brazilian Jiu-Jitsu? This guide explains what BJJ is, how it works and what you need for your first session.',

@@ -9,7 +9,13 @@ export default defineConfig({
 
   // Generates sitemap-index.xml + sitemap-0.xml at build time using `site`.
   // Update `site` below to the final domain so the URLs are correct.
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // Keep the (noindex) confirmation pages out of the sitemap.
+      filter: (page) =>
+        !/\/(danke|en\/thank-you)\/?$/.test(page),
+    }),
+  ],
 
   // === GitHub Pages configuration =========================================
   // Set `site` to your final URL.
