@@ -2,6 +2,7 @@
 import { withBase } from '../utils/withBase';
 import { ui, routes, homeAnchor, defaultLocale } from '../i18n';
 import type { Locale } from '../i18n';
+import { slideshow } from '../config';
 
 interface Props {
   lang?: Locale;
@@ -9,9 +10,39 @@ interface Props {
 
 const { lang = defaultLocale } = Astro.props;
 const t = ui[lang];
+const hasSlideshow = slideshow.length > 0;
 ---
 
-<section class="hero" aria-labelledby="hero-title">
+<section
+  class:list={['hero', { 'hero--slideshow': hasSlideshow }]}
+  aria-labelledby="hero-title"
+>
+  {
+    hasSlideshow && (
+      <div class="hero__slideshow" aria-hidden={slideshow.length > 1} data-slideshow>
+        {slideshow.map((img, i) => (
+          <div
+            class:list={['hero__slide', { 'is-active': i === 0 }]}
+            role={slideshow.length > 1 ? undefined : 'img'}
+            aria-label={slideshow.length > 1 ? undefined : img.alt[lang]}
+          >
+            <div
+              class="hero__slide-bg"
+              style={`background-image: url(${withBase(img.src)})`}
+            />
+            <img
+              class="hero__slide-img"
+              src={withBase(img.src)}
+              alt=""
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          </div>
+        ))}
+        <div class="hero__overlay" />
+      </div>
+    )
+  }
   <div class="container hero__inner">
     <div class="hero__content">
       <h1 id="hero-title">
@@ -29,6 +60,23 @@ const t = ui[lang];
   </div>
 </section>
 
+{
+  hasSlideshow && slideshow.length > 1 && (
+    <script>
+      const root = document.querySelector('[data-slideshow]');
+      if (root) {
+        const slides = Array.from(root.querySelectorAll('.hero__slide'));
+        let current = 0;
+        setInterval(() => {
+          slides[current].classList.remove('is-active');
+          current = (current + 1) % slides.length;
+          slides[current].classList.add('is-active');
+        }, 5000);
+      }
+    </script>
+  )
+}
+
 <style>
   .hero {
     position: relative;
@@ -41,6 +89,117 @@ const t = ui[lang];
         transparent 60%
       ),
       linear-gradient(180deg, var(--color-bg-elevated), var(--color-bg));
+  }
+
+  /* Slideshow variant: images sit behind the content. */
+  .hero--slideshow {
+    padding-block: calc(var(--space-3xl) * 1.5);
+  }
+
+  .hero__slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero__slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+  }
+
+  /* Blurred, zoomed copy of the photo fills the letterbox gaps. */
+  .hero__slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(28px) brightness(0.6);
+    transform: scale(1.15);
+  }
+
+  /* The fully-visible photo, centered on top of its blurred backdrop. */
+  .hero__slide-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .hero__slide.is-active {
+    opacity: 1;
+  }
+
+  /* Gentle, even darkening for legibility – no heavy left banner.
+     The text-shadow below carries most of the contrast. */
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.4)
+    );
+  }
+
+  .hero--slideshow .hero__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Highlighter/marker effect: a dark band hugs each line of the heading,
+     like highlighting text in Word. */
+  .hero--slideshow .hero__content h1 {
+    display: inline;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.55);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    line-height: 1.4;
+    text-shadow: none;
+  }
+
+  .hero--slideshow .hero__content .hero__accent {
+    color: var(--color-warm);
+  }
+
+  /* Primary CTA – warm orange/brown. */
+  .hero--slideshow .btn--primary {
+    background-color: var(--color-warm);
+    border-color: var(--color-warm);
+    color: #fff;
+  }
+
+  .hero--slideshow .btn--primary:hover {
+    background-color: var(--color-warm-hover);
+    border-color: var(--color-warm-hover);
+    color: #fff;
+  }
+
+  /* Secondary CTA – same dark gray/black as the navbar button. */
+  .hero--slideshow .btn--ghost {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-accent-contrast);
+  }
+
+  .hero--slideshow .btn--ghost:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: var(--color-accent-contrast);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__slide {
+      transition: none;
+    }
   }
 
   .hero__content {

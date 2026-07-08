@@ -109,6 +109,34 @@ export const headCoach = {
   ] satisfies Localized[],
 };
 
+// === Hero slideshow / Diashow =============================================
+// Optional crossfading background images for the landing-page hero.
+// Drop your photos into /public/images/slideshow/ and list them here.
+// Leave the array empty to keep the plain gradient background.
+export interface SlideshowImage {
+  /** Path relative to /public, e.g. "/images/slideshow/mat-1.jpg". */
+  src: string;
+  /** Alt text describing the image (localized, for screen readers). */
+  alt: Localized;
+}
+
+export const slideshow: SlideshowImage[] = [
+  {
+    src: '/images/slideshow/team-mat.jpeg',
+    alt: {
+      de: 'Trainingsgruppe von BJJ Heidelberg auf der Matte',
+      en: 'BJJ Heidelberg training group on the mat',
+    },
+  },
+  {
+    src: '/images/slideshow/high-ground.jpeg',
+    alt: {
+      de: 'Zwei Trainingspartner beim Sparring am Boden',
+      en: 'Two training partners sparring on the ground',
+    },
+  },
+];
+
 // === Training schedule ====================================================
 export const trainingSchedule: TrainingSlot[] = [
   {
