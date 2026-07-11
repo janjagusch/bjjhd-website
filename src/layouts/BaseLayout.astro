@@ -19,6 +19,13 @@ interface Props {
   routeKey?: RouteKey;
   /** Set to true to keep the page out of search indexes (e.g. confirmation pages). */
   noindex?: boolean;
+  /**
+   * Thumbnail shown when the page URL is shared (Open Graph / Twitter).
+   * Path relative to /public. Defaults to `club.ogImage`. Use a 1200×630
+   * PNG or JPG – SVG is not supported by most link-preview crawlers.
+   */
+  ogImage?: string;
+  ogImageAlt?: string;
 }
 
 const {
@@ -27,6 +34,8 @@ const {
   lang = defaultLocale,
   routeKey,
   noindex = false,
+  ogImage = club.ogImage,
+  ogImageAlt = club.ogImageAlt,
 } = Astro.props;
 
 // Map the page language to an Open Graph locale.
@@ -41,6 +50,9 @@ function absolute(path: string): string {
 const canonical = routeKey
   ? absolute(routes[routeKey][lang])
   : Astro.url.href;
+
+// Absolute URL for the share thumbnail (crawlers require an absolute URL).
+const ogImageUrl = absolute(ogImage);
 
 // hreflang alternates: one per locale, plus x-default pointing at the default.
 const alternates = routeKey
@@ -90,6 +102,15 @@ const alternates = routeKey
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+
+    <!-- Twitter/X uses its own card tags. -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <!-- Optional per-page <head> content (e.g. scripts that must run early). -->
     <slot name="head" />
