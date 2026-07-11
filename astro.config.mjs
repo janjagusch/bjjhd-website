@@ -18,12 +18,8 @@ export default defineConfig({
   ],
 
   // === GitHub Pages configuration =========================================
-  // Set `site` to your final URL.
-  //  - Custom domain (recommended, see public/CNAME): https://www.bjjheidelberg.de
-  //  - Project page without custom domain:            https://<user>.github.io
-  //    In that case ALSO set `base: '/<repo-name>'`.
-  site: 'https://janjagusch.github.io',
-  base: '/bjjhd-website',
+  // Served under the custom apex domain (see public/CNAME).
+  site: 'https://bjjheidelberg.de',
 
   // Trailing slashes keep links consistent on GitHub Pages.
   trailingSlash: 'ignore',
