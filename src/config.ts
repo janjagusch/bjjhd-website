@@ -53,6 +53,11 @@ export const club = {
   // Logo lives in /public. Replace with your own file.
   logo: '/images/logo.svg',
   logoAlt: 'Logo BJJ/HD',
+  // Default thumbnail shown when a page URL is shared on social media / chat.
+  // Path relative to /public. For best results use a 1200×630 PNG or JPG
+  // (SVG is NOT supported by most link-preview crawlers).
+  ogImage: '/images/og-image.jpg',
+  ogImageAlt: 'BJJ Heidelberg – Brazilian Jiu-Jitsu',
 };
 
 // === Contact details ======================================================
@@ -121,6 +126,13 @@ export interface SlideshowImage {
 }
 
 export const slideshow: SlideshowImage[] = [
+  {
+    src: '/images/slideshow/team-group.jpeg',
+    alt: {
+      de: 'BJJ Heidelberg – Brazilian Jiu-Jitsu',
+      en: 'BJJ Heidelberg – Brazilian Jiu-Jitsu',
+    },
+  },
   {
     src: '/images/slideshow/team-mat.jpeg',
     alt: {
