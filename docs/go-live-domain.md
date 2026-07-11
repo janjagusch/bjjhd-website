@@ -17,12 +17,17 @@ Die Seite wird über **GitHub Pages** ausgeliefert (Workflow
 
 ---
 
-## 1. DNS beim Domain-Registrar einrichten
+## 1. DNS beim Domain-Registrar prüfen/bereinigen
 
 Zugriff auf die DNS-Verwaltung des Registrars, bei dem `bjjheidelberg.de`
 registriert ist, wird benötigt.
 
+**Stand: DNS ist bereits weitgehend korrekt eingerichtet.** Es fehlt nur eine
+Bereinigung (siehe unten).
+
 ### Apex-Domain (primär): A-Records
+
+Diese vier GitHub-Pages-Records sind bereits gesetzt (behalten):
 
 ```
 A   @   185.199.108.153
@@ -31,7 +36,12 @@ A   @   185.199.110.153
 A   @   185.199.111.153
 ```
 
-Optional zusätzlich IPv6 (AAAA-Records):
+> ⚠️ **Zu entfernen:** Es existiert ein zusätzlicher, fremder A-Record
+> `85.13.154.7` (kein GitHub-Server, vermutlich alter/geparkter Host). Dieser
+> **muss gelöscht werden** – sonst landet ein Teil der Anfragen auf dem falschen
+> Server und die Zertifikatsausstellung von GitHub kann fehlschlagen.
+
+IPv6 (AAAA-Records) – bereits vollständig gesetzt (behalten):
 
 ```
 AAAA   @   2606:50c0:8000::153
@@ -41,6 +51,8 @@ AAAA   @   2606:50c0:8003::153
 ```
 
 ### `www`-Subdomain → Weiterleitung auf Apex
+
+Bereits gesetzt (behalten):
 
 ```
 CNAME   www   janjagusch.github.io.
@@ -81,9 +93,10 @@ Unter **Settings → Pages**:
 
 ## Checkliste
 
-- [ ] DNS: 4 A-Records (Apex) gesetzt
-- [ ] DNS: (optional) 4 AAAA-Records gesetzt
-- [ ] DNS: CNAME `www` → `janjagusch.github.io.`
+- [x] DNS: 4 A-Records (Apex) gesetzt
+- [x] DNS: 4 AAAA-Records gesetzt
+- [x] DNS: CNAME `www` → `janjagusch.github.io.`
+- [ ] DNS: fremden A-Record `85.13.154.7` entfernt
 - [ ] GitHub Pages: Custom Domain `bjjheidelberg.de` eingetragen
 - [ ] GitHub Pages: „Enforce HTTPS“ aktiviert
 - [ ] PR nach `main` gemergt, Deploy-Workflow erfolgreich
