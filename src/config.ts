@@ -127,7 +127,7 @@ export interface SlideshowImage {
 
 export const slideshow: SlideshowImage[] = [
   {
-    src: '/images/og-image.jpg',
+    src: '/images/slideshow/team-group.jpeg',
     alt: {
       de: 'BJJ Heidelberg – Brazilian Jiu-Jitsu',
       en: 'BJJ Heidelberg – Brazilian Jiu-Jitsu',
