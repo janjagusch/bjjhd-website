@@ -199,15 +199,15 @@ export const coaches: Coach[] = [
 // === Pricing ==============================================================
 // `price` carries only the amount; the "/ month" suffix is localized in the UI.
 export const pricing: PriceItem[] = [
-  { name: { de: 'Erwachsene', en: 'Adults' }, price: '€50' },
+  { name: { de: 'Erwachsene', en: 'Adults' }, price: '€35' },
   {
     name: { de: 'Jugendliche', en: 'Youth' },
-    price: '€40',
+    price: '€25',
     note: { de: 'Unter 18 Jahren', en: 'Under 18 years' },
   },
   {
     name: { de: 'Studierende', en: 'Students' },
-    price: '€40',
+    price: '€25',
     note: { de: 'Mit gültigem Nachweis', en: 'With valid proof' },
   },
 ];
