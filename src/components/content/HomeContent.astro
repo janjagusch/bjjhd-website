@@ -74,10 +74,6 @@ const t = ui[lang];
         </p>
       )
     }
-    <p class="info-box" role="note">
-      <span class="info-box__icon" aria-hidden="true">★</span>
-      <span set:html={`${t.startPrefix}<strong>${t.startDate}</strong>${t.startSuffix}`} />
-    </p>
     <div style="margin-top: var(--space-xl);">
       <TrainingSchedule lang={lang} />
     </div>
@@ -194,25 +190,6 @@ const t = ui[lang];
 </section>
 
 <style>
-  .info-box {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
-    max-width: 60ch;
-    padding: var(--space-md) var(--space-lg);
-    background-color: rgba(181, 86, 43, 0.07);
-    border: 1px solid rgba(181, 86, 43, 0.25);
-    border-radius: var(--radius-md);
-    color: var(--color-text);
-  }
-  .info-box__icon {
-    flex: 0 0 auto;
-    color: var(--color-warm);
-    font-size: var(--fs-600);
-    line-height: 1;
-  }
-
   .price {
     text-align: center;
   }
