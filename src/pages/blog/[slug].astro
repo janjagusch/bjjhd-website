@@ -1,0 +1,134 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/withBase';
+import { club } from '../../config';
+import { ui, blogPath } from '../../i18n';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const lang = 'en' as const;
+const t = ui[lang];
+
+const dateFmt = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+// BlogPosting structured data. Uses the club as the author/publisher.
+const siteUrl = Astro.site?.href ?? 'https://bjjheidelberg.de/';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  image: new URL(withBase(post.data.cover), siteUrl).href,
+  author: { '@type': 'Organization', name: club.name },
+  publisher: {
+    '@type': 'Organization',
+    name: club.name,
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL(withBase(club.logo), siteUrl).href,
+    },
+  },
+  mainEntityOfPage: new URL(withBase(`/blog/${post.slug}`), siteUrl).href,
+};
+---
+
+<BaseLayout
+  title={`${post.data.title} | BJJ Heidelberg`}
+  description={post.data.description}
+  lang={lang}
+  ogType="article"
+  articlePublishedTime={post.data.pubDate.toISOString()}
+  ogImage={post.data.cover}
+  ogImageAlt={post.data.coverAlt}
+>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+    is:inline
+  />
+
+  <article class="section">
+    <div class="container">
+      <a class="blog-post__back" href={withBase(blogPath)}>{t.blogBack}</a>
+
+      <header class="blog-post__header">
+        <time class="blog-post__date" datetime={post.data.pubDate.toISOString()}>
+          {dateFmt.format(post.data.pubDate)}
+        </time>
+        <h1 class="blog-post__title">{post.data.title}</h1>
+      </header>
+
+      <img
+        class="blog-post__cover"
+        src={withBase(post.data.cover)}
+        alt={post.data.coverAlt}
+        width="1200"
+        height="675"
+        decoding="async"
+      />
+
+      <div class="prose blog-post__body">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post__back {
+    display: inline-block;
+    margin-bottom: var(--space-lg);
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+  .blog-post__back:hover {
+    color: var(--color-warm);
+  }
+
+  .blog-post__date {
+    color: var(--color-text-muted);
+    font-size: var(--fs-300);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .blog-post__title {
+    margin-top: var(--space-xs);
+    max-width: 20ch;
+  }
+
+  .blog-post__cover {
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-elevated);
+    margin-block: var(--space-xl);
+  }
+
+  .blog-post__body {
+    margin-top: var(--space-lg);
+  }
+</style>

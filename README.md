@@ -66,6 +66,42 @@ Array `faq` in `src/config.ts` bearbeiten.
 
 ---
 
+## Blog
+
+Der Blog liegt unter **`/blog`** und ist von beiden Sprachversionen aus
+verlinkt. Die Beiträge werden **auf Englisch** geschrieben.
+
+### Neuen Beitrag schreiben
+
+1. Coverbild nach **`public/images/blog/`** legen (empfohlen: 1200×675 JPG/PNG).
+   Es wird auch als Vorschaubild beim Teilen (Social Media) genutzt.
+2. Neue Markdown-Datei in **`src/content/blog/`** anlegen, z. B.
+   `mein-erster-beitrag.md`. Der Dateiname wird zur URL
+   (`/blog/mein-erster-beitrag`).
+3. Oben in der Datei das Frontmatter ausfüllen:
+
+```markdown
+---
+title: 'Titel des Beitrags'
+description: 'Ein bis zwei Sätze für Vorschau, Suche und Social Media.'
+pubDate: 2026-01-31
+cover: '/images/blog/mein-erster-beitrag.jpg'
+coverAlt: 'Kurze Bildbeschreibung für Screenreader'
+draft: false
+---
+
+Hier der Beitrag in **Markdown** …
+```
+
+- `pubDate`: Veröffentlichungsdatum (Format `JJJJ-MM-TT`). Beiträge werden
+  nach Datum sortiert, neueste zuerst.
+- `draft: true`: Beitrag ist noch nicht öffentlich (wird nicht angezeigt).
+- Autor ist automatisch der Verein – kein Autorfeld nötig.
+
+Das Schema (Pflichtfelder) ist in `src/content/config.ts` definiert.
+
+---
+
 ## Bilder ersetzen
 
 Bilder liegen in **`public/images/`**. Beim Ersetzen den gleichen Dateinamen
@@ -139,12 +175,15 @@ Pages.
 ```
 src/
   config.ts              # zentrale Inhalte (hier zuerst editieren)
+  content/
+    config.ts            # Schema der Blog-Beiträge
+    blog/                # Blog-Beiträge als Markdown (Englisch)
   layouts/BaseLayout.astro
   components/            # Header, Footer, Hero, TrainingSchedule, CoachCard, Faq, CampaiSignup
-  pages/                 # index, impressum, datenschutz
+  pages/                 # index, impressum, datenschutz, blog/
   styles/global.css      # Design-Tokens (Farben, Abstände, Fonts, Radius)
 public/
-  images/                # Logo & Fotos
+  images/                # Logo & Fotos (inkl. images/blog/ für Coverbilder)
   favicon.svg, CNAME, .nojekyll
 ```
 
