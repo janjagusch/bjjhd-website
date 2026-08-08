@@ -72,9 +72,6 @@ interface UI {
   langSwitchAria: string;
   // Home page
   trainingHeading: string;
-  startPrefix: string;
-  startDate: string;
-  startSuffix: string;
   locationHeading: string;
   locationIntro: string;
   mapsLink: string;
@@ -132,9 +129,6 @@ export const ui: Record<Locale, UI> = {
     langSwitchLabel: 'EN',
     langSwitchAria: 'Switch to English',
     trainingHeading: 'Training',
-    startPrefix: 'Unser Training startet am ',
-    startDate: '1. August',
-    startSuffix: '.',
     locationHeading: 'Wo wir trainieren',
     locationIntro: 'Wir trainieren in den Räumen der TSG 78 Heidelberg.',
     mapsLink: 'Route auf Google Maps öffnen ↗',
@@ -202,9 +196,6 @@ export const ui: Record<Locale, UI> = {
     langSwitchLabel: 'DE',
     langSwitchAria: 'Auf Deutsch wechseln',
     trainingHeading: 'Training',
-    startPrefix: 'Our training starts on ',
-    startDate: 'August 1st',
-    startSuffix: '.',
     locationHeading: 'Where we train',
     locationIntro: 'We train in the facilities of TSG 78 Heidelberg.',
     mapsLink: 'Open route on Google Maps ↗',
