@@ -70,7 +70,7 @@ export const contact = {
   zip: '69120',
   city: 'Heidelberg',
   country: 'Deutschland',
-  email: 'info@bjjheidelberg.de',
+  email: 'info@bjj-heidelberg.org',
   // Trainingsort (kann von der Vereinsanschrift abweichen) – Abschnitt "Ort"
   venue: 'TSG 78 Heidelberg',
   venueStreet: 'Tiergartenstraße 9–11',
