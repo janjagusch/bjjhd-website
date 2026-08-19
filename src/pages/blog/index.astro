@@ -1,0 +1,136 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/withBase';
+import { ui } from '../../i18n';
+
+// The blog is English-only (see README). Use the English chrome.
+const lang = 'en' as const;
+const t = ui[lang];
+
+// Published posts, newest first. Drafts are hidden.
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const dateFmt = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<BaseLayout title={`${t.blogHeading} | BJJ Heidelberg`} description={t.blogIntro} lang={lang}>
+  <section class="section">
+    <div class="container">
+      <h1>{t.blogHeading}</h1>
+      <p class="section__intro">{t.blogIntro}</p>
+
+      {
+        posts.length === 0 ? (
+          <p class="blog-empty">{t.blogEmpty}</p>
+        ) : (
+          <ul class="blog-list">
+            {posts.map((post) => (
+              <li class="blog-card">
+                <a class="blog-card__link" href={withBase(`/blog/${post.slug}`)}>
+                  <img
+                    class="blog-card__cover"
+                    src={withBase(post.data.cover)}
+                    alt={post.data.coverAlt}
+                    width="800"
+                    height="450"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="blog-card__body">
+                    <time class="blog-card__date" datetime={post.data.pubDate.toISOString()}>
+                      {dateFmt.format(post.data.pubDate)}
+                    </time>
+                    <h2 class="blog-card__title">{post.data.title}</h2>
+                    <p class="blog-card__desc">{post.data.description}</p>
+                    <span class="blog-card__more">{t.blogReadMore}</span>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-empty {
+    margin-top: var(--space-2xl);
+    color: var(--color-text-muted);
+    font-size: var(--fs-500);
+  }
+
+  .blog-list {
+    margin-top: var(--space-2xl);
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 720px) {
+    .blog-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .blog-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease;
+  }
+  .blog-card__link:hover {
+    border-color: var(--color-heading);
+  }
+
+  .blog-card__cover {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background-color: var(--color-bg-elevated);
+  }
+
+  .blog-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-lg);
+  }
+
+  .blog-card__date {
+    color: var(--color-text-muted);
+    font-size: var(--fs-300);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .blog-card__title {
+    font-size: var(--fs-600);
+    color: var(--color-heading);
+  }
+
+  .blog-card__desc {
+    color: var(--color-text-muted);
+  }
+
+  .blog-card__more {
+    margin-top: var(--space-xs);
+    color: var(--color-warm);
+    font-weight: 600;
+  }
+</style>

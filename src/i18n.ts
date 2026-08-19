@@ -35,6 +35,11 @@ export const routes = {
 
 export type RouteKey = keyof typeof routes;
 
+// The blog is a single, English-only section shared by both locales. It is not
+// part of the localized `routes` map (no hreflang alternates), so it lives here
+// as a plain path. Wrap in withBase() at use time.
+export const blogPath = '/blog';
+
 /** Build an anchor link on the home page for the given locale. */
 export function homeAnchor(lang: Locale, id: string): string {
   const home = routes.home[lang];
@@ -49,6 +54,7 @@ interface NavStrings {
   prices: string;
   rules: string;
   signup: string;
+  blog: string;
 }
 
 interface ScheduleStrings {
@@ -98,6 +104,12 @@ interface UI {
   // Beginner's guide
   beginnersHeading: string;
   beginnersIntro: string;
+  // Blog
+  blogHeading: string;
+  blogIntro: string;
+  blogReadMore: string;
+  blogBack: string;
+  blogEmpty: string;
   // Schedule
   schedule: ScheduleStrings;
   weekdays: Record<string, string>;
@@ -118,6 +130,7 @@ export const ui: Record<Locale, UI> = {
       prices: 'Preise',
       rules: 'Regeln',
       signup: 'Mitglied werden',
+      blog: 'Blog',
     },
     ctaTrial: 'Probetraining buchen',
     ctaMember: 'Mitglied werden',
@@ -155,6 +168,11 @@ export const ui: Record<Locale, UI> = {
     beginnersHeading: 'Einsteiger-Guide',
     beginnersIntro:
       'Neu im Brazilian Jiu-Jitsu? Dieser Guide erklärt, was BJJ ist, wie es funktioniert und was du für dein erstes Training brauchst.',
+    blogHeading: 'Blog',
+    blogIntro: 'Neuigkeiten, Trainingstipps und Geschichten von der Matte (auf Englisch).',
+    blogReadMore: 'Weiterlesen →',
+    blogBack: '← Zurück zum Blog',
+    blogEmpty: 'Noch keine Beiträge. Schau bald wieder vorbei!',
     schedule: {
       caption: 'Wöchentliche Trainingszeiten',
       day: 'Tag',
@@ -185,6 +203,7 @@ export const ui: Record<Locale, UI> = {
       prices: 'Prices',
       rules: 'Rules',
       signup: 'Sign up',
+      blog: 'Blog',
     },
     ctaTrial: 'Book free trial class',
     ctaMember: 'Become a member',
@@ -222,6 +241,11 @@ export const ui: Record<Locale, UI> = {
     beginnersHeading: 'Beginner’s Guide',
     beginnersIntro:
       'New to Brazilian Jiu-Jitsu? This guide explains what BJJ is, how it works and what you need for your first session.',
+    blogHeading: 'Blog',
+    blogIntro: 'Club news, training tips and stories from the mat.',
+    blogReadMore: 'Read more →',
+    blogBack: '← Back to the blog',
+    blogEmpty: 'No posts yet. Check back soon!',
     schedule: {
       caption: 'Weekly training times',
       day: 'Day',
@@ -254,6 +278,7 @@ export function getNav(lang: Locale) {
     { label: ui[lang].nav.location, href: homeAnchor(lang, 'location') },
     { label: ui[lang].nav.prices, href: homeAnchor(lang, 'prices') },
     { label: ui[lang].nav.rules, href: routes.rules[lang] },
+    { label: ui[lang].nav.blog, href: blogPath },
     { label: ui[lang].nav.signup, href: routes.signup[lang] },
   ];
 }
