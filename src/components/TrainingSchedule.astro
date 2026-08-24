@@ -37,6 +37,9 @@ const dayLabel = (day: string) =>
               {slot.level && (
                 <span class="schedule__level">{slot.level[lang]}</span>
               )}
+              {slot.note && (
+                <span class="schedule__note">{slot.note[lang]}</span>
+              )}
             </td>
             <td data-label={t.schedule.room}>
               {slot.roomUrl ? (
@@ -91,6 +94,17 @@ const dayLabel = (day: string) =>
   }
 
   .schedule__level {
+    display: inline-block;
+    margin-left: var(--space-xs);
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-full);
+    background-color: rgba(181, 86, 43, 0.1);
+    color: var(--color-warm);
+    font-size: var(--fs-300);
+    font-weight: 600;
+  }
+
+  .schedule__note {
     display: inline-block;
     margin-left: var(--space-xs);
     padding: 0.25rem 0.7rem;
