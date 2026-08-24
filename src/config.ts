@@ -158,7 +158,7 @@ export const trainingSchedule: TrainingSlot[] = [
     time: '18:00 – 19:30',
     title: { de: 'BJJ-Training', en: 'BJJ Training' },
     note: { de: 'Ab September', en: 'Starts in September' },
-    room: 'Gymnastikraum',
+    room: 'Athleticon',
     roomUrl:
       'https://www.tsg78-hd.de/images/Abteilungen/Seniorensport/Anfahrt_Athleticon_GyR.png',
   },
