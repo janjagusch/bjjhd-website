@@ -172,7 +172,7 @@ export const trainingSchedule: TrainingSlot[] = [
   },
   {
     day: 'Saturday',
-    time: '11:10 – 12:30',
+    time: '11:00 – 12:30',
     title: { de: 'Open Mat', en: 'Open Mat' },
     room: 'Athleticon',
     roomUrl:
