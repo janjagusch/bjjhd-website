@@ -35,7 +35,9 @@ export interface VenueBuilding {
   room: string;
   /** Label shown on the map marker. */
   label: Localized;
-  /** Marker position in percent of the map image (0 = left/top). */
+  /** Position of the PIN CENTRE in percent of the map image (0 = left/top).
+   *  The label box grows from the pin towards `side`, so its width does not
+   *  influence where the pin lands. */
   x: number;
   y: number;
   /** Side the label box sits on. Default: 'right'. */
@@ -144,14 +146,14 @@ export const venueMap = {
     {
       room: 'Athleticon',
       label: { de: 'Athleticon', en: 'Athleticon' },
-      x: 22.0,
+      x: 17.5,
       y: 43.0,
       side: 'right',
     },
     {
       room: 'Gymnastikraum',
       label: { de: 'Gymnastikraum', en: 'Gymnastikraum' },
-      x: 47.5,
+      x: 41.2,
       y: 60.5,
       side: 'right',
     },
@@ -159,7 +161,7 @@ export const venueMap = {
       // No matching trainingSchedule entry → shown without weekdays.
       room: 'Umkleiden',
       label: { de: 'Umkleiden', en: 'Changing rooms' },
-      x: 35.0,
+      x: 30.0,
       y: 39.0,
       side: 'right',
       tone: 'dark',
@@ -167,7 +169,7 @@ export const venueMap = {
     {
       room: 'Eingang Athleticon',
       label: { de: 'Eingang Athleticon', en: 'Athleticon entrance' },
-      x: 27.0,
+      x: 19.3,
       y: 51.5,
       side: 'right',
       tone: 'dark',
@@ -175,7 +177,7 @@ export const venueMap = {
     {
       room: 'Haupteingang',
       label: { de: 'Haupteingang', en: 'Main entrance' },
-      x: 88.0,
+      x: 81.8,
       y: 43.0,
       side: 'left',
       tone: 'dark',
