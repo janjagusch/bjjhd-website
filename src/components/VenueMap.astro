@@ -59,7 +59,10 @@ const markers = venueMap.buildings.map((building) => ({
     }
   </div>
   <figcaption class="venue-map__caption">
-    {venueMap.attribution[lang]}
+    {venueMap.attribution[lang]} (<a
+      href={venueMap.licenceUrl}
+      target="_blank"
+      rel="license noopener noreferrer">dl-de/by-2-0</a>)
   </figcaption>
 </figure>
 

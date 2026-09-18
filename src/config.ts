@@ -118,11 +118,19 @@ export const venueMap = {
     de: 'Luftbild des TSG-Areals an der Tiergartenstraße mit markierten Trainingsgebäuden Athleticon und Gymnastikraum, den Umkleiden sowie Haupteingang und Eingang zum Athleticon',
     en: 'Aerial photo of the TSG grounds on Tiergartenstraße with the training buildings Athleticon and Gymnastikraum, the changing rooms and the main and Athleticon entrances marked',
   } satisfies Localized,
-  /** Attribution shown below the image (required by the image licence). */
+  /** Attribution shown below the image.
+   *  Wording is prescribed by the WMS AccessConstraints of the data source:
+   *  "Als Rechteinhaber und Bereitsteller ist die Datenhaltende Stelle, sowie
+   *  das Jahr des Datenbezugs in Klammern anzugeben. Beispiel für
+   *  Quellenvermerk: LGL-BW (2024) Datenlizenz Deutschland - Namensnennung -
+   *  Version 2.0, www.lgl-bw.de"
+   *  → Keep the format and update the year if you re-fetch the image. */
   attribution: {
-    de: 'Luftbild: © LGL Baden-Württemberg (Datenlizenz Deutschland – Namensnennung 2.0)',
-    en: 'Aerial image: © LGL Baden-Württemberg (Data licence Germany – attribution 2.0)',
+    de: 'Luftbild: LGL-BW (2026) Datenlizenz Deutschland - Namensnennung - Version 2.0, www.lgl-bw.de',
+    en: 'Aerial image: LGL-BW (2026) Datenlizenz Deutschland - Namensnennung - Version 2.0, www.lgl-bw.de',
   } satisfies Localized,
+  /** Link target for the licence name in the attribution line. */
+  licenceUrl: 'https://www.govdata.de/dl-de/by-2-0',
   buildings: [
     {
       room: 'Athleticon',
