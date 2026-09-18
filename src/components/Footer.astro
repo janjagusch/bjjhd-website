@@ -1,5 +1,5 @@
 ---
-import { club, contact } from '../config';
+import { club, contact, social } from '../config';
 import { withBase } from '../utils/withBase';
 import { ui, defaultLocale } from '../i18n';
 import type { Locale } from '../i18n';
@@ -17,6 +17,38 @@ const year = new Date().getFullYear();
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
       <span class="brand__name">{club.name}</span>
+      {
+        social.instagram && (
+          <a
+            class="site-footer__social"
+            href={social.instagram}
+            target="_blank"
+            rel="noopener noreferrer me"
+          >
+            <svg
+              class="site-footer__social-icon"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
+              <circle cx="12" cy="12" r="4.2" />
+              <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
+            </svg>
+            <span>
+              <span class="site-footer__social-label">{t.footerFollow}:</span>{' '}
+              {social.instagramHandle ?? 'Instagram'}
+            </span>
+          </a>
+        )
+      }
     </div>
 
     <nav class="site-footer__col" aria-label={t.footerContact}>
@@ -80,6 +112,33 @@ const year = new Date().getFullYear();
   address {
     font-style: normal;
     line-height: var(--lh-base);
+  }
+
+  .site-footer__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-footer__social {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+    text-decoration: none;
+  }
+
+  .site-footer__social:hover,
+  .site-footer__social:focus-visible {
+    text-decoration: underline;
+  }
+
+  .site-footer__social-icon {
+    flex: none;
+  }
+
+  .site-footer__social-label {
+    color: var(--color-text-muted);
   }
 
   .site-footer__links {

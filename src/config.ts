@@ -99,6 +99,15 @@ export const contact = {
     'https://maps.google.com/?q=Tiergartenstra%C3%9Fe+9-11+69120+Heidelberg',
 };
 
+// === Social media ========================================================
+// Plain links only – no embeds, no widgets, no tracking pixels. Leave a value
+// empty (or remove the key) to hide the link.
+export const social = {
+  instagram: 'https://www.instagram.com/bjj.in.heidelberg/',
+  /** Handle shown as the link label. */
+  instagramHandle: '@bjj.in.heidelberg',
+};
+
 // === Venue map ============================================================
 // Self-hosted aerial photo of the TSG campus with markers for the buildings we
 // train in. No third-party map embed → no cookies, no consent banner.
