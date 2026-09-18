@@ -47,8 +47,9 @@ zu bearbeiten.
 Kontaktbereich, im Impressum und in der Datenschutzerklärung verwendet.
 
 ### Social-Media-Links
-`social` in `src/config.ts` (Instagram, Facebook). Es werden nur normale Links
-gesetzt – keine Tracking-Widgets.
+`social` in `src/config.ts` (`instagram`, `instagramHandle`). Der Link erscheint
+im Footer und als `sameAs` im JSON-LD. Es werden nur normale Links gesetzt –
+keine Embeds, Widgets oder Tracking-Pixel.
 
 ### Trainingszeiten aktualisieren
 Array `trainingSchedule` in `src/config.ts` bearbeiten. Jeder Eintrag hat

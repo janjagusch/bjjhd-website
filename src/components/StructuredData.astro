@@ -6,7 +6,7 @@
  * so they stay in sync with the rest of the site. Opening hours are derived
  * from the weekly training schedule.
  */
-import { club, contact, trainingSchedule } from '../config';
+import { club, contact, trainingSchedule, social } from '../config';
 
 // Map English weekday names (as used in config) to schema.org URIs.
 const DAY_URI: Record<string, string> = {
@@ -62,6 +62,8 @@ const jsonLd = {
   // TODO: add exact coordinates of the training venue for better map placement.
   // geo: { '@type': 'GeoCoordinates', latitude: 49.39, longitude: 8.69 },
   openingHoursSpecification: openingHours,
+  // Social profiles – helps Google link the site to our Instagram account.
+  sameAs: [social.instagram].filter(Boolean),
   hasMap: contact.mapsUrl,
 };
 ---
