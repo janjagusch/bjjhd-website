@@ -57,6 +57,7 @@ interface ScheduleStrings {
   time: string;
   class: string;
   room: string;
+  roomOnMap: string;
 }
 
 interface UI {
@@ -131,7 +132,7 @@ export const ui: Record<Locale, UI> = {
     trainingHeading: 'Training',
     locationHeading: 'Wo wir trainieren',
     locationIntro: 'Wir trainieren in den Räumen der TSG 78 Heidelberg.',
-    mapsLink: 'Route auf Google Maps öffnen ↗',
+    mapsLink: 'Route auf Google Maps öffnen\u00a0↗',
     mapsAria: 'Route auf Google Maps öffnen (öffnet in einem neuen Tab)',
     showerInfo: 'Die Dusche kostet 50 Cent (Münzautomat).',
     trialHeading: 'Probetraining buchen',
@@ -161,6 +162,7 @@ export const ui: Record<Locale, UI> = {
       time: 'Zeit',
       class: 'Kurs',
       room: 'Raum',
+      roomOnMap: 'Auf der Karte anzeigen',
     },
     weekdays: {
       monday: 'Montag',
@@ -198,7 +200,7 @@ export const ui: Record<Locale, UI> = {
     trainingHeading: 'Training',
     locationHeading: 'Where we train',
     locationIntro: 'We train in the facilities of TSG 78 Heidelberg.',
-    mapsLink: 'Open route on Google Maps ↗',
+    mapsLink: 'Open route on Google Maps\u00a0↗',
     mapsAria: 'Open route on Google Maps (opens in a new tab)',
     showerInfo: 'Using the shower costs 50 cents (coin-operated).',
     trialHeading: 'Book a free trial class',
@@ -228,6 +230,7 @@ export const ui: Record<Locale, UI> = {
       time: 'Time',
       class: 'Class',
       room: 'Room',
+      roomOnMap: 'Show on the map',
     },
     weekdays: {
       monday: 'Monday',

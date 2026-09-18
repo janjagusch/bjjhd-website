@@ -24,12 +24,14 @@ export interface TrainingSlot {
   /** Optional note shown alongside the slot (e.g. "Starts in September"). */
   note?: Localized;
   room: string;
-  /** Optional Google Maps link for the room/building. */
+  /** Optional external link for the room. Leave empty to link to our own
+   *  aerial map in the "location" section, which is usually what you want. */
   roomUrl?: string;
 }
 
 export interface VenueBuilding {
-  /** Must match a TrainingSlot.room so the training days can be derived. */
+  /** Must match a TrainingSlot.room so the training days can be derived.
+   *  Use a free-form key (e.g. 'Umkleiden') for rooms without training. */
   room: string;
   /** Label shown on the map marker. */
   label: Localized;
@@ -38,6 +40,8 @@ export interface VenueBuilding {
   y: number;
   /** Side the label box sits on. Default: 'right'. */
   side?: 'left' | 'right';
+  /** 'warm' (default) highlights training rooms, 'dark' marks facilities. */
+  tone?: 'warm' | 'dark';
 }
 
 export interface Coach {
@@ -98,14 +102,21 @@ export const contact = {
 // === Venue map ============================================================
 // Self-hosted aerial photo of the TSG campus with markers for the buildings we
 // train in. No third-party map embed → no cookies, no consent banner.
+//
 // Image source: LGL Baden-Württemberg, digital orthophoto (DOP20), open data.
-// Marker coordinates are percentages of the image; tweak them if you swap the
-// image or move a marker.
+// Reproduce / re-fetch the exact same frame with:
+//   https://owsproxy.lgl-bw.de/owsproxy/ows/WMS_LGL-BW_ATKIS_DOP_20_C
+//     ?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=IMAGES_DOP_20_RGB
+//     &CRS=EPSG:4326&BBOX=49.416625,8.6564,49.418875,8.6615
+//     &WIDTH=3694&HEIGHT=2488&FORMAT=image/png
+// The BBOX covers ~369 x 249 m; WIDTH/HEIGHT match that ratio so the image is
+// not distorted. Marker coordinates below are percentages of this BBOX, so they
+// stay correct if you re-request the image at another resolution.
 export const venueMap = {
   /** Alt text for the aerial photo. */
   alt: {
-    de: 'Luftbild des TSG-Areals an der Tiergartenstraße mit markierten Trainingsgebäuden Athleticon und Gymnastikraum',
-    en: 'Aerial photo of the TSG grounds on Tiergartenstraße with the training buildings Athleticon and Gymnastikraum marked',
+    de: 'Luftbild des TSG-Areals an der Tiergartenstraße mit markierten Trainingsgebäuden Athleticon und Gymnastikraum, den Umkleiden sowie Haupteingang und Eingang zum Athleticon',
+    en: 'Aerial photo of the TSG grounds on Tiergartenstraße with the training buildings Athleticon and Gymnastikraum, the changing rooms and the main and Athleticon entrances marked',
   } satisfies Localized,
   /** Attribution shown below the image (required by the image licence). */
   attribution: {
@@ -116,16 +127,41 @@ export const venueMap = {
     {
       room: 'Athleticon',
       label: { de: 'Athleticon', en: 'Athleticon' },
-      x: 20.1,
-      y: 40.0,
+      x: 22.0,
+      y: 43.0,
       side: 'right',
     },
     {
       room: 'Gymnastikraum',
       label: { de: 'Gymnastikraum', en: 'Gymnastikraum' },
-      x: 38.4,
-      y: 57.5,
+      x: 47.5,
+      y: 60.5,
       side: 'right',
+    },
+    {
+      // No matching trainingSchedule entry → shown without weekdays.
+      room: 'Umkleiden',
+      label: { de: 'Umkleiden', en: 'Changing rooms' },
+      x: 35.0,
+      y: 39.0,
+      side: 'right',
+      tone: 'dark',
+    },
+    {
+      room: 'Eingang Athleticon',
+      label: { de: 'Eingang Athleticon', en: 'Athleticon entrance' },
+      x: 27.0,
+      y: 51.5,
+      side: 'right',
+      tone: 'dark',
+    },
+    {
+      room: 'Haupteingang',
+      label: { de: 'Haupteingang', en: 'Main entrance' },
+      x: 88.0,
+      y: 43.0,
+      side: 'right',
+      tone: 'dark',
     },
   ] satisfies VenueBuilding[],
 };
@@ -205,24 +241,18 @@ export const trainingSchedule: TrainingSlot[] = [
     time: '18:00 – 19:30',
     title: { de: 'BJJ-Training', en: 'BJJ Training' },
     room: 'Athleticon',
-    roomUrl:
-      'https://www.tsg78-hd.de/images/Abteilungen/Seniorensport/Anfahrt_Athleticon_GyR.png',
   },
   {
     day: 'Friday',
     time: '18:30 – 20:00',
     title: { de: 'BJJ-Training', en: 'BJJ Training' },
     room: 'Gymnastikraum',
-    roomUrl:
-      'https://www.tsg78-hd.de/images/Abteilungen/Seniorensport/Anfahrt_Athleticon_GyR.png',
   },
   {
     day: 'Saturday',
     time: '11:00 – 12:30',
     title: { de: 'Open Mat', en: 'Open Mat' },
     room: 'Athleticon',
-    roomUrl:
-      'https://www.tsg78-hd.de/images/Abteilungen/Seniorensport/Anfahrt_Athleticon_GyR.png',
   },
 ];
 

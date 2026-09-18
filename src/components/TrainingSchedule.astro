@@ -1,6 +1,6 @@
 ---
 import { trainingSchedule } from '../config';
-import { ui, defaultLocale } from '../i18n';
+import { ui, defaultLocale, homeAnchor } from '../i18n';
 import type { Locale } from '../i18n';
 
 interface Props {
@@ -44,10 +44,12 @@ const dayLabel = (day: string) =>
             <td data-label={t.schedule.room}>
               {slot.roomUrl ? (
                 <a href={slot.roomUrl} target="_blank" rel="noopener noreferrer">
-                  {slot.room} ↗
+                  {slot.room}{'\u00a0↗'}
                 </a>
               ) : (
-                slot.room
+                <a href={homeAnchor(lang, 'location')} title={t.schedule.roomOnMap}>
+                  {slot.room}
+                </a>
               )}
             </td>
           </tr>

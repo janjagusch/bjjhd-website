@@ -8,12 +8,14 @@
  * banner. Markers are plain HTML positioned in percent, so labels stay crisp,
  * responsive, localized and readable by screen readers.
  *
- * Positions and labels live in `venueMap` in src/config.ts.
+ * Positions and labels live in `venueMap` in src/config.ts. Marker coordinates
+ * are percentages of the image BBOX, so they stay valid when the image is
+ * re-fetched at a different resolution – as long as the BBOX stays the same.
  */
 import { Picture } from 'astro:assets';
-import campusImage from '../assets/venue/tsg-campus.png';
-import { venueMap, trainingSchedule } from '../config';
-import { ui, defaultLocale } from '../i18n';
+import campusImage from '../assets/venue/tsg-campus.jpg';
+import { venueMap } from '../config';
+import { defaultLocale } from '../i18n';
 import type { Locale } from '../i18n';
 
 interface Props {
@@ -21,25 +23,11 @@ interface Props {
 }
 
 const { lang = defaultLocale } = Astro.props;
-const t = ui[lang];
 
-/** Short weekday label, e.g. "Do" / "Thu". */
-const shortDay = (day: string) => {
-  const full = t.weekdays[day.toLowerCase()] ?? day;
-  return full.slice(0, lang === 'de' ? 2 : 3);
-};
-
-/** Buildings enriched with the days they are used, taken from the schedule. */
-const markers = venueMap.buildings.map((building) => {
-  const days = trainingSchedule
-    .filter((slot) => slot.room === building.room)
-    .map((slot) => shortDay(slot.day));
-  return {
-    ...building,
-    label: building.label[lang],
-    days: [...new Set(days)].join(' · '),
-  };
-});
+const markers = venueMap.buildings.map((building) => ({
+  ...building,
+  label: building.label[lang],
+}));
 ---
 
 <figure class="venue-map">
@@ -47,9 +35,10 @@ const markers = venueMap.buildings.map((building) => {
     <Picture
       src={campusImage}
       alt={venueMap.alt[lang]}
-      widths={[640, 960, 1360, 1632]}
+      widths={[640, 960, 1360, 1848, 2464]}
       sizes="(min-width: 1100px) 1040px, 100vw"
       formats={['avif', 'webp']}
+      fallbackFormat="jpg"
       loading="lazy"
       decoding="async"
       class="venue-map__image"
@@ -57,13 +46,14 @@ const markers = venueMap.buildings.map((building) => {
     {
       markers.map((marker) => (
         <div
-          class:list={['venue-map__marker', `venue-map__marker--${marker.side ?? 'right'}`]}
+          class:list={[
+            'venue-map__marker',
+            `venue-map__marker--${marker.side ?? 'right'}`,
+            `venue-map__marker--${marker.tone ?? 'warm'}`,
+          ]}
           style={`left: ${marker.x}%; top: ${marker.y}%;`}>
           <span class="venue-map__pin" aria-hidden="true"></span>
-          <span class="venue-map__label">
-            <span class="venue-map__name">{marker.label}</span>
-            {marker.days && <span class="venue-map__days">{marker.days}</span>}
-          </span>
+          <span class="venue-map__label">{marker.label}</span>
         </div>
       ))
     }
@@ -107,34 +97,34 @@ const markers = venueMap.buildings.map((building) => {
     flex-direction: row-reverse;
   }
 
+  /* Tones: warm = training rooms, dark = supporting facilities. */
+  .venue-map__marker--warm {
+    --marker-color: var(--color-warm);
+  }
+
+  .venue-map__marker--dark {
+    --marker-color: var(--color-accent);
+  }
+
   .venue-map__pin {
     flex: 0 0 auto;
     width: 0.85rem;
     height: 0.85rem;
     border-radius: 50%;
-    background: var(--color-warm);
+    background: var(--marker-color, var(--color-warm));
     box-shadow: 0 0 0 3px #fff, 0 1px 4px rgb(0 0 0 / 0.35);
   }
 
   .venue-map__label {
-    display: flex;
-    flex-direction: column;
+    display: block;
     padding: 0.35rem 0.6rem;
     border-radius: var(--radius-sm);
-    background: var(--color-warm);
+    background: var(--marker-color, var(--color-warm));
     color: #fff;
-    box-shadow: 0 1px 6px rgb(0 0 0 / 0.3);
-    white-space: nowrap;
-  }
-
-  .venue-map__name {
     font-weight: 700;
     font-size: var(--fs-300);
-  }
-
-  .venue-map__days {
-    font-size: 0.75rem;
-    opacity: 0.85;
+    box-shadow: 0 1px 6px rgb(0 0 0 / 0.3);
+    white-space: nowrap;
   }
 
   .venue-map__caption {
@@ -148,14 +138,7 @@ const markers = venueMap.buildings.map((building) => {
   @media (max-width: 30rem) {
     .venue-map__label {
       padding: 0.2rem 0.4rem;
-    }
-
-    .venue-map__name {
       font-size: 0.7rem;
-    }
-
-    .venue-map__days {
-      display: none;
     }
 
     .venue-map__pin {
