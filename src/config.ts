@@ -28,6 +28,18 @@ export interface TrainingSlot {
   roomUrl?: string;
 }
 
+export interface VenueBuilding {
+  /** Must match a TrainingSlot.room so the training days can be derived. */
+  room: string;
+  /** Label shown on the map marker. */
+  label: Localized;
+  /** Marker position in percent of the map image (0 = left/top). */
+  x: number;
+  y: number;
+  /** Side the label box sits on. Default: 'right'. */
+  side?: 'left' | 'right';
+}
+
 export interface Coach {
   name: string;
   role: Localized;
@@ -81,6 +93,41 @@ export const contact = {
   // Optional Google Maps link (opens externally, no embed/tracking).
   mapsUrl:
     'https://maps.google.com/?q=Tiergartenstra%C3%9Fe+9-11+69120+Heidelberg',
+};
+
+// === Venue map ============================================================
+// Self-hosted aerial photo of the TSG campus with markers for the buildings we
+// train in. No third-party map embed → no cookies, no consent banner.
+// Image source: LGL Baden-Württemberg, digital orthophoto (DOP20), open data.
+// Marker coordinates are percentages of the image; tweak them if you swap the
+// image or move a marker.
+export const venueMap = {
+  /** Alt text for the aerial photo. */
+  alt: {
+    de: 'Luftbild des TSG-Areals an der Tiergartenstraße mit markierten Trainingsgebäuden Athleticon und Gymnastikraum',
+    en: 'Aerial photo of the TSG grounds on Tiergartenstraße with the training buildings Athleticon and Gymnastikraum marked',
+  } satisfies Localized,
+  /** Attribution shown below the image (required by the image licence). */
+  attribution: {
+    de: 'Luftbild: © LGL Baden-Württemberg (Datenlizenz Deutschland – Namensnennung 2.0)',
+    en: 'Aerial image: © LGL Baden-Württemberg (Data licence Germany – attribution 2.0)',
+  } satisfies Localized,
+  buildings: [
+    {
+      room: 'Athleticon',
+      label: { de: 'Athleticon', en: 'Athleticon' },
+      x: 20.1,
+      y: 40.0,
+      side: 'right',
+    },
+    {
+      room: 'Gymnastikraum',
+      label: { de: 'Gymnastikraum', en: 'Gymnastikraum' },
+      x: 38.4,
+      y: 57.5,
+      side: 'right',
+    },
+  ] satisfies VenueBuilding[],
 };
 
 // === About / Club =========================================================

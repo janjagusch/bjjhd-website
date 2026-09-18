@@ -2,6 +2,7 @@
 import Hero from '../Hero.astro';
 import TrainingSchedule from '../TrainingSchedule.astro';
 import CampaiSignup from '../CampaiSignup.astro';
+import VenueMap from '../VenueMap.astro';
 import StructuredData from '../StructuredData.astro';
 import { campai, contact, pricing } from '../../config';
 import { withBase } from '../../utils/withBase';
@@ -100,6 +101,7 @@ const t = ui[lang];
         >
       </p>
     </div>
+    <VenueMap lang={lang} />
     <ul class="venue-info">
       {
         lang === 'de' ? (
