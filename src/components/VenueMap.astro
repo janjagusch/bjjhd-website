@@ -1,0 +1,153 @@
+---
+/**
+ * Self-hosted aerial map of the TSG campus with markers for the buildings we
+ * train in.
+ *
+ * Deliberately NOT a Google Maps / OSM iframe: the image is served from our own
+ * domain, so there are no third-party requests, no cookies and no consent
+ * banner. Markers are plain HTML positioned in percent, so labels stay crisp,
+ * responsive, localized and readable by screen readers.
+ *
+ * Positions and labels live in `venueMap` in src/config.ts. Marker coordinates
+ * are percentages of the image BBOX, so they stay valid when the image is
+ * re-fetched at a different resolution – as long as the BBOX stays the same.
+ */
+import { Picture } from 'astro:assets';
+import campusImage from '../assets/venue/tsg-campus.jpg';
+import { venueMap } from '../config';
+import { defaultLocale } from '../i18n';
+import type { Locale } from '../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+
+const markers = venueMap.buildings.map((building) => ({
+  ...building,
+  label: building.label[lang],
+}));
+---
+
+<figure class="venue-map">
+  <div class="venue-map__frame">
+    <Picture
+      src={campusImage}
+      alt={venueMap.alt[lang]}
+      widths={[640, 960, 1360, 1848, 2464]}
+      sizes="(min-width: 1100px) 1040px, 100vw"
+      formats={['avif', 'webp']}
+      fallbackFormat="jpg"
+      loading="lazy"
+      decoding="async"
+      class="venue-map__image"
+    />
+    {
+      markers.map((marker) => (
+        <div
+          class:list={[
+            'venue-map__marker',
+            `venue-map__marker--${marker.side ?? 'right'}`,
+            `venue-map__marker--${marker.tone ?? 'warm'}`,
+          ]}
+          style={`left: ${marker.x}%; top: ${marker.y}%;`}>
+          <span class="venue-map__pin" aria-hidden="true"></span>
+          <span class="venue-map__label">{marker.label}</span>
+        </div>
+      ))
+    }
+  </div>
+  <figcaption class="venue-map__caption">
+    {venueMap.attribution[lang]} (<a
+      href={venueMap.licenceUrl}
+      target="_blank"
+      rel="license noopener noreferrer">dl-de/by-2-0</a>)
+  </figcaption>
+</figure>
+
+<style>
+  .venue-map {
+    margin: var(--space-lg) 0 0;
+  }
+
+  .venue-map__frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 10px);
+    line-height: 0;
+  }
+
+  .venue-map__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .venue-map__marker {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: translate(-50%, -50%);
+    line-height: var(--lh-tight);
+    /* Keep the pin at the anchor point; the label grows to the side. */
+    pointer-events: none;
+  }
+
+  .venue-map__marker--left {
+    flex-direction: row-reverse;
+  }
+
+  /* Tones: warm = training rooms, dark = supporting facilities. */
+  .venue-map__marker--warm {
+    --marker-color: var(--color-warm);
+  }
+
+  .venue-map__marker--dark {
+    --marker-color: var(--color-accent);
+  }
+
+  .venue-map__pin {
+    flex: 0 0 auto;
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 50%;
+    background: var(--marker-color, var(--color-warm));
+    box-shadow: 0 0 0 3px #fff, 0 1px 4px rgb(0 0 0 / 0.35);
+  }
+
+  .venue-map__label {
+    display: block;
+    padding: 0.35rem 0.6rem;
+    border-radius: var(--radius-sm);
+    background: var(--marker-color, var(--color-warm));
+    color: #fff;
+    font-weight: 700;
+    font-size: var(--fs-300);
+    box-shadow: 0 1px 6px rgb(0 0 0 / 0.3);
+    white-space: nowrap;
+  }
+
+  .venue-map__caption {
+    margin-top: var(--space-xs);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  /* On narrow screens the labels would overlap the photo too much, so shrink
+     them a little. */
+  @media (max-width: 30rem) {
+    .venue-map__label {
+      padding: 0.2rem 0.4rem;
+      font-size: 0.7rem;
+    }
+
+    .venue-map__pin {
+      width: 0.6rem;
+      height: 0.6rem;
+      box-shadow: 0 0 0 2px #fff, 0 1px 3px rgb(0 0 0 / 0.35);
+    }
+  }
+</style>
