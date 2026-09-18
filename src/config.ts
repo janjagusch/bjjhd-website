@@ -177,7 +177,7 @@ export const venueMap = {
       label: { de: 'Haupteingang', en: 'Main entrance' },
       x: 88.0,
       y: 43.0,
-      side: 'right',
+      side: 'left',
       tone: 'dark',
     },
   ] satisfies VenueBuilding[],
