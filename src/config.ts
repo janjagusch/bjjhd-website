@@ -108,6 +108,7 @@ export const social = {
   instagram: 'https://www.instagram.com/bjj.in.heidelberg/',
   /** Handle shown as the link label. */
   instagramHandle: '@bjj.in.heidelberg',
+  beltChecker: 'https://www.beltchecker.com/academy.php?id=531',
 };
 
 // === Venue map ============================================================
