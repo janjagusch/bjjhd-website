@@ -49,6 +49,18 @@ const year = new Date().getFullYear();
           </a>
         )
       }
+      {
+        social.beltChecker && (
+          <a
+            class="site-footer__social"
+            href={social.beltChecker}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>BeltChecker</span>
+          </a>
+        )
+      }
     </div>
 
     <nav class="site-footer__col" aria-label={t.footerContact}>
