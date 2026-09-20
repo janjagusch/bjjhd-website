@@ -9,8 +9,9 @@
  * responsive, localized and readable by screen readers.
  *
  * Positions and labels live in `venueMap` in src/config.ts. Marker coordinates
- * are percentages of the image BBOX, so they stay valid when the image is
- * re-fetched at a different resolution – as long as the BBOX stays the same.
+ * are percentages of the image BBOX and mark the PIN centre (the label grows to
+ * `side`), so they stay valid when the image is re-fetched at a different
+ * resolution – as long as the BBOX stays the same.
  */
 import { Picture } from 'astro:assets';
 import campusImage from '../assets/venue/tsg-campus.jpg';
@@ -86,18 +87,25 @@ const markers = venueMap.buildings.map((building) => ({
   }
 
   .venue-map__marker {
+    --pin-size: 0.85rem;
     position: absolute;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transform: translate(-50%, -50%);
     line-height: var(--lh-tight);
-    /* Keep the pin at the anchor point; the label grows to the side. */
     pointer-events: none;
+  }
+
+  /* Only the PIN must sit on the anchor point – never the whole pin+label row.
+     Centring the row would shift the pin by half the label width, which varies
+     with font size and translation, so markers drifted on small screens. */
+  .venue-map__marker--right {
+    transform: translate(calc(var(--pin-size) / -2), -50%);
   }
 
   .venue-map__marker--left {
     flex-direction: row-reverse;
+    transform: translate(calc(var(--pin-size) / 2 - 100%), -50%);
   }
 
   /* Tones: warm = training rooms, dark = supporting facilities. */
@@ -111,8 +119,8 @@ const markers = venueMap.buildings.map((building) => ({
 
   .venue-map__pin {
     flex: 0 0 auto;
-    width: 0.85rem;
-    height: 0.85rem;
+    width: var(--pin-size);
+    height: var(--pin-size);
     border-radius: 50%;
     background: var(--marker-color, var(--color-warm));
     box-shadow: 0 0 0 3px #fff, 0 1px 4px rgb(0 0 0 / 0.35);
@@ -139,14 +147,17 @@ const markers = venueMap.buildings.map((building) => ({
   /* On narrow screens the labels would overlap the photo too much, so shrink
      them a little. */
   @media (max-width: 30rem) {
+    .venue-map__marker {
+      --pin-size: 0.6rem;
+      gap: 0.35rem;
+    }
+
     .venue-map__label {
       padding: 0.2rem 0.4rem;
       font-size: 0.7rem;
     }
 
     .venue-map__pin {
-      width: 0.6rem;
-      height: 0.6rem;
       box-shadow: 0 0 0 2px #fff, 0 1px 3px rgb(0 0 0 / 0.35);
     }
   }
