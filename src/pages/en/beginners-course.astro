@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BeginnersCourseContent from '../../components/content/BeginnersCourseContent.astro';
+import { beginnersCourse as c } from '../../config';
+---
+
+<BaseLayout
+  title="Brazilian Jiu-Jitsu Beginners Course | BJJ Heidelberg"
+  description={`Our beginners course for Brazilian Jiu-Jitsu in Heidelberg: ${c.classes} sessions, every ${c.weekday.en} at ${c.time}, starting on ${c.startDate.en}. No experience needed.`}
+  lang="en"
+  routeKey="course"
+>
+  <BeginnersCourseContent lang="en" />
+</BaseLayout>

@@ -28,6 +28,8 @@ export const routes = {
   home: { de: '/', en: '/en' },
   about: { de: '/ueber-uns', en: '/en/about' },
   beginners: { de: '/einsteiger', en: '/en/beginners' },
+  // Landing page for the 8-week beginners course (not in the main nav).
+  course: { de: '/beginners', en: '/en/beginners-course' },
   rules: { de: '/regeln', en: '/en/rules' },
   signup: { de: '/mitglied-werden', en: '/en/signup' },
   confirmation: { de: '/danke', en: '/en/thank-you' },

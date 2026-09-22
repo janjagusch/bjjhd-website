@@ -1,0 +1,477 @@
+---
+/**
+ * Landing page content for the beginners course (Anfängerkurs).
+ *
+ * Course data (dates, price, venue) lives in `beginnersCourse` in
+ * src/config.ts; the booking form URL in `campai.beginnersCourseSrc`.
+ *
+ * Typography on this page uses exactly three sizes: --fs-500 for the lead
+ * paragraph, --fs-400 (body default) for every other line of copy, and
+ * --fs-600 for section headings.
+ */
+import CampaiSignup from '../CampaiSignup.astro';
+import { Picture } from 'astro:assets';
+import drillingImage from '../../assets/beginners/drilling.jpg';
+import instructionImage from '../../assets/beginners/instruction.jpg';
+import partnersImage from '../../assets/beginners/partners.jpg';
+import openMatImage from '../../assets/beginners/open-mat.jpg';
+import { beginnersCourse, campai, contact } from '../../config';
+import { withBase } from '../../utils/withBase';
+import { routes, homeAnchor, defaultLocale } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const de = lang === 'de';
+const c = beginnersCourse;
+
+const benutzungsordnung =
+  'https://www.tsg78-hd.de/images/verein/Benutzungsordnung_TSGSportpark_2025.pdf';
+
+const gallery = [
+  {
+    image: instructionImage,
+    alt: de
+      ? 'Zwei Trainingspartner üben eine Technik aus der Guard, im Hintergrund weitere Teilnehmer'
+      : 'Two training partners drilling a technique from the guard, with more participants in the background',
+  },
+  {
+    image: partnersImage,
+    alt: de
+      ? 'Zwei lachende Trainingspartner auf der Matte'
+      : 'Two laughing training partners on the mat',
+  },
+  {
+    image: openMatImage,
+    alt: de
+      ? 'Mehrere Paare trainieren gleichzeitig auf der Matte im Athleticon'
+      : 'Several pairs training at the same time on the mat in the Athleticon',
+  },
+];
+
+const address = `${contact.venue}, ${c.room}, ${contact.venueStreet}, ${contact.venueZip} ${contact.venueCity}`;
+
+const facts = de
+  ? [
+      {
+        label: 'Umfang',
+        text: `${c.classes} Trainingseinheiten für einen kompletten Einstieg in das Brazilian Jiu-Jitsu, von Grund auf.`,
+      },
+      {
+        label: 'Termine',
+        text: `Jeden ${c.weekday.de} um ${c.time} Uhr. Start am ${c.startDate.de}, letzte Einheit am ${c.endDate.de}. Kursteilnehmer:innen sind zusätzlich herzlich eingeladen, auch an unserem regulären Training am Freitag und Samstag mitzumachen.`,
+      },
+      { label: 'Ort', text: address, href: homeAnchor(lang, 'location') },
+      {
+        label: 'Ausrüstung',
+        text: 'Wir trainieren im Gi. Ein eigener Gi ist nicht Pflicht, aber empfohlen. Ansonsten reicht bequeme Sportkleidung.',
+      },
+      {
+        label: 'Vorkenntnisse',
+        text: 'Keine nötig. Der Kurs richtet sich ausdrücklich an absolute Einsteiger:innen.',
+      },
+      {
+        label: 'Preis',
+        text: `${c.price} für den gesamten Kurs, inklusive aller Trainingseinheiten.`,
+      },
+    ]
+  : [
+      {
+        label: 'Scope',
+        text: `${c.classes} sessions that take you into Brazilian Jiu-Jitsu from scratch.`,
+      },
+      {
+        label: 'Dates',
+        text: `Every ${c.weekday.en} at ${c.time}. Starting on ${c.startDate.en}, last session on ${c.endDate.en}. Participants are also warmly invited to join our regular training on Friday and Saturday.`,
+      },
+      { label: 'Location', text: address, href: homeAnchor(lang, 'location') },
+      {
+        label: 'Gear',
+        text: 'We train in the Gi. Your own Gi is not required, but encouraged. Otherwise comfortable sportswear is fine.',
+      },
+      {
+        label: 'Experience',
+        text: 'None needed. The course is aimed explicitly at complete beginners.',
+      },
+      {
+        label: 'Price',
+        text: `${c.price} for the whole course, including all sessions.`,
+      },
+    ];
+---
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">
+      {de ? 'Anfängerkurs' : 'Beginners course'}
+      {c.startDate[lang].split(' ').slice(-1)}
+    </p>
+    <h1>
+      {
+        de
+          ? `In ${c.classes} Einheiten zum Brazilian Jiu-Jitsu`
+          : `Start Brazilian Jiu-Jitsu in ${c.classes} sessions`
+      }
+    </h1>
+    {
+      de ? (
+        <p class="section__intro">
+          Du wolltest schon immer mal Brazilian Jiu-Jitsu ausprobieren, aber
+          nicht mitten in ein laufendes Training platzen? Dann ist unser
+          Anfängerkurs genau richtig: {c.classes} aufeinander aufbauende
+          Einheiten, in denen du gemeinsam mit anderen Einsteiger:innen die
+          Grundlagen lernst: Positionen, Bewegung am Boden, erste Techniken und
+          die wichtigsten Regeln für sicheres Training.
+        </p>
+      ) : (
+        <p class="section__intro">
+          Always wanted to try Brazilian Jiu-Jitsu, but would rather not drop
+          into an ongoing class? Then our beginners course is made for you:{' '}
+          {c.classes} sessions that build on each other, in which you learn the
+          basics together with other newcomers: positions, moving on the ground,
+          your first techniques and the most important rules for safe training.
+        </p>
+      )
+    }
+
+    <figure class="lead">
+      <Picture
+        src={drillingImage}
+        alt={
+          de
+            ? 'Zwei Trainingspartner im Gi üben eine Position am Boden im Athleticon'
+            : 'Two training partners in the Gi working a ground position in the Athleticon'
+        }
+        widths={[640, 960, 1360, 2048]}
+        sizes="(min-width: 1100px) 1040px, 100vw"
+        formats={['avif', 'webp']}
+        loading="eager"
+      />
+    </figure>
+
+    <ul class="facts">
+      {
+        facts.map((f) => (
+          <li>
+            <strong class="facts__label">{f.label}:</strong>{' '}
+            {f.href ? <a href={withBase(f.href)}>{f.text}</a> : f.text}
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      de ? (
+        <p class="more">
+          Mehr Hintergrundwissen findest du in unserem
+          <a href={withBase(routes.beginners[lang])}>Einsteiger-Guide</a> und in
+          unseren <a href={withBase(routes.rules[lang])}
+            >Regeln &amp; Richtlinien</a
+          >.
+        </p>
+      ) : (
+        <p class="more">
+          You will find more background in our
+          <a href={withBase(routes.beginners[lang])}>beginner’s guide</a> and in
+          our <a href={withBase(routes.rules[lang])}>rules &amp; guidelines</a>.
+        </p>
+      )
+    }
+
+    <ul class="gallery">
+      {
+        gallery.map((item) => (
+          <li>
+            <Picture
+              src={item.image}
+              alt={item.alt}
+              widths={[480, 720, 1080]}
+              sizes="(min-width: 900px) 33vw, 100vw"
+              formats={['avif', 'webp']}
+              loading="lazy"
+            />
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="booking" id={de ? 'anmeldung' : 'signup'}>
+      <h2>{de ? 'Anmeldung' : 'Registration'}</h2>
+      <p>
+        {
+          de
+            ? 'Melde dich direkt über das Formular unten an. Die Teilnehmerzahl ist begrenzt, wir empfehlen daher eine frühzeitige Anmeldung.'
+            : 'Sign up directly via the form below. Places are limited, so we recommend registering early.'
+        }
+      </p>
+      <CampaiSignup
+        src={campai.beginnersCourseSrc}
+        title={
+          de
+            ? 'Anmeldung Anfängerkurs (bereitgestellt von Campai)'
+            : 'Beginners course registration (provided by Campai)'
+        }
+      />
+    </div>
+
+    <div class="prose">
+      <h2 id={de ? 'teilnahmebedingungen' : 'conditions'}>
+        {de ? 'Teilnahmebedingungen' : 'Conditions of participation'}
+      </h2>
+      <p class="placeholder">
+        {
+          de
+            ? '[Platzhalter: bitte vor Veröffentlichung prüfen und ergänzen.]'
+            : '[Placeholder: please review and complete before publishing.]'
+        }
+      </p>
+      {
+        de ? (
+          <ul>
+            <li>
+              [Mindestalter: 16 Jahre. Minderjährige benötigen die
+              Einverständniserklärung einer/eines Erziehungsberechtigten.]
+            </li>
+            <li>
+              [Die Teilnahme erfolgt auf eigene Gefahr. Bitte kläre vor
+              Kursbeginn mit einem Arzt/einer Ärztin, ob du sportlich
+              uneingeschränkt belastbar bist.]
+            </li>
+            <li>
+              [Der Kursbeitrag von {c.price} ist vor der ersten Einheit fällig
+              und gilt für den gesamten Kurs. Versäumte Einheiten können nicht
+              nachgeholt oder erstattet werden.]
+            </li>
+            <li>
+              Es gelten unsere
+              <a href={withBase(routes.rules[lang])}>Regeln &amp; Richtlinien</a>
+              sowie die
+              <a href={benutzungsordnung} target="_blank" rel="noopener noreferrer">
+                Benutzungsordnung des TSG Sportparks&nbsp;↗
+              </a>.
+            </li>
+          </ul>
+        ) : (
+          <ul>
+            <li>
+              [Minimum age: 16. Minors need the written consent of a legal
+              guardian.]
+            </li>
+            <li>
+              [Participation is at your own risk. Please check with a doctor
+              before the course starts whether you are fit to train without
+              restrictions.]
+            </li>
+            <li>
+              [The course fee of {c.price} is due before the first session and
+              covers the entire course. Missed sessions cannot be made up or
+              refunded.]
+            </li>
+            <li>
+              Our <a href={withBase(routes.rules[lang])}>rules &amp; guidelines</a>
+              apply, as do the
+              <a href={benutzungsordnung} target="_blank" rel="noopener noreferrer">
+                terms of use of the TSG Sportpark&nbsp;↗
+              </a>.
+            </li>
+          </ul>
+        )
+      }
+
+      <h2 id={de ? 'datenschutz' : 'privacy'}>
+        {
+          de
+            ? 'Datenschutz & Foto-/Videoaufnahmen'
+            : 'Data privacy & photos/videos'
+        }
+      </h2>
+      <p class="placeholder">
+        {
+          de
+            ? '[Platzhalter: bitte vor Veröffentlichung prüfen und ergänzen.]'
+            : '[Placeholder: please review and complete before publishing.]'
+        }
+      </p>
+      {
+        de ? (
+          <ul>
+            <li>
+              [Deine Anmeldedaten werden ausschließlich zur Abwicklung des
+              Kurses verarbeitet. Details siehe
+              <a href={withBase('/datenschutz')}>Datenschutzerklärung</a>.]
+            </li>
+            <li>
+              [Im Training entstehen gelegentlich Foto- und Videoaufnahmen, die
+              wir für unsere Website und Social-Media-Kanäle nutzen möchten.]
+            </li>
+            <li>
+              [Die Nutzung erfolgt nur mit deiner ausdrücklichen, freiwilligen
+              Einwilligung. Du kannst diese jederzeit ohne Angabe von Gründen
+              widerrufen. Schreib uns einfach an
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>.]
+            </li>
+            <li>
+              [Eine Teilnahme am Kurs ist auch ohne Einwilligung in Aufnahmen
+              möglich. Sag uns vor Ort kurz Bescheid, dann achten wir darauf.]
+            </li>
+          </ul>
+        ) : (
+          <ul>
+            <li>
+              [Your registration details are processed solely to run the course.
+              See our <a href={withBase('/datenschutz')}>privacy policy</a> for
+              details.]
+            </li>
+            <li>
+              [We occasionally take photos and videos during training that we
+              would like to use on our website and social media channels.]
+            </li>
+            <li>
+              [We only do so with your explicit, voluntary consent. You can
+              withdraw it at any time without giving a reason. Just write to
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>.]
+            </li>
+            <li>
+              [You can take part in the course without consenting to any
+              recordings. Let us know on site and we will make sure of it.]
+            </li>
+          </ul>
+        )
+      }
+
+      <h2>{de ? 'Noch Fragen?' : 'Any questions?'}</h2>
+      <p>
+        {de ? 'Schreib uns einfach an ' : 'Just write to us at '}
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        {
+          de
+            ? '. Wir antworten so schnell wir können.'
+            : '. We will reply as soon as we can.'
+        }
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Typography scale used on this page:
+     --fs-300 eyebrow · --fs-400 body copy · --fs-500 lead · --fs-600 headings */
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--fs-300);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xs);
+  }
+
+  .lead {
+    margin: var(--space-xl) 0 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .lead :global(img) {
+    display: block;
+    width: 100%;
+    height: clamp(240px, 38vw, 460px);
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .facts,
+  .more,
+  .booking p,
+  .prose p,
+  .prose ul {
+    font-size: var(--fs-400);
+    color: var(--color-text-muted);
+    max-width: 70ch;
+  }
+
+  .facts {
+    margin: var(--space-xl) 0 0;
+    padding-left: 1.25rem;
+    display: grid;
+    gap: var(--space-sm);
+  }
+
+  .facts__label {
+    color: var(--color-heading);
+  }
+
+  .more {
+    margin-top: var(--space-lg);
+  }
+
+  .gallery {
+    margin: var(--space-2xl) 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 900px) {
+    .gallery {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .gallery :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+  }
+
+  .booking {
+    margin-top: var(--space-2xl);
+  }
+
+  .booking h2,
+  .prose h2 {
+    font-size: var(--fs-600);
+    margin-bottom: var(--space-sm);
+  }
+
+  .booking p {
+    margin-bottom: var(--space-lg);
+  }
+
+  .prose {
+    margin-top: var(--space-2xl);
+    max-width: 70ch;
+  }
+
+  .prose h2 {
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-border);
+    margin-bottom: var(--space-md);
+  }
+
+  .prose h2:not(:first-child) {
+    margin-top: var(--space-2xl);
+  }
+
+  .prose p,
+  .prose ul {
+    margin-bottom: var(--space-md);
+  }
+
+  .prose ul {
+    padding-left: 1.25rem;
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .placeholder {
+    font-style: italic;
+  }
+</style>
