@@ -105,9 +105,9 @@ export const contact = {
 // Plain links only – no embeds, no widgets, no tracking pixels. Leave a value
 // empty (or remove the key) to hide the link.
 export const social = {
-  instagram: 'https://www.instagram.com/bjj.in.heidelberg/',
+  instagram: 'https://www.instagram.com/bjj.heidelberg/',
   /** Handle shown as the link label. */
-  instagramHandle: '@bjj.in.heidelberg',
+  instagramHandle: '@bjj.heidelberg',
 };
 
 // === Venue map ============================================================
