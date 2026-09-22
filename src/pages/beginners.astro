@@ -9,33 +9,31 @@ const c = beginnersCourse;
 const facts = [
   {
     label: 'Umfang',
-    value: `${c.classes} Trainingseinheiten`,
-    note: 'Ein kompletter Einstieg in das Brazilian Jiu-Jitsu – von Grund auf.',
+    text: `${c.classes} Trainingseinheiten – ein kompletter Einstieg in das Brazilian Jiu-Jitsu, von Grund auf.`,
   },
   {
     label: 'Termine',
-    value: `Jeden ${c.weekday.de} um ${c.time}`,
-    note: `Start am ${c.startDate.de}, letzte Einheit am ${c.endDate.de}.`,
+    text: `Jeden ${c.weekday.de} um ${c.time} Uhr. Start am ${c.startDate.de}, letzte Einheit am ${c.endDate.de}.`,
   },
   {
     label: 'Ort',
-    value: `${contact.venue} – ${c.room}`,
-    note: `${contact.venueStreet}, ${contact.venueZip} ${contact.venueCity}`,
+    text: `${contact.venue} – ${c.room}, ${contact.venueStreet}, ${contact.venueZip} ${contact.venueCity}`,
   },
   {
     label: 'Preis',
-    value: c.price,
-    note: 'Für den gesamten Kurs, inklusive aller Trainingseinheiten.',
+    text: `${c.price} für den gesamten Kurs, inklusive aller Trainingseinheiten.`,
   },
   {
     label: 'Ausrüstung',
-    value: 'Training im Gi',
-    note: 'Ein Gi ist nicht Pflicht, aber empfohlen. Sonst reicht bequeme Sportkleidung.',
+    text: 'Wir trainieren im Gi. Ein eigener Gi ist nicht Pflicht, aber empfohlen – ansonsten reicht bequeme Sportkleidung.',
   },
   {
     label: 'Vorkenntnisse',
-    value: 'Keine nötig',
-    note: 'Der Kurs richtet sich ausdrücklich an absolute Einsteiger:innen.',
+    text: 'Keine nötig – der Kurs richtet sich ausdrücklich an absolute Einsteiger:innen.',
+  },
+  {
+    label: 'Zusätzlich',
+    text: 'Kursteilnehmer:innen sind herzlich eingeladen, auch an unserem regulären Training am Freitag und Samstag mitzumachen.',
   },
 ];
 ---
@@ -62,36 +60,17 @@ const facts = [
         {
           facts.map((f) => (
             <li class="facts__item">
-              <span class="facts__label">{f.label}</span>
-              <span class="facts__value">{f.value}</span>
-              <span class="facts__note">{f.note}</span>
+              <strong class="facts__label">{f.label}:</strong> {f.text}
             </li>
           ))
         }
       </ul>
 
-      <div class="prose">
-        <h2>Was dich erwartet</h2>
-        <p>
-          Wir starten bei null: Du lernst, wie du dich am Boden sicher bewegst,
-          wie du Positionen hältst und wieder aus ihnen herauskommst, und wie die
-          bekanntesten Techniken des BJJ funktionieren. Jede Einheit besteht aus
-          Aufwärmen, Technikteil und ruhigem, kontrolliertem Üben mit einem
-          Partner – ganz ohne Schläge oder Tritte und ohne Wettkampfdruck.
-        </p>
-        <p>
-          Wir trainieren im Gi (dem klassischen Anzug). Du brauchst dafür keinen
-          eigenen Gi – bequeme Sportkleidung ohne Reißverschlüsse und Taschen
-          reicht für den Anfang. Wenn du einen Gi hast oder dir einen anschaffen
-          möchtest, ist das natürlich super, da viele Techniken den Griff am Stoff
-          nutzen.
-        </p>
-        <p>
-          Mehr Hintergrundwissen findest du in unserem
-          <a href={withBase('/einsteiger')}>Einsteiger-Guide</a> und in unseren
-          <a href={withBase('/regeln')}>Regeln &amp; Richtlinien</a>.
-        </p>
-      </div>
+      <p class="more">
+        Mehr Hintergrundwissen findest du in unserem
+        <a href={withBase('/einsteiger')}>Einsteiger-Guide</a> und in unseren
+        <a href={withBase('/regeln')}>Regeln &amp; Richtlinien</a>.
+      </p>
 
       <div class="booking" id="anmeldung">
         <h2>Anmeldung</h2>
@@ -188,44 +167,22 @@ const facts = [
   }
 
   .facts {
-    margin: var(--space-2xl) 0 0;
-    padding: 0;
-    list-style: none;
+    margin: var(--space-xl) 0 0;
+    padding-left: 1.25rem;
+    max-width: 70ch;
     display: grid;
-    gap: var(--space-md);
-  }
-
-  @media (min-width: 720px) {
-    .facts {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .facts__item {
-    display: grid;
-    gap: var(--space-xs);
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-lg);
+    gap: var(--space-sm);
+    color: var(--color-text-muted);
   }
 
   .facts__label {
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: var(--fs-300);
-    color: var(--color-text-muted);
-  }
-
-  .facts__value {
     color: var(--color-heading);
-    font-size: var(--fs-500);
-    font-weight: 600;
   }
 
-  .facts__note {
+  .more {
+    margin-top: var(--space-lg);
+    max-width: 70ch;
     color: var(--color-text-muted);
-    font-size: var(--fs-300);
   }
 
   .prose {
