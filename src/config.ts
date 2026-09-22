@@ -82,7 +82,7 @@ export const club = {
 
 // === Contact details ======================================================
 export const contact = {
-  legalEntity: 'BJJ Heidelberg i. G.', // i. G. = in Gründung; nach Eintragung ins Vereinsregister auf 'BJJ Heidelberg e.V.' ändern. Eigenständiger Verein, nicht Teil der TSG.
+  legalEntity: 'BJJ Heidelberg e.V. i.Gr.', // e.V. i.Gr. = eingetragener Verein in Gründung. Eigenständiger Verein, nicht Teil der TSG.
   // Vertretungsberechtigte:r (Vorstand) – fürs Impressum
   representative: 'Jan-Benedikt Jagusch',
   // Vereinssitz / eingetragene Anschrift – Impressum, Datenschutz, Footer
