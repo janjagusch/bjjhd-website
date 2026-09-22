@@ -1,15 +1,31 @@
 ---
 import { campai } from '../config';
 import { withBase } from '../utils/withBase';
+import { defaultLocale } from '../i18n';
+import type { Locale } from '../i18n';
 
 interface Props {
   /** Campai application form URL to embed. */
   src?: string;
   /** Short introductory line shown above the form. */
   intro?: string;
+  /** Accessible title for the iframe. Defaults to a localized fallback. */
+  title?: string;
+  lang?: Locale;
 }
 
-const { src = campai.membershipFormSrc, intro } = Astro.props;
+const {
+  src = campai.membershipFormSrc,
+  intro,
+  lang = defaultLocale,
+  title = lang === 'de'
+    ? 'Anmeldeformular (bereitgestellt von Campai)'
+    : 'Application form (provided by Campai)',
+} = Astro.props;
+
+const de = lang === 'de';
+// The privacy policy is German-only, so both locales link to the same page.
+const privacyHref = withBase('/datenschutz');
 ---
 
 <div class="campai">
@@ -19,15 +35,28 @@ const { src = campai.membershipFormSrc, intro } = Astro.props;
     <iframe
       src={src}
       data-campai-id
-      title="Membership application (provided by Campai)"
+      title={title}
       loading="lazy"
     ></iframe>
   </div>
 
   <p class="campai__hint">
-    Note: This form is provided by Campai. By submitting it, your details are
-    processed to handle your request. Learn more in our
-    <a href={withBase('/datenschutz')}>privacy policy</a>.
+    {
+      de ? (
+        <>
+          Hinweis: Dieses Formular wird von Campai bereitgestellt. Mit dem
+          Absenden werden deine Angaben zur Bearbeitung deiner Anfrage
+          verarbeitet. Mehr dazu in unserer
+          <a href={privacyHref}>Datenschutzerklärung</a>.
+        </>
+      ) : (
+        <>
+          Note: This form is provided by Campai. By submitting it, your details
+          are processed to handle your request. Learn more in our
+          <a href={privacyHref}>privacy policy</a>.
+        </>
+      )
+    }
   </p>
 </div>
 

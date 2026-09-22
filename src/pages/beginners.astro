@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BeginnersCourseContent from '../components/content/BeginnersCourseContent.astro';
+import { beginnersCourse as c } from '../config';
+---
+
+<BaseLayout
+  title="Anfängerkurs Brazilian Jiu-Jitsu | BJJ Heidelberg"
+  description={`Unser Anfängerkurs für Brazilian Jiu-Jitsu in Heidelberg: ${c.classes} Einheiten, jeden ${c.weekday.de} um ${c.time} Uhr, Start am ${c.startDate.de}. Keine Vorkenntnisse nötig.`}
+  lang="de"
+  routeKey="course"
+>
+  <BeginnersCourseContent lang="de" />
+</BaseLayout>

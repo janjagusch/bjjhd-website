@@ -327,6 +327,21 @@ export const campai = {
   // Full membership application.
   membershipFormSrc:
     'https://app.campai.com/em/a3f04/applications/6a3149bfd9ff99f706bccaa2',
+  // Booking page for the beginners course (Campai event).
+  beginnersCourseSrc:
+    'https://app.campai.com/em/a3f04/events/6ab2660b1bdd63520e9d176e/info',
+};
+
+// === Beginners course / Anfängerkurs =====================================
+// Standalone 8-week intro course, advertised on /beginners.
+export const beginnersCourse = {
+  classes: 8,
+  weekday: { de: 'Donnerstag', en: 'Thursday' } satisfies Localized,
+  time: '18:00',
+  startDate: { de: '22. Oktober 2026', en: '22 October 2026' } satisfies Localized,
+  endDate: { de: '10. Dezember 2026', en: '10 December 2026' } satisfies Localized,
+  price: '60 €',
+  room: 'Athleticon',
 };
 
 // === Documents / Vereinsdokumente =========================================
