@@ -31,6 +31,9 @@ const c = beginnersCourse;
 const benutzungsordnung =
   'https://www.tsg78-hd.de/images/verein/Benutzungsordnung_TSGSportpark_2025.pdf';
 
+const conditionsId = de ? 'teilnahmebedingungen' : 'conditions';
+const privacyId = de ? 'datenschutz-aufnahmen' : 'privacy-recordings';
+
 const gallery = [
   {
     image: instructionImage,
@@ -200,13 +203,27 @@ const facts = de
 
     <div class="booking" id={de ? 'anmeldung' : 'signup'}>
       <h2>{de ? 'Anmeldung' : 'Registration'}</h2>
-      <p>
-        {
-          de
-            ? 'Melde dich direkt über das Formular unten an. Die Teilnehmerzahl ist begrenzt, wir empfehlen daher eine frühzeitige Anmeldung.'
-            : 'Sign up directly via the form below. Places are limited, so we recommend registering early.'
-        }
-      </p>
+      {
+        de ? (
+          <p>
+            Melde dich direkt über das Formular unten an. Die Teilnehmerzahl ist
+            begrenzt, wir empfehlen daher eine frühzeitige Anmeldung. Bitte lies
+            vorher unsere
+            <a href={`#${conditionsId}`}>Teilnahmebedingungen</a> und die Hinweise
+            zu <a href={`#${privacyId}`}
+              >Datenschutz &amp; Foto-/Videoaufnahmen</a
+            >.
+          </p>
+        ) : (
+          <p>
+            Sign up directly via the form below. Places are limited, so we
+            recommend registering early. Please read our
+            <a href={`#${conditionsId}`}>conditions of participation</a> and the
+            notes on <a href={`#${privacyId}`}>data privacy &amp; photos/videos</a>
+            first.
+          </p>
+        )
+      }
       <CampaiSignup
         src={campai.beginnersCourseSrc}
         lang={lang}
@@ -219,7 +236,7 @@ const facts = de
     </div>
 
     <div class="prose">
-      <h2 id={de ? 'teilnahmebedingungen' : 'conditions'}>
+      <h2 id={conditionsId}>
         {de ? 'Teilnahmebedingungen' : 'Conditions of participation'}
       </h2>
       <p class="placeholder">
@@ -282,7 +299,7 @@ const facts = de
         )
       }
 
-      <h2 id={de ? 'datenschutz' : 'privacy'}>
+      <h2 id={privacyId}>
         {
           de
             ? 'Datenschutz & Foto-/Videoaufnahmen'
