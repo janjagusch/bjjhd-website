@@ -1,0 +1,277 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CampaiSignup from '../components/CampaiSignup.astro';
+import { beginnersCourse, campai, contact } from '../config';
+import { withBase } from '../utils/withBase';
+
+const c = beginnersCourse;
+
+const facts = [
+  {
+    label: 'Umfang',
+    value: `${c.classes} Trainingseinheiten`,
+    note: 'Ein kompletter Einstieg in das Brazilian Jiu-Jitsu – von Grund auf.',
+  },
+  {
+    label: 'Termine',
+    value: `Jeden ${c.weekday.de} um ${c.time}`,
+    note: `Start am ${c.startDate.de}, letzte Einheit am ${c.endDate.de}.`,
+  },
+  {
+    label: 'Ort',
+    value: `${contact.venue} – ${c.room}`,
+    note: `${contact.venueStreet}, ${contact.venueZip} ${contact.venueCity}`,
+  },
+  {
+    label: 'Preis',
+    value: c.price,
+    note: 'Für den gesamten Kurs, inklusive aller Trainingseinheiten.',
+  },
+  {
+    label: 'Ausrüstung',
+    value: 'Training im Gi',
+    note: 'Ein Gi ist nicht Pflicht, aber empfohlen. Sonst reicht bequeme Sportkleidung.',
+  },
+  {
+    label: 'Vorkenntnisse',
+    value: 'Keine nötig',
+    note: 'Der Kurs richtet sich ausdrücklich an absolute Einsteiger:innen.',
+  },
+];
+---
+
+<BaseLayout
+  title="Anfängerkurs Brazilian Jiu-Jitsu | BJJ Heidelberg"
+  description={`Unser ${c.classes}-wöchiger Anfängerkurs für Brazilian Jiu-Jitsu in Heidelberg: jeden ${c.weekday.de} um ${c.time}, Start am ${c.startDate.de}. Keine Vorkenntnisse nötig.`}
+  lang="de"
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Anfängerkurs {c.startDate.de.split(' ').slice(-2).join(' ')}</p>
+      <h1>In {c.classes} Einheiten zum Brazilian Jiu-Jitsu</h1>
+      <p class="section__intro">
+        Du wolltest schon immer mal Brazilian Jiu-Jitsu ausprobieren, aber nicht
+        mitten in ein laufendes Training platzen? Dann ist unser Anfängerkurs
+        genau richtig: {c.classes} aufeinander aufbauende Einheiten, in denen du
+        gemeinsam mit anderen Einsteiger:innen die Grundlagen lernst – Positionen,
+        Bewegung am Boden, erste Techniken und die wichtigsten Regeln für
+        sicheres Training.
+      </p>
+
+      <ul class="facts">
+        {
+          facts.map((f) => (
+            <li class="facts__item">
+              <span class="facts__label">{f.label}</span>
+              <span class="facts__value">{f.value}</span>
+              <span class="facts__note">{f.note}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="prose">
+        <h2>Was dich erwartet</h2>
+        <p>
+          Wir starten bei null: Du lernst, wie du dich am Boden sicher bewegst,
+          wie du Positionen hältst und wieder aus ihnen herauskommst, und wie die
+          bekanntesten Techniken des BJJ funktionieren. Jede Einheit besteht aus
+          Aufwärmen, Technikteil und ruhigem, kontrolliertem Üben mit einem
+          Partner – ganz ohne Schläge oder Tritte und ohne Wettkampfdruck.
+        </p>
+        <p>
+          Wir trainieren im Gi (dem klassischen Anzug). Du brauchst dafür keinen
+          eigenen Gi – bequeme Sportkleidung ohne Reißverschlüsse und Taschen
+          reicht für den Anfang. Wenn du einen Gi hast oder dir einen anschaffen
+          möchtest, ist das natürlich super, da viele Techniken den Griff am Stoff
+          nutzen.
+        </p>
+        <p>
+          Mehr Hintergrundwissen findest du in unserem
+          <a href={withBase('/einsteiger')}>Einsteiger-Guide</a> und in unseren
+          <a href={withBase('/regeln')}>Regeln &amp; Richtlinien</a>.
+        </p>
+      </div>
+
+      <div class="booking" id="anmeldung">
+        <h2>Anmeldung</h2>
+        <p class="booking__intro">
+          Melde dich direkt über das Formular unten an. Die Teilnehmerzahl ist
+          begrenzt, wir empfehlen daher eine frühzeitige Anmeldung.
+        </p>
+        <CampaiSignup
+          src={campai.beginnersCourseSrc}
+          title="Anmeldung Anfängerkurs (bereitgestellt von Campai)"
+        />
+      </div>
+
+      <div class="prose">
+        <h2 id="teilnahmebedingungen">Teilnahmebedingungen</h2>
+        <p class="placeholder">
+          [Platzhalter – bitte vor Veröffentlichung prüfen und ergänzen.]
+        </p>
+        <ul>
+          <li>
+            [Mindestalter: 16 Jahre. Minderjährige benötigen die Einverständnis­
+            erklärung einer/eines Erziehungsberechtigten.]
+          </li>
+          <li>
+            [Die Teilnahme erfolgt auf eigene Gefahr. Bitte kläre vor Kursbeginn
+            mit einem Arzt/einer Ärztin, ob du sportlich uneingeschränkt
+            belastbar bist.]
+          </li>
+          <li>
+            [Der Kursbeitrag von {c.price} ist vor der ersten Einheit fällig und
+            gilt für den gesamten Kurs. Versäumte Einheiten können nicht
+            nachgeholt oder erstattet werden.]
+          </li>
+          <li>
+            [Rücktritt bis [X] Tage vor Kursbeginn kostenfrei; danach [X] % des
+            Kursbeitrags.]
+          </li>
+          <li>
+            [Der Kurs findet ab [X] Anmeldungen statt. Fällt der Kurs aus, wird
+            der Beitrag vollständig zurückerstattet.]
+          </li>
+          <li>
+            [Es gelten unsere Hygiene- und Sicherheitsregeln sowie die
+            Hausordnung der {contact.venue}.]
+          </li>
+        </ul>
+
+        <h2 id="datenschutz">Datenschutz &amp; Foto-/Videoaufnahmen</h2>
+        <p class="placeholder">
+          [Platzhalter – bitte vor Veröffentlichung prüfen und ergänzen.]
+        </p>
+        <ul>
+          <li>
+            [Deine Anmeldedaten werden ausschließlich zur Abwicklung des Kurses
+            verarbeitet. Details siehe <a href={withBase('/datenschutz')}
+              >Datenschutzerklärung</a
+            >.]
+          </li>
+          <li>
+            [Im Training entstehen gelegentlich Foto- und Videoaufnahmen, die wir
+            für unsere Website und Social-Media-Kanäle nutzen möchten.]
+          </li>
+          <li>
+            [Die Nutzung erfolgt nur mit deiner ausdrücklichen, freiwilligen
+            Einwilligung. Du kannst diese jederzeit ohne Angabe von Gründen
+            widerrufen – schreib uns einfach an <a href={`mailto:${contact.email}`}
+              >{contact.email}</a
+            >.]
+          </li>
+          <li>
+            [Eine Teilnahme am Kurs ist auch ohne Einwilligung in Aufnahmen
+            möglich. Sag uns vor Ort kurz Bescheid, dann achten wir darauf.]
+          </li>
+        </ul>
+
+        <h2>Noch Fragen?</h2>
+        <p>
+          Schreib uns einfach an
+          <a href={`mailto:${contact.email}`}>{contact.email}</a> – wir
+          antworten so schnell wir können.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--fs-300);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xs);
+  }
+
+  .facts {
+    margin: var(--space-2xl) 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 720px) {
+    .facts {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .facts__item {
+    display: grid;
+    gap: var(--space-xs);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+  }
+
+  .facts__label {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: var(--fs-300);
+    color: var(--color-text-muted);
+  }
+
+  .facts__value {
+    color: var(--color-heading);
+    font-size: var(--fs-500);
+    font-weight: 600;
+  }
+
+  .facts__note {
+    color: var(--color-text-muted);
+    font-size: var(--fs-300);
+  }
+
+  .prose {
+    margin-top: var(--space-2xl);
+    max-width: 70ch;
+  }
+
+  .prose h2 {
+    font-size: var(--fs-600);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--color-border);
+    margin-bottom: var(--space-md);
+  }
+
+  .prose h2:not(:first-child) {
+    margin-top: var(--space-2xl);
+  }
+
+  .prose p,
+  .prose ul {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+  }
+
+  .prose ul {
+    padding-left: 1.25rem;
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .placeholder {
+    font-style: italic;
+  }
+
+  .booking {
+    margin-top: var(--space-2xl);
+  }
+
+  .booking h2 {
+    font-size: var(--fs-600);
+    margin-bottom: var(--space-sm);
+  }
+
+  .booking__intro {
+    color: var(--color-text-muted);
+    max-width: 70ch;
+    margin-bottom: var(--space-lg);
+  }
+</style>

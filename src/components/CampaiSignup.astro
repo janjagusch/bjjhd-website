@@ -7,9 +7,15 @@ interface Props {
   src?: string;
   /** Short introductory line shown above the form. */
   intro?: string;
+  /** Accessible title for the iframe. */
+  title?: string;
 }
 
-const { src = campai.membershipFormSrc, intro } = Astro.props;
+const {
+  src = campai.membershipFormSrc,
+  intro,
+  title = 'Membership application (provided by Campai)',
+} = Astro.props;
 ---
 
 <div class="campai">
@@ -19,7 +25,7 @@ const { src = campai.membershipFormSrc, intro } = Astro.props;
     <iframe
       src={src}
       data-campai-id
-      title="Membership application (provided by Campai)"
+      title={title}
       loading="lazy"
     ></iframe>
   </div>
