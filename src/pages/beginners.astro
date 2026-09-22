@@ -15,17 +15,14 @@ const gallery = [
   {
     image: instructionImage,
     alt: 'Zwei Trainingspartner üben eine Technik aus der Guard, im Hintergrund weitere Teilnehmer',
-    caption: 'Technik üben in kleinen Schritten, immer mit einem Partner.',
   },
   {
     image: partnersImage,
     alt: 'Zwei lachende Trainingspartner auf der Matte',
-    caption: 'Kein Ego, keine Schläge, keine Wettkampfstimmung.',
   },
   {
     image: openMatImage,
     alt: 'Mehrere Paare trainieren gleichzeitig auf der Matte im Athleticon',
-    caption: 'Nach dem Kurs kannst du direkt im regulären Training weitermachen.',
   },
 ];
 
@@ -108,17 +105,14 @@ const facts = [
         {
           gallery.map((item) => (
             <li class="gallery__item">
-              <figure>
-                <Picture
-                  src={item.image}
-                  alt={item.alt}
-                  widths={[480, 720, 1080]}
-                  sizes="(min-width: 900px) 33vw, 100vw"
-                  formats={['avif', 'webp']}
-                  loading="lazy"
-                />
-                <figcaption>{item.caption}</figcaption>
-              </figure>
+              <Picture
+                src={item.image}
+                alt={item.alt}
+                widths={[480, 720, 1080]}
+                sizes="(min-width: 900px) 33vw, 100vw"
+                formats={['avif', 'webp']}
+                loading="lazy"
+              />
             </li>
           ))
         }
@@ -264,13 +258,6 @@ const facts = [
     }
   }
 
-  .gallery figure {
-    margin: 0;
-    height: 100%;
-    display: grid;
-    gap: var(--space-sm);
-  }
-
   .gallery :global(img) {
     display: block;
     width: 100%;
@@ -278,11 +265,6 @@ const facts = [
     object-fit: cover;
     border-radius: var(--radius-md);
     border: 1px solid var(--color-border);
-  }
-
-  .gallery figcaption {
-    color: var(--color-text-muted);
-    font-size: var(--fs-300);
   }
 
   .prose {
