@@ -369,8 +369,7 @@ const facts = de
       <h2>{de ? 'Noch Fragen?' : 'Any questions?'}</h2>
       <p>
         {de ? 'Schreib uns einfach an ' : 'Just write to us at '}
-        <a href={`mailto:${contact.email}`}>{contact.email}</a>
-        {
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>{
           de
             ? '. Wir antworten so schnell wir können.'
             : '. We will reply as soon as we can.'
