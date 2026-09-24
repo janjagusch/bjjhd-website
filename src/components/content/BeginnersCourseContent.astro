@@ -309,68 +309,67 @@ const facts = de
       </h2>
       {
         de ? (
-          <>
-            <p>
-              Deine Anmeldedaten werden ausschließlich zur Abwicklung des
-              Kurses verarbeitet. Details hierzu findest du in unserer
+          <ul>
+            <li>
+              Deine Anmeldedaten verwenden wir ausschließlich zur Abwicklung
+              des Kurses. Details findest du in unserer
               <a href={withBase('/datenschutz')}>Datenschutzerklärung</a>.
-            </p>
-            <p>
-              Wir möchten auf verschiedenen Wegen über unser Training
-              informieren und den Verein bewerben. Dazu fertigen wir während
-              des Trainings gelegentlich Foto- und Videoaufnahmen an. Diese
-              werden in unserer internen WhatsApp-Gruppe mit Informationen zum
-              Trainingsinhalt geteilt sowie gegebenenfalls auf unserer Website
-              {siteHost} und auf unserem Instagram-Profil{' ('}<a
+            </li>
+            <li>
+              Im Training machen wir gelegentlich Fotos und Videos. Wir teilen
+              sie in unserer internen WhatsApp-Gruppe, um Trainingsinhalte
+              festzuhalten, und nutzen sie gegebenenfalls auf {siteHost} und
+              auf Instagram (<a
                 href={social.instagram}
                 target="_blank"
                 rel="noopener">{social.instagramHandle}</a
-              >) zu Werbezwecken verwendet.
-            </p>
-            <p>
-              Die Nutzung von Foto- und Videoaufnahmen von dir erfolgt nur mit
-              deiner ausdrücklichen, freiwilligen Einwilligung. Diese erteilst
-              du bei der Anmeldung. Solltest du dich umentscheiden, kannst du
-              deine Einwilligung jederzeit ohne Angabe von Gründen widerrufen:
-              Schreib dazu einfach eine Mail an
-              <a href={`mailto:${contact.email}`}>{contact.email}</a>.
-            </p>
-            <p>
-              Eine Teilnahme am Kurs ist selbstverständlich auch ohne
-              Einwilligung in Aufnahmen möglich.
-            </p>
-          </>
+              >), um den Verein zu bewerben.
+            </li>
+            <li>
+              Aufnahmen von dir nutzen wir nur mit deiner ausdrücklichen,
+              freiwilligen Einwilligung, die du bei der Anmeldung gibst.
+            </li>
+            <li>
+              Du kannst die Einwilligung jederzeit ohne Angabe von Gründen
+              widerrufen. Eine kurze Mail an
+              <a href={`mailto:${contact.email}`}>{contact.email}</a> genügt.
+            </li>
+            <li>
+              Am Kurs teilnehmen kannst du selbstverständlich auch ohne
+              Einwilligung.
+            </li>
+          </ul>
         ) : (
-          <>
-            <p>
-              Your registration details are processed solely to run the course.
-              You can find details in our
-              <a href={withBase('/datenschutz')}>privacy policy</a>.
-            </p>
-            <p>
-              We want to share news about our training in various ways and
-              promote the club. To do so, we occasionally take photos and
-              videos during training. These are shared in our internal
-              WhatsApp group along with information about the training content
-              and may also be used for promotional purposes on our website
-              {siteHost} and on our Instagram profile{' ('}<a
+          <ul>
+            <li>
+              We use your registration details solely to run the course. See
+              our <a href={withBase('/datenschutz')}>privacy policy</a> for
+              details.
+            </li>
+            <li>
+              We occasionally take photos and videos during training. We share
+              them in our internal WhatsApp group to document what we covered,
+              and may use them on {siteHost} and on Instagram (<a
                 href={social.instagram}
                 target="_blank"
                 rel="noopener">{social.instagramHandle}</a
-              >).
-            </p>
-            <p>
-              Photos and videos of you are only used with your explicit,
-              voluntary consent, which you give when you register. If you
-              change your mind, you can withdraw your consent at any time
-              without giving a reason: just send an email to
-              <a href={`mailto:${contact.email}`}>{contact.email}</a>.
-            </p>
-            <p>
-              Of course, you can take part in the course without consenting to
-              any recordings.
-            </p>
-          </>
+              >) to promote the club.
+            </li>
+            <li>
+              We only use recordings of you with your explicit, voluntary
+              consent, which you give when you register.
+            </li>
+            <li>
+              You can withdraw your consent at any time without giving a
+              reason. A short email to
+              <a href={`mailto:${contact.email}`}>{contact.email}</a> is all it
+              takes.
+            </li>
+            <li>
+              Of course, you can take part in the course without giving
+              consent.
+            </li>
+          </ul>
         )
       }
 
