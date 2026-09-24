@@ -15,7 +15,7 @@ import drillingImage from '../../assets/beginners/drilling.jpg';
 import instructionImage from '../../assets/beginners/instruction.jpg';
 import partnersImage from '../../assets/beginners/partners.jpg';
 import openMatImage from '../../assets/beginners/open-mat.jpg';
-import { beginnersCourse, campai, contact } from '../../config';
+import { beginnersCourse, campai, contact, social } from '../../config';
 import { withBase } from '../../utils/withBase';
 import { routes, homeAnchor, defaultLocale } from '../../i18n';
 import type { Locale } from '../../i18n';
@@ -32,6 +32,7 @@ const benutzungsordnung =
   'https://www.tsg78-hd.de/images/verein/Benutzungsordnung_TSGSportpark_2025.pdf';
 
 const conditionsId = de ? 'teilnahmebedingungen' : 'conditions';
+const siteHost = Astro.site ? Astro.site.hostname : 'bjjheidelberg.de';
 const privacyId = de ? 'datenschutz-aufnahmen' : 'privacy-recordings';
 
 const gallery = [
@@ -306,57 +307,70 @@ const facts = de
             : 'Data privacy & photos/videos'
         }
       </h2>
-      <p class="placeholder">
-        {
-          de
-            ? '[Platzhalter: bitte vor Veröffentlichung prüfen und ergänzen.]'
-            : '[Placeholder: please review and complete before publishing.]'
-        }
-      </p>
       {
         de ? (
-          <ul>
-            <li>
+          <>
+            <p>
               Deine Anmeldedaten werden ausschließlich zur Abwicklung des
-              Kurses verarbeitet. Details siehe
+              Kurses verarbeitet. Details hierzu findest du in unserer
               <a href={withBase('/datenschutz')}>Datenschutzerklärung</a>.
-            </li>
-            <li>
-              Im Training entstehen gelegentlich Foto- und Videoaufnahmen, die
-              wir für unsere Website und Social-Media-Kanäle nutzen möchten.
-            </li>
-            <li>
-              Die Nutzung erfolgt nur mit deiner ausdrücklichen, freiwilligen
-              Einwilligung. Du kannst diese jederzeit ohne Angabe von Gründen
-              widerrufen. Schreib uns einfach an
+            </p>
+            <p>
+              Wir möchten auf verschiedenen Wegen über unser Training
+              informieren und den Verein bewerben. Dazu fertigen wir während
+              des Trainings gelegentlich Foto- und Videoaufnahmen an. Diese
+              werden in unserer internen WhatsApp-Gruppe mit Informationen zum
+              Trainingsinhalt geteilt sowie gegebenenfalls auf unserer Website
+              {siteHost} und auf unserem Instagram-Profil{' ('}<a
+                href={social.instagram}
+                target="_blank"
+                rel="noopener">{social.instagramHandle}</a
+              >) zu Werbezwecken verwendet.
+            </p>
+            <p>
+              Die Nutzung von Foto- und Videoaufnahmen von dir erfolgt nur mit
+              deiner ausdrücklichen, freiwilligen Einwilligung. Diese erteilst
+              du bei der Anmeldung. Solltest du dich umentscheiden, kannst du
+              deine Einwilligung jederzeit ohne Angabe von Gründen widerrufen:
+              Schreib dazu einfach eine Mail an
               <a href={`mailto:${contact.email}`}>{contact.email}</a>.
-            </li>
-            <li>
-              Eine Teilnahme am Kurs ist auch ohne Einwilligung in Aufnahmen
-              möglich. Sag uns vor Ort kurz Bescheid, dann achten wir darauf.
-            </li>
-          </ul>
+            </p>
+            <p>
+              Eine Teilnahme am Kurs ist selbstverständlich auch ohne
+              Einwilligung in Aufnahmen möglich.
+            </p>
+          </>
         ) : (
-          <ul>
-            <li>
+          <>
+            <p>
               Your registration details are processed solely to run the course.
-              See our <a href={withBase('/datenschutz')}>privacy policy</a> for
-              details.
-            </li>
-            <li>
-              We occasionally take photos and videos during training that we
-              would like to use on our website and social media channels.
-            </li>
-            <li>
-              We only do so with your explicit, voluntary consent. You can
-              withdraw it at any time without giving a reason. Just write to
+              You can find details in our
+              <a href={withBase('/datenschutz')}>privacy policy</a>.
+            </p>
+            <p>
+              We want to share news about our training in various ways and
+              promote the club. To do so, we occasionally take photos and
+              videos during training. These are shared in our internal
+              WhatsApp group along with information about the training content
+              and may also be used for promotional purposes on our website
+              {siteHost} and on our Instagram profile{' ('}<a
+                href={social.instagram}
+                target="_blank"
+                rel="noopener">{social.instagramHandle}</a
+              >).
+            </p>
+            <p>
+              Photos and videos of you are only used with your explicit,
+              voluntary consent, which you give when you register. If you
+              change your mind, you can withdraw your consent at any time
+              without giving a reason: just send an email to
               <a href={`mailto:${contact.email}`}>{contact.email}</a>.
-            </li>
-            <li>
-              You can take part in the course without consenting to any
-              recordings. Let us know on site and we will make sure of it.
-            </li>
-          </ul>
+            </p>
+            <p>
+              Of course, you can take part in the course without consenting to
+              any recordings.
+            </p>
+          </>
         )
       }
 
