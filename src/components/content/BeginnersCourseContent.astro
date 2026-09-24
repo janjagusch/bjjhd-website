@@ -240,13 +240,6 @@ const facts = de
       <h2 id={conditionsId}>
         {de ? 'Teilnahmebedingungen' : 'Conditions of participation'}
       </h2>
-      <p class="placeholder">
-        {
-          de
-            ? '[Platzhalter: bitte vor Veröffentlichung prüfen und ergänzen.]'
-            : '[Placeholder: please review and complete before publishing.]'
-        }
-      </p>
       {
         de ? (
           <ul>
@@ -500,9 +493,5 @@ const facts = de
     padding-left: 1.25rem;
     display: grid;
     gap: var(--space-xs);
-  }
-
-  .placeholder {
-    font-style: italic;
   }
 </style>
