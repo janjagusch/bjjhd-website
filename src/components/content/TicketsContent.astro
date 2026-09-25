@@ -39,7 +39,9 @@ const openMatWhen = openMat
           Probetraining</a> brauchst du ein Ticket, um an unseren angeleiteten
           Trainings teilzunehmen, sofern du kein Mitglied bist. Als
           <a href={withBase(routes.signup[lang])}>Mitglied</a> ist das Training
-          im Beitrag enthalten.
+          im Beitrag enthalten. Die Ausnahme ist unser Open
+          Mat{openMatWhen && <> ({openMatWhen})</>}: Es ist offen und kostenlos
+          für alle, du brauchst dafür kein Ticket.
         </p>
       ) : (
         <p class="section__intro">
@@ -47,7 +49,9 @@ const openMatWhen = openMat
           class</a>, you need a ticket to attend our instructed training classes
           if you are not a member. As a
           <a href={withBase(routes.signup[lang])}>member</a>, training is
-          included in your membership fee.
+          included in your membership fee. The exception is our open
+          mat{openMatWhen && <> ({openMatWhen})</>}: it is open and free for
+          everyone, no ticket needed.
         </p>
       )
     }
@@ -67,22 +71,6 @@ const openMatWhen = openMat
       />
     </figure>
 
-    <div class="note">
-      <h2>{de ? 'Open Mat: frei für alle' : 'Open Mat: free for everyone'}</h2>
-      {
-        de ? (
-          <p>
-            Die Ausnahme ist unser Open Mat{openMatWhen && <> ({openMatWhen})</>}.
-            Es ist offen und kostenlos für alle, du brauchst dafür kein Ticket.
-          </p>
-        ) : (
-          <p>
-            The exception is our open mat{openMatWhen && <> ({openMatWhen})</>}.
-            It is open and free for everyone, no ticket needed.
-          </p>
-        )
-      }
-    </div>
 
     <div class="schedule-wrap">
       <h2>{de ? 'Trainingszeiten' : 'Training times'}</h2>
@@ -122,14 +110,6 @@ const openMatWhen = openMat
     object-position: center 60%;
   }
 
-  .note {
-    max-width: 760px;
-    margin: var(--space-xl) 0 0;
-    padding: var(--space-lg);
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-  }
 
   .schedule-wrap {
     max-width: 760px;
@@ -150,8 +130,4 @@ const openMatWhen = openMat
     margin-bottom: var(--space-md);
   }
 
-  .note h2 {
-    font-size: var(--fs-600);
-    margin-bottom: var(--space-sm);
-  }
 </style>
