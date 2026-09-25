@@ -1,0 +1,133 @@
+---
+/**
+ * Ticket purchase page for non-members.
+ *
+ * After the free trial class, non-members need a ticket for instructed
+ * classes. The open mat stays free for everyone. The checkout itself is a
+ * Campai event form (`campai.ticketsSrc` in src/config.ts).
+ */
+import CampaiSignup from '../CampaiSignup.astro';
+import TrainingSchedule from '../TrainingSchedule.astro';
+import { Picture } from 'astro:assets';
+import trainingImage from '../../assets/tickets/training.jpg';
+import { campai, trainingSchedule } from '../../config';
+import { withBase } from '../../utils/withBase';
+import { ui, routes, homeAnchor, defaultLocale } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const de = lang === 'de';
+const t = ui[lang];
+
+const openMat = trainingSchedule.find((s) => s.title.en === 'Open Mat');
+const openMatWhen = openMat
+  ? `${t.weekdays[openMat.day.toLowerCase()] ?? openMat.day}, ${openMat.time}`
+  : undefined;
+---
+
+<section class="section">
+  <div class="container">
+    <h1>Tickets</h1>
+    {
+      de ? (
+        <p class="section__intro">
+          Nach deinem <a href={withBase(homeAnchor(lang, 'trial'))}>kostenlosen
+          Probetraining</a> brauchst du ein Ticket, um an unseren angeleiteten
+          Trainings teilzunehmen, sofern du kein Mitglied bist. Als
+          <a href={withBase(routes.signup[lang])}>Mitglied</a> ist das Training
+          im Beitrag enthalten. Die Ausnahme ist unser Open
+          Mat{openMatWhen && <> ({openMatWhen})</>}: Es ist offen und kostenlos
+          für alle, du brauchst dafür kein Ticket.
+        </p>
+      ) : (
+        <p class="section__intro">
+          After your <a href={withBase(homeAnchor(lang, 'trial'))}>free trial
+          class</a>, you need a ticket to attend our instructed training classes
+          if you are not a member. As a
+          <a href={withBase(routes.signup[lang])}>member</a>, training is
+          included in your membership fee. The exception is our open
+          mat{openMatWhen && <> ({openMatWhen})</>}: it is open and free for
+          everyone, no ticket needed.
+        </p>
+      )
+    }
+
+    <figure class="lead">
+      <Picture
+        src={trainingImage}
+        alt={
+          de
+            ? 'Mehrere Paare im Gi trainieren am Boden auf der Matte'
+            : 'Several pairs in the Gi training on the ground on the mat'
+        }
+        widths={[640, 960, 1360, 2000]}
+        sizes="(min-width: 1100px) 1040px, 100vw"
+        formats={['avif', 'webp']}
+        loading="eager"
+      />
+    </figure>
+
+
+    <div class="schedule-wrap">
+      <h2>{de ? 'Trainingszeiten' : 'Training times'}</h2>
+      {/* Same component + config as the home page, so both always match. */}
+      <TrainingSchedule lang={lang} />
+    </div>
+
+    <div class="checkout">
+      <CampaiSignup
+        src={campai.ticketsSrc}
+        lang={lang}
+        title={
+          de
+            ? 'Ticketkauf (bereitgestellt von Campai)'
+            : 'Ticket purchase (provided by Campai)'
+        }
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Same treatment as the lead image on the beginners course page. */
+  .lead {
+    margin: var(--space-xl) 0 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .lead :global(img) {
+    display: block;
+    width: 100%;
+    height: clamp(240px, 38vw, 460px);
+    object-fit: cover;
+    object-position: center 60%;
+  }
+
+
+  .schedule-wrap {
+    max-width: 760px;
+    margin: var(--space-xl) 0 0;
+  }
+
+  /* CampaiSignup centers itself by default; align it with the text here. */
+  .checkout {
+    margin-top: var(--space-xl);
+  }
+
+  .checkout :global(.campai) {
+    margin-inline: 0;
+  }
+
+  .schedule-wrap h2 {
+    font-size: var(--fs-600);
+    margin-bottom: var(--space-md);
+  }
+
+</style>
