@@ -8,6 +8,8 @@
  */
 import CampaiSignup from '../CampaiSignup.astro';
 import TrainingSchedule from '../TrainingSchedule.astro';
+import { Picture } from 'astro:assets';
+import trainingImage from '../../assets/tickets/training.jpg';
 import { campai, trainingSchedule } from '../../config';
 import { withBase } from '../../utils/withBase';
 import { ui, routes, homeAnchor, defaultLocale } from '../../i18n';
@@ -50,6 +52,21 @@ const openMatWhen = openMat
       )
     }
 
+    <figure class="lead">
+      <Picture
+        src={trainingImage}
+        alt={
+          de
+            ? 'Mehrere Paare im Gi trainieren am Boden auf der Matte'
+            : 'Several pairs in the Gi training on the ground on the mat'
+        }
+        widths={[640, 960, 1360, 2000]}
+        sizes="(min-width: 1100px) 1040px, 100vw"
+        formats={['avif', 'webp']}
+        loading="eager"
+      />
+    </figure>
+
     <div class="note">
       <h2>{de ? 'Open Mat: frei für alle' : 'Open Mat: free for everyone'}</h2>
       {
@@ -73,7 +90,7 @@ const openMatWhen = openMat
       <TrainingSchedule lang={lang} />
     </div>
 
-    <div style="margin-top: var(--space-xl);">
+    <div class="checkout">
       <CampaiSignup
         src={campai.ticketsSrc}
         lang={lang}
@@ -88,9 +105,26 @@ const openMatWhen = openMat
 </section>
 
 <style>
+  /* Same treatment as the lead image on the beginners course page. */
+  .lead {
+    margin: var(--space-xl) 0 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .lead :global(img) {
+    display: block;
+    width: 100%;
+    height: clamp(240px, 38vw, 460px);
+    object-fit: cover;
+    object-position: center 60%;
+  }
+
   .note {
     max-width: 760px;
-    margin: var(--space-xl) auto 0;
+    margin: var(--space-xl) 0 0;
     padding: var(--space-lg);
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -99,7 +133,16 @@ const openMatWhen = openMat
 
   .schedule-wrap {
     max-width: 760px;
-    margin: var(--space-xl) auto 0;
+    margin: var(--space-xl) 0 0;
+  }
+
+  /* CampaiSignup centers itself by default; align it with the text here. */
+  .checkout {
+    margin-top: var(--space-xl);
+  }
+
+  .checkout :global(.campai) {
+    margin-inline: 0;
   }
 
   .schedule-wrap h2 {
