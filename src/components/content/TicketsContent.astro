@@ -7,6 +7,7 @@
  * Campai event form (`campai.ticketsSrc` in src/config.ts).
  */
 import CampaiSignup from '../CampaiSignup.astro';
+import TrainingSchedule from '../TrainingSchedule.astro';
 import { campai, trainingSchedule } from '../../config';
 import { withBase } from '../../utils/withBase';
 import { ui, routes, homeAnchor, defaultLocale } from '../../i18n';
@@ -66,6 +67,12 @@ const openMatWhen = openMat
       }
     </div>
 
+    <div class="schedule-wrap">
+      <h2>{de ? 'Trainingszeiten' : 'Training times'}</h2>
+      {/* Same component + config as the home page, so both always match. */}
+      <TrainingSchedule lang={lang} />
+    </div>
+
     <div style="margin-top: var(--space-xl);">
       <CampaiSignup
         src={campai.ticketsSrc}
@@ -88,6 +95,16 @@ const openMatWhen = openMat
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
+  }
+
+  .schedule-wrap {
+    max-width: 760px;
+    margin: var(--space-xl) auto 0;
+  }
+
+  .schedule-wrap h2 {
+    font-size: var(--fs-600);
+    margin-bottom: var(--space-md);
   }
 
   .note h2 {
