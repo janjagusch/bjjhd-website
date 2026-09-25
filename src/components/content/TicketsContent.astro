@@ -1,0 +1,97 @@
+---
+/**
+ * Ticket purchase page for non-members.
+ *
+ * After the free trial class, non-members need a ticket for instructed
+ * classes. The open mat stays free for everyone. The checkout itself is a
+ * Campai event form (`campai.ticketsSrc` in src/config.ts).
+ */
+import CampaiSignup from '../CampaiSignup.astro';
+import { campai, trainingSchedule } from '../../config';
+import { withBase } from '../../utils/withBase';
+import { ui, routes, homeAnchor, defaultLocale } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const de = lang === 'de';
+const t = ui[lang];
+
+const openMat = trainingSchedule.find((s) => s.title.en === 'Open Mat');
+const openMatWhen = openMat
+  ? `${t.weekdays[openMat.day.toLowerCase()] ?? openMat.day}, ${openMat.time}`
+  : undefined;
+---
+
+<section class="section">
+  <div class="container">
+    <h1>Tickets</h1>
+    {
+      de ? (
+        <p class="section__intro">
+          Nach deinem <a href={withBase(homeAnchor(lang, 'trial'))}>kostenlosen
+          Probetraining</a> brauchst du ein Ticket, um an unseren angeleiteten
+          Trainings teilzunehmen, sofern du kein Mitglied bist. Als
+          <a href={withBase(routes.signup[lang])}>Mitglied</a> ist das Training
+          im Beitrag enthalten.
+        </p>
+      ) : (
+        <p class="section__intro">
+          After your <a href={withBase(homeAnchor(lang, 'trial'))}>free trial
+          class</a>, you need a ticket to attend our instructed training classes
+          if you are not a member. As a
+          <a href={withBase(routes.signup[lang])}>member</a>, training is
+          included in your membership fee.
+        </p>
+      )
+    }
+
+    <div class="note">
+      <h2>{de ? 'Open Mat: frei für alle' : 'Open Mat: free for everyone'}</h2>
+      {
+        de ? (
+          <p>
+            Die Ausnahme ist unser Open Mat{openMatWhen && <> ({openMatWhen})</>}.
+            Es ist offen und kostenlos für alle, du brauchst dafür kein Ticket.
+          </p>
+        ) : (
+          <p>
+            The exception is our open mat{openMatWhen && <> ({openMatWhen})</>}.
+            It is open and free for everyone, no ticket needed.
+          </p>
+        )
+      }
+    </div>
+
+    <div style="margin-top: var(--space-xl);">
+      <CampaiSignup
+        src={campai.ticketsSrc}
+        lang={lang}
+        title={
+          de
+            ? 'Ticketkauf (bereitgestellt von Campai)'
+            : 'Ticket purchase (provided by Campai)'
+        }
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .note {
+    max-width: 760px;
+    margin: var(--space-xl) auto 0;
+    padding: var(--space-lg);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .note h2 {
+    font-size: var(--fs-600);
+    margin-bottom: var(--space-sm);
+  }
+</style>
