@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { contact } from '../config';
+import { contact, social } from '../config';
+
+const siteHost = Astro.site ? Astro.site.hostname : 'bjjheidelberg.de';
 ---
 
 <BaseLayout
@@ -91,8 +93,8 @@ import { contact } from '../config';
 
       <h2>6. Anmeldeformular über Campai</h2>
       <p>
-        Auf den Seiten „Mitglied werden“ und „Einsteiger“ ist ein
-        Anmeldeformular eingebettet, das vom Dienst <strong>Campai</strong>
+        Auf der Startseite sowie auf den Seiten „Mitglied werden“ und
+        „Anfängerkurs“ ist jeweils ein Anmeldeformular eingebettet, das vom Dienst <strong>Campai</strong>
         bereitgestellt wird (campai GmbH, Schönhauser Allee 163, 10435 Berlin,
         Deutschland). Das Formular wird über einen iframe von Servern von Campai
         geladen; zusätzlich wird ein Skript von Campai eingebunden. Dadurch wird
@@ -120,7 +122,7 @@ import { contact } from '../config';
         Die Speicherung der übermittelten Daten richtet sich nach dem Zweck der
         Anfrage: Führt deine Anfrage nicht zu einer Mitgliedschaft, löschen wir
         die Daten spätestens sechs Monate nach abschließender Bearbeitung.
-        Andernfalls gelten die unter Ziffer 10 genannten Speicherfristen.
+        Andernfalls gelten die unter Ziffer 11 genannten Speicherfristen.
         Einzelheiten zur Datenverarbeitung durch Campai findest du in deren
         Datenschutzerklärung:
         <a
@@ -131,13 +133,37 @@ import { contact } from '../config';
         >.
       </p>
 
-      <h2>7. Soziale Netzwerke</h2>
+      <h2 id="foto-video">7. Foto- und Videoaufnahmen im Training</h2>
+      <p>
+        Im Training, auch im Anfängerkurs, machen wir gelegentlich Fotos und
+        Videos. Wir teilen sie in unserer internen WhatsApp-Gruppe, um
+        Trainingsinhalte festzuhalten, und nutzen sie gegebenenfalls auf
+        {siteHost} und auf Instagram (<a
+          href={social.instagram}
+          target="_blank"
+          rel="noopener noreferrer">{social.instagramHandle}</a
+        >), um den Verein zu bewerben.
+      </p>
+      <p>
+        Aufnahmen, auf denen du erkennbar bist, nutzen wir nur mit deiner
+        ausdrücklichen, freiwilligen Einwilligung, die du zum Beispiel bei der
+        Anmeldung geben kannst. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO.
+        Am Training und am Anfängerkurs kannst du selbstverständlich auch ohne
+        Einwilligung teilnehmen.
+      </p>
+      <p>
+        Du kannst deine Einwilligung jederzeit ohne Angabe von Gründen mit
+        Wirkung für die Zukunft widerrufen. Eine kurze Mail an
+        <a href={`mailto:${contact.email}`}>{contact.email}</a> genügt.
+      </p>
+
+      <h2>8. Soziale Netzwerke</h2>
       <p>
         Auf dieser Website werden keine Social-Media-Plugins oder -Widgets
         eingebunden und es findet keine Einbettung sozialer Netzwerke statt.
       </p>
 
-      <h2>8. Karten / Anfahrt (Google Maps)</h2>
+      <h2>9. Karten / Anfahrt (Google Maps)</h2>
       <p>
         Wir binden <strong>keine</strong> Google-Maps-Karte direkt ein, um eine
         Datenübertragung ohne deine Einwilligung zu vermeiden. Stattdessen findest
@@ -146,7 +172,7 @@ import { contact } from '../config';
         Datenschutzbestimmungen von Google.
       </p>
 
-      <h2>9. Keine Analyse-Tools, kein Tracking</h2>
+      <h2>10. Keine Analyse-Tools, kein Tracking</h2>
       <p>
         Diese Website verwendet <strong>keine</strong> Analyse-Dienste (z. B.
         Google Analytics), <strong>keine</strong> Tracking-Pixel und
@@ -154,7 +180,7 @@ import { contact } from '../config';
         Marketing- oder Statistikzwecken gesetzt.
       </p>
 
-      <h2>10. Speicherdauer</h2>
+      <h2>11. Speicherdauer</h2>
       <p>
         Personenbezogene Daten werden nur so lange gespeichert, wie es für die
         jeweiligen Zwecke erforderlich ist oder gesetzliche Aufbewahrungsfristen
@@ -165,7 +191,7 @@ import { contact } from '../config';
         Regel sechs bis zehn Jahre) auf.
       </p>
 
-      <h2>11. Deine Rechte als betroffene Person</h2>
+      <h2>12. Deine Rechte als betroffene Person</h2>
       <p>Dir stehen nach der DSGVO insbesondere folgende Rechte zu:</p>
       <ul>
         <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
@@ -184,7 +210,7 @@ import { contact } from '../config';
         <a href={`mailto:${contact.email}`}>{contact.email}</a>.
       </p>
 
-      <h2>12. Beschwerderecht bei einer Aufsichtsbehörde</h2>
+      <h2>13. Beschwerderecht bei einer Aufsichtsbehörde</h2>
       <p>
         Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde über die
         Verarbeitung deiner personenbezogenen Daten zu beschweren (Art. 77 DSGVO).
@@ -199,7 +225,7 @@ import { contact } from '../config';
         70173 Stuttgart
       </p>
 
-      <h2>13. Aktualität und Änderung dieser Datenschutzerklärung</h2>
+      <h2>14. Aktualität und Änderung dieser Datenschutzerklärung</h2>
       <p>
         Diese Datenschutzerklärung ist aktuell gültig. Durch Weiterentwicklung der
         Website oder geänderte gesetzliche Vorgaben kann eine Anpassung notwendig

@@ -4,7 +4,7 @@ import TrainingSchedule from '../TrainingSchedule.astro';
 import CampaiSignup from '../CampaiSignup.astro';
 import VenueMap from '../VenueMap.astro';
 import StructuredData from '../StructuredData.astro';
-import { campai, contact, pricing } from '../../config';
+import { beginnersCourse, campai, contact, pricing } from '../../config';
 import { withBase } from '../../utils/withBase';
 import { ui, routes, homeAnchor, defaultLocale } from '../../i18n';
 import type { Locale } from '../../i18n';
@@ -15,10 +15,40 @@ interface Props {
 
 const { lang = defaultLocale } = Astro.props;
 const t = ui[lang];
+const de = lang === 'de';
+const c = beginnersCourse;
 ---
 
 <StructuredData />
 <Hero lang={lang} />
+
+<!-- Beginners course teaser: keeps the course page reachable from home. -->
+<section id="course" class="course-teaser" aria-labelledby="course-teaser-title">
+  <div class="container course-teaser__inner">
+    <div>
+      <p class="course-teaser__eyebrow">
+        {de ? 'Anfängerkurs' : 'Beginners course'}
+      </p>
+      <h2 id="course-teaser-title" class="course-teaser__title">
+        {
+          de
+            ? `${c.classes} Einheiten, Start am ${c.startDate.de}`
+            : `${c.classes} sessions, starting ${c.startDate.en}`
+        }
+      </h2>
+      <p class="course-teaser__text">
+        {
+          de
+            ? `Jeden ${c.weekday.de} um ${c.time} Uhr. Keine Vorkenntnisse nötig, die erste Einheit ist kostenlos.`
+            : `Every ${c.weekday.en} at ${c.time}. No experience needed, your first session is free.`
+        }
+      </p>
+    </div>
+    <a href={withBase(routes.course[lang])} class="btn btn--primary"
+      >{de ? 'Zum Anfängerkurs' : 'View the course'}</a
+    >
+  </div>
+</section>
 
 <!-- 0. What is BJJ? (intro + link to the beginner's guide) -->
 <section id="what" class="section section--alt">
@@ -187,6 +217,34 @@ const t = ui[lang];
 </section>
 
 <style>
+  .course-teaser {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-xl);
+  }
+  .course-teaser__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+  }
+  .course-teaser__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: var(--fs-300);
+    color: var(--color-warm);
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+  }
+  .course-teaser__title {
+    font-size: var(--fs-600);
+  }
+  .course-teaser__text {
+    color: var(--color-text-muted);
+    margin-top: var(--space-xs);
+  }
+
   .price {
     text-align: center;
   }

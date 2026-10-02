@@ -3,7 +3,9 @@
  * Landing page content for the beginners course (Anfängerkurs).
  *
  * Course data (dates, price, venue) lives in `beginnersCourse` in
- * src/config.ts; the booking form URL in `campai.beginnersCourseSrc`.
+ * src/config.ts; the registration form URL in `campai.beginnersCourseSrc`.
+ * Notes on photos/videos taken during training live in the privacy policy
+ * (src/pages/datenschutz.astro).
  *
  * Typography on this page uses exactly three sizes: --fs-500 for the lead
  * paragraph, --fs-400 (body default) for every other line of copy, and
@@ -15,7 +17,7 @@ import drillingImage from '../../assets/beginners/drilling.jpg';
 import instructionImage from '../../assets/beginners/instruction.jpg';
 import partnersImage from '../../assets/beginners/partners.jpg';
 import openMatImage from '../../assets/beginners/open-mat.jpg';
-import { beginnersCourse, campai, contact, social } from '../../config';
+import { beginnersCourse, campai, contact } from '../../config';
 import { withBase } from '../../utils/withBase';
 import { routes, homeAnchor, defaultLocale } from '../../i18n';
 import type { Locale } from '../../i18n';
@@ -32,8 +34,23 @@ const benutzungsordnung =
   'https://www.tsg78-hd.de/images/verein/Benutzungsordnung_TSGSportpark_2025.pdf';
 
 const conditionsId = de ? 'teilnahmebedingungen' : 'conditions';
-const siteHost = Astro.site ? Astro.site.hostname : 'bjjheidelberg.de';
-const privacyId = de ? 'datenschutz-aufnahmen' : 'privacy-recordings';
+const signupId = de ? 'anmeldung' : 'signup';
+
+// Inline SVG paths (24x24, stroke-based) for the facts grid.
+const icons = {
+  scope:
+    '<path d="M4 19V5a1 1 0 0 1 1-1h10l5 5v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M8 12h8M8 16h5M14 4v5h5"/>',
+  dates:
+    '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  location:
+    '<path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/>',
+  gear:
+    '<path d="M8 3 4 6v5l3-1v11h10V10l3 1V6l-4-3c-.5 1.7-2 3-4 3S8.5 4.7 8 3Z"/>',
+  experience:
+    '<path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/>',
+  price:
+    '<path d="M20 12 12 20l-8-8V4h8l8 8Z"/><circle cx="8.5" cy="8.5" r="1.5"/>',
+};
 
 const gallery = [
   {
@@ -61,48 +78,68 @@ const address = `${contact.venue}, ${c.room}, ${contact.venueStreet}, ${contact.
 const facts = de
   ? [
       {
+        icon: icons.scope,
         label: 'Umfang',
         text: `${c.classes} Trainingseinheiten für einen kompletten Einstieg in das Brazilian Jiu-Jitsu, von Grund auf.`,
       },
       {
+        icon: icons.dates,
         label: 'Termine',
-        text: `Jeden ${c.weekday.de} um ${c.time} Uhr. Start am ${c.startDate.de}, letzte Einheit am ${c.endDate.de}. Kursteilnehmer:innen sind zusätzlich herzlich eingeladen, auch an unserem regulären Training am Freitag und Samstag mitzumachen.`,
+        text: `Jeden ${c.weekday.de} um ${c.time} Uhr, vom ${c.startDate.de} bis zum ${c.endDate.de}. Zusätzlich bist du bei unserem regulären Training am Freitag und Samstag willkommen.`,
       },
-      { label: 'Ort', text: address, href: homeAnchor(lang, 'location') },
       {
+        icon: icons.location,
+        label: 'Ort',
+        text: address,
+        href: homeAnchor(lang, 'location'),
+      },
+      {
+        icon: icons.gear,
         label: 'Ausrüstung',
         text: 'Wir trainieren im Gi. Ein eigener Gi ist nicht Pflicht, aber empfohlen. Ansonsten reicht bequeme Sportkleidung.',
       },
       {
+        icon: icons.experience,
         label: 'Vorkenntnisse',
         text: 'Keine nötig. Der Kurs richtet sich ausdrücklich an absolute Einsteiger:innen.',
       },
       {
+        icon: icons.price,
         label: 'Preis',
-        text: `${c.price} für den gesamten Kurs, inklusive aller Trainingseinheiten.`,
+        text: `Die erste Einheit ist kostenlos. Wenn du weitermachen möchtest, kostet der Kurs ${c.price}.`,
       },
     ]
   : [
       {
+        icon: icons.scope,
         label: 'Scope',
         text: `${c.classes} sessions that take you into Brazilian Jiu-Jitsu from scratch.`,
       },
       {
+        icon: icons.dates,
         label: 'Dates',
-        text: `Every ${c.weekday.en} at ${c.time}. Starting on ${c.startDate.en}, last session on ${c.endDate.en}. Participants are also warmly invited to join our regular training on Friday and Saturday.`,
+        text: `Every ${c.weekday.en} at ${c.time}, from ${c.startDate.en} to ${c.endDate.en}. You are also welcome at our regular training on Friday and Saturday.`,
       },
-      { label: 'Location', text: address, href: homeAnchor(lang, 'location') },
       {
+        icon: icons.location,
+        label: 'Location',
+        text: address,
+        href: homeAnchor(lang, 'location'),
+      },
+      {
+        icon: icons.gear,
         label: 'Gear',
         text: 'We train in the Gi. Your own Gi is not required, but encouraged. Otherwise comfortable sportswear is fine.',
       },
       {
+        icon: icons.experience,
         label: 'Experience',
         text: 'None needed. The course is aimed explicitly at complete beginners.',
       },
       {
+        icon: icons.price,
         label: 'Price',
-        text: `${c.price} for the whole course, including all sessions.`,
+        text: `Your first session is free. If you decide to continue, the course costs ${c.price}.`,
       },
     ];
 ---
@@ -141,6 +178,19 @@ const facts = de
       )
     }
 
+    <p class="cta">
+      <a href={`#${signupId}`} class="btn btn--primary"
+        >{de ? 'Jetzt anmelden' : 'Register now'}</a
+      >
+      <span class="cta__note"
+        >{
+          de
+            ? 'Erste Einheit kostenlos, keine Zahlung bei der Anmeldung.'
+            : 'First session free, no payment when you sign up.'
+        }</span
+      >
+    </p>
+
     <figure class="lead">
       <Picture
         src={drillingImage}
@@ -159,9 +209,25 @@ const facts = de
     <ul class="facts">
       {
         facts.map((f) => (
-          <li>
-            <strong class="facts__label">{f.label}:</strong>{' '}
-            {f.href ? <a href={withBase(f.href)}>{f.text}</a> : f.text}
+          <li class="facts__item">
+            <span class="facts__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                focusable="false"
+                set:html={f.icon}
+              />
+            </span>
+            <h2 class="facts__label">{f.label}</h2>
+            <p class="facts__text">
+              {f.href ? <a href={withBase(f.href)}>{f.text}</a> : f.text}
+            </p>
           </li>
         ))
       }
@@ -202,26 +268,23 @@ const facts = de
       }
     </ul>
 
-    <div class="booking" id={de ? 'anmeldung' : 'signup'}>
+    <div class="booking" id={signupId}>
       <h2>{de ? 'Anmeldung' : 'Registration'}</h2>
       {
         de ? (
           <p>
-            Melde dich direkt über das Formular unten an. Die Teilnehmerzahl ist
-            begrenzt, wir empfehlen daher eine frühzeitige Anmeldung. Bitte lies
-            vorher unsere
-            <a href={`#${conditionsId}`}>Teilnahmebedingungen</a> und die Hinweise
-            zu <a href={`#${privacyId}`}
-              >Datenschutz &amp; Foto-/Videoaufnahmen</a
-            >.
+            Melde dich einfach über das Formular unten an. Die erste Einheit
+            ist kostenlos und unverbindlich, bezahlt wird erst, wenn du
+            weitermachen möchtest. Die Teilnehmerzahl ist begrenzt, wir
+            empfehlen daher eine frühzeitige Anmeldung. Es gelten unsere
+            <a href={`#${conditionsId}`}>Teilnahmebedingungen</a>.
           </p>
         ) : (
           <p>
-            Sign up directly via the form below. Places are limited, so we
-            recommend registering early. Please read our
-            <a href={`#${conditionsId}`}>conditions of participation</a> and the
-            notes on <a href={`#${privacyId}`}>data privacy &amp; photos/videos</a>
-            first.
+            Simply sign up via the form below. Your first session is free and
+            without obligation, you only pay if you decide to continue. Places
+            are limited, so we recommend registering early. Our
+            <a href={`#${conditionsId}`}>conditions of participation</a> apply.
           </p>
         )
       }
@@ -253,9 +316,11 @@ const facts = de
               uneingeschränkt belastbar bist.
             </li>
             <li>
-              Der Kursbeitrag von {c.price} ist vor der ersten Einheit fällig
-              und gilt für den gesamten Kurs. Versäumte Einheiten können nicht
-              nachgeholt oder erstattet werden.
+              Die erste Einheit ist kostenlos und unverbindlich. Wenn du danach
+              weitermachen möchtest, beträgt der Kursbeitrag {c.price} für den
+              gesamten Kurs. Die Zahlungsdetails bekommst du von uns.
+              Versäumte Einheiten können nicht nachgeholt oder erstattet
+              werden.
             </li>
             <li>
               Es gelten unsere
@@ -278,9 +343,10 @@ const facts = de
               restrictions.
             </li>
             <li>
-              The course fee of {c.price} is due before the first session and
-              covers the entire course. Missed sessions cannot be made up or
-              refunded.
+              Your first session is free and without obligation. If you decide
+              to continue afterwards, the course fee is {c.price} for the
+              entire course. We will send you the payment details. Missed
+              sessions cannot be made up or refunded.
             </li>
             <li>
               Our <a href={withBase(routes.rules[lang])}>rules &amp; guidelines</a>
@@ -288,79 +354,6 @@ const facts = de
               <a href={benutzungsordnung} target="_blank" rel="noopener noreferrer">
                 terms of use of the TSG Sportpark&nbsp;↗
               </a>.
-            </li>
-          </ul>
-        )
-      }
-
-      <h2 id={privacyId}>
-        {
-          de
-            ? 'Datenschutz & Foto-/Videoaufnahmen'
-            : 'Data privacy & photos/videos'
-        }
-      </h2>
-      {
-        de ? (
-          <ul>
-            <li>
-              Deine Anmeldedaten verwenden wir ausschließlich zur Abwicklung
-              des Kurses. Details findest du in unserer
-              <a href={withBase('/datenschutz')}>Datenschutzerklärung</a>.
-            </li>
-            <li>
-              Im Training machen wir gelegentlich Fotos und Videos. Wir teilen
-              sie in unserer internen WhatsApp-Gruppe, um Trainingsinhalte
-              festzuhalten, und nutzen sie gegebenenfalls auf {siteHost} und
-              auf Instagram (<a
-                href={social.instagram}
-                target="_blank"
-                rel="noopener">{social.instagramHandle}</a
-              >), um den Verein zu bewerben.
-            </li>
-            <li>
-              Aufnahmen von dir nutzen wir nur mit deiner ausdrücklichen,
-              freiwilligen Einwilligung, die du bei der Anmeldung gibst.
-            </li>
-            <li>
-              Du kannst die Einwilligung jederzeit ohne Angabe von Gründen
-              widerrufen. Eine kurze Mail an
-              <a href={`mailto:${contact.email}`}>{contact.email}</a> genügt.
-            </li>
-            <li>
-              Am Kurs teilnehmen kannst du selbstverständlich auch ohne
-              Einwilligung.
-            </li>
-          </ul>
-        ) : (
-          <ul>
-            <li>
-              We use your registration details solely to run the course. See
-              our <a href={withBase('/datenschutz')}>privacy policy</a> for
-              details.
-            </li>
-            <li>
-              We occasionally take photos and videos during training. We share
-              them in our internal WhatsApp group to document what we covered,
-              and may use them on {siteHost} and on Instagram (<a
-                href={social.instagram}
-                target="_blank"
-                rel="noopener">{social.instagramHandle}</a
-              >) to promote the club.
-            </li>
-            <li>
-              We only use recordings of you with your explicit, voluntary
-              consent, which you give when you register.
-            </li>
-            <li>
-              You can withdraw your consent at any time without giving a
-              reason. A short email to
-              <a href={`mailto:${contact.email}`}>{contact.email}</a> is all it
-              takes.
-            </li>
-            <li>
-              Of course, you can take part in the course without giving
-              consent.
             </li>
           </ul>
         )
@@ -406,7 +399,6 @@ const facts = de
     object-position: center 40%;
   }
 
-  .facts,
   .more,
   .booking p,
   .prose p,
@@ -416,15 +408,68 @@ const facts = de
     max-width: 70ch;
   }
 
+  .cta {
+    margin-top: var(--space-lg);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm) var(--space-md);
+  }
+
+  .cta__note {
+    font-size: var(--fs-400);
+    color: var(--color-text-muted);
+  }
+
   .facts {
-    margin: var(--space-xl) 0 0;
-    padding-left: 1.25rem;
+    margin: var(--space-2xl) 0 0;
+    padding: 0;
+    list-style: none;
     display: grid;
-    gap: var(--space-sm);
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 640px) {
+    .facts {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .facts {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .facts__item {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .facts__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-md);
+    background-color: rgba(181, 86, 43, 0.1);
+    color: var(--color-warm);
+    margin-bottom: var(--space-md);
   }
 
   .facts__label {
+    font-size: var(--fs-400);
     color: var(--color-heading);
+    margin-bottom: var(--space-xs);
+  }
+
+  .facts__text {
+    font-size: var(--fs-400);
+    color: var(--color-text-muted);
   }
 
   .more {
