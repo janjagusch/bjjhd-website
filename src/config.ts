@@ -327,9 +327,9 @@ export const campai = {
   // Full membership application.
   membershipFormSrc:
     'https://app.campai.com/em/a3f04/applications/6a3149bfd9ff99f706bccaa2',
-  // Booking page for the beginners course (Campai event).
+  // Registration form for the beginners course (signup only, no payment).
   beginnersCourseSrc:
-    'https://app.campai.com/em/a3f04/events/6ab2660b1bdd63520e9d176e/info',
+    'https://app.campai.com/em/a3f04/applications/6abf8fe5f4fcc9b0e43d9ddd',
 };
 
 // === Beginners course / Anfängerkurs =====================================
@@ -340,6 +340,8 @@ export const beginnersCourse = {
   time: '18:00',
   startDate: { de: '22. Oktober 2026', en: '22 October 2026' } satisfies Localized,
   endDate: { de: '10. Dezember 2026', en: '10 December 2026' } satisfies Localized,
+  /** Fee for the rest of the course, due only if you continue after the
+   *  free first session. */
   price: '60 €',
   room: 'Athleticon',
 };
