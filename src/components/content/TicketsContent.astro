@@ -7,7 +7,6 @@
  * Campai event form (`campai.ticketsSrc` in src/config.ts).
  */
 import CampaiSignup from '../CampaiSignup.astro';
-import TrainingSchedule from '../TrainingSchedule.astro';
 import { Picture } from 'astro:assets';
 import trainingImage from '../../assets/tickets/training.jpg';
 import { campai } from '../../config';
@@ -78,12 +77,6 @@ const de = lang === 'de';
     </figure>
 
 
-    <div class="schedule-wrap">
-      <h2>{de ? 'Trainingszeiten' : 'Training times'}</h2>
-      {/* Same component + config as the home page, so both always match. */}
-      <TrainingSchedule lang={lang} />
-    </div>
-
     <div class="checkout">
       <CampaiSignup
         src={campai.ticketsSrc}
@@ -116,12 +109,6 @@ const de = lang === 'de';
     object-position: center 60%;
   }
 
-
-  .schedule-wrap {
-    max-width: 760px;
-    margin: var(--space-xl) 0 0;
-  }
-
   /* CampaiSignup centers itself by default; align it with the text here. */
   .checkout {
     margin-top: var(--space-xl);
@@ -134,10 +121,4 @@ const de = lang === 'de';
   .section__intro p + p {
     margin-top: var(--space-md);
   }
-
-  .schedule-wrap h2 {
-    font-size: var(--fs-600);
-    margin-bottom: var(--space-md);
-  }
-
 </style>
