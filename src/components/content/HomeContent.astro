@@ -107,7 +107,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
 </section>
 
 <!-- 1 + 2. Training: Gi + days -->
-<section id="training" class="section section--cobalt">
+<section id="training" class="section section--secondary">
   <div class="container">
     <h2 class="heading-mark"><span class="shape shape--triangle" aria-hidden="true"></span>{t.trainingHeading}</h2>
     {
@@ -268,7 +268,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
 </section>
 
 <!-- 6. Become a member -->
-<section id="signup" class="section section--charcoal join">
+<section id="signup" class="section section--dark join">
   <div class="container join__inner">
     <div>
       <h2>{t.joinHeading}</h2>
@@ -291,13 +291,13 @@ const priceShapes = ['circle', 'square', 'triangle'];
 </section>
 
 <style>
-  /* --- Beginners course teaser: Mustard band --------------------------- */
+  /* --- Beginners course teaser: accent band ---------------------------- */
   .course-teaser {
     position: relative;
     overflow: hidden;
-    background-color: var(--mustard);
-    color: var(--charcoal);
-    border-bottom: var(--rule) solid var(--charcoal);
+    background-color: var(--accent);
+    color: var(--dark);
+    border-bottom: var(--rule) solid var(--dark);
     padding-block: var(--space-xl);
   }
   .course-teaser__inner {
@@ -319,7 +319,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
     width: 13rem;
     height: 13rem;
     border-radius: 50%;
-    border: 2.25rem solid rgba(31, 29, 27, 0.08);
+    border: 2.25rem solid rgba(var(--dark-rgb), 0.08);
     transform: translateY(-50%);
     pointer-events: none;
   }
@@ -339,7 +339,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
     letter-spacing: 0.14em;
     font-family: var(--font-heading);
     font-size: var(--fs-300);
-    color: var(--charcoal);
+    color: var(--dark);
     font-weight: 600;
     margin-bottom: var(--space-xs);
   }
@@ -348,7 +348,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
     width: 0.8rem;
     height: 0.8rem;
     border-radius: 50%;
-    background: var(--charcoal);
+    background: var(--dark);
   }
   .course-teaser__title {
     font-size: clamp(1.6rem, 3.2vw, 2.25rem);
@@ -359,12 +359,12 @@ const priceShapes = ['circle', 'square', 'triangle'];
   }
   .course-teaser__btn {
     position: relative;
-    background-color: var(--charcoal);
-    color: var(--bone);
+    background-color: var(--dark);
+    color: var(--light);
   }
   .course-teaser__btn:hover {
-    background-color: var(--bone);
-    color: var(--charcoal);
+    background-color: var(--light);
+    color: var(--dark);
   }
 
   /* --- What is BJJ: text + framed photo ------------------------------- */
@@ -398,7 +398,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
     width: 62%;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: var(--mustard);
+    background: var(--primary);
   }
   .what__bar {
     position: absolute;
@@ -406,7 +406,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
     top: 12%;
     width: 1.25rem;
     height: 46%;
-    background: var(--vermilion);
+    background: var(--accent);
   }
   .what__art :global(.what__photo) {
     position: relative;
@@ -414,7 +414,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
     width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
-    border: var(--rule) solid var(--charcoal);
+    border: var(--rule) solid var(--dark);
   }
 
   /* --- Location -------------------------------------------------------- */
@@ -429,13 +429,13 @@ const priceShapes = ['circle', 'square', 'triangle'];
     }
   }
   .location__card {
-    border-left: 10px solid var(--cobalt);
+    border-left: 10px solid var(--secondary);
   }
 
   .contact__address {
     font-style: normal;
     line-height: var(--lh-base);
-    color: var(--charcoal);
+    color: var(--dark);
     font-size: var(--fs-500);
     font-family: var(--font-heading);
     font-weight: 500;
@@ -461,7 +461,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
     top: 0.55em;
     width: 0.6rem;
     height: 0.6rem;
-    background: var(--vermilion);
+    background: var(--primary);
   }
 
   /* --- Trial: text + art left, form right ------------------------------ */
@@ -493,7 +493,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: 50%;
-    border: var(--rule) solid var(--charcoal);
+    border: var(--rule) solid var(--dark);
   }
   .trial__quarter {
     position: absolute;
@@ -501,9 +501,9 @@ const priceShapes = ['circle', 'square', 'triangle'];
     bottom: -0.5rem;
     width: 38%;
     height: 38%;
-    background: var(--cobalt);
+    background: var(--secondary);
     border-radius: 100% 0 0 0;
-    border: var(--rule) solid var(--charcoal);
+    border: var(--rule) solid var(--dark);
   }
   @media (max-width: 899px) {
     .trial__art {
@@ -519,7 +519,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
     margin-top: var(--space-xl);
     display: grid;
     gap: 0;
-    border: var(--rule) solid var(--charcoal);
+    border: var(--rule) solid var(--dark);
   }
   @media (min-width: 760px) {
     .prices__grid {
@@ -533,12 +533,12 @@ const priceShapes = ['circle', 'square', 'triangle'];
     padding-top: calc(var(--space-lg) + 5rem);
   }
   .price + .price {
-    border-top: var(--rule) solid var(--charcoal);
+    border-top: var(--rule) solid var(--dark);
   }
   @media (min-width: 760px) {
     .price + .price {
       border-top: 0;
-      border-left: var(--rule) solid var(--charcoal);
+      border-left: var(--rule) solid var(--dark);
     }
   }
   .price__shape {
@@ -550,13 +550,13 @@ const priceShapes = ['circle', 'square', 'triangle'];
   }
   .price--circle .price__shape {
     border-radius: 50%;
-    background: var(--vermilion);
+    background: var(--accent);
   }
   .price--square .price__shape {
-    background: var(--cobalt);
+    background: var(--secondary);
   }
   .price--triangle .price__shape {
-    background: var(--mustard);
+    background: var(--primary);
     clip-path: polygon(50% 0, 100% 100%, 0 100%);
   }
   .price__name {
@@ -566,7 +566,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
   }
   .price__amount {
     font-family: var(--font-heading);
-    color: var(--charcoal);
+    color: var(--dark);
     font-size: clamp(3rem, 6vw, 4.5rem);
     font-weight: 700;
     line-height: 1;
@@ -591,7 +591,7 @@ const priceShapes = ['circle', 'square', 'triangle'];
     margin: var(--space-lg) 0 0;
   }
 
-  /* --- Become a member: Charcoal band with the mark -------------------- */
+  /* --- Become a member: dark band with the mark ------------------------ */
   .join {
     overflow: hidden;
   }

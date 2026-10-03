@@ -87,9 +87,9 @@ const year = new Date().getFullYear();
 
 <style>
   .site-footer {
-    background-color: var(--charcoal);
+    background-color: var(--dark);
     padding-block: 0 var(--space-lg);
-    color: rgba(245, 241, 232, 0.78);
+    color: rgba(var(--light-rgb), 0.78);
   }
 
   .site-footer__stripe {
@@ -99,18 +99,18 @@ const year = new Date().getFullYear();
     margin-bottom: var(--space-2xl);
   }
   .site-footer__stripe span:nth-child(1) {
-    background: var(--vermilion);
+    background: var(--accent);
   }
   .site-footer__stripe span:nth-child(2) {
-    background: var(--cobalt);
+    background: var(--secondary);
   }
   .site-footer__stripe span:nth-child(3) {
-    background: var(--mustard);
+    background: var(--primary);
   }
 
   .site-footer a {
-    color: var(--bone);
-    text-decoration-color: var(--mustard);
+    color: var(--light);
+    text-decoration-color: var(--accent);
   }
 
   .site-footer__inner {
@@ -132,7 +132,7 @@ const year = new Date().getFullYear();
   }
 
   .brand__name {
-    color: var(--bone);
+    color: var(--light);
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: var(--fs-600);
@@ -140,7 +140,7 @@ const year = new Date().getFullYear();
   }
 
   .site-footer__heading {
-    color: var(--bone);
+    color: var(--light);
     font-size: var(--fs-300);
     font-weight: 600;
     text-transform: uppercase;
@@ -154,7 +154,7 @@ const year = new Date().getFullYear();
     content: '';
     width: 1.25rem;
     height: 3px;
-    background: var(--vermilion);
+    background: var(--primary);
   }
 
   address {
@@ -179,7 +179,7 @@ const year = new Date().getFullYear();
   .site-footer__social:hover,
   .site-footer__social:focus-visible {
     text-decoration: underline;
-    text-decoration-color: var(--mustard);
+    text-decoration-color: var(--accent);
   }
 
   .site-footer__social-icon {
@@ -187,7 +187,7 @@ const year = new Date().getFullYear();
   }
 
   .site-footer__social-label {
-    color: rgba(245, 241, 232, 0.78);
+    color: rgba(var(--light-rgb), 0.78);
   }
 
   .site-footer__links {
@@ -201,7 +201,7 @@ const year = new Date().getFullYear();
   .site-footer__bottom {
     margin-top: var(--space-2xl);
     padding-top: var(--space-md);
-    border-top: 1px solid rgba(245, 241, 232, 0.18);
+    border-top: 1px solid rgba(var(--light-rgb), 0.18);
     font-size: var(--fs-300);
   }
 </style>

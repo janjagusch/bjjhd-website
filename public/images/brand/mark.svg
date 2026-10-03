@@ -10,12 +10,12 @@
   </defs>
 <g id="mark" transform="rotate(-15)">
     <g id="halves" mask="url(#cuts)">
-      <path id="half-a" d="M -260 35 A 200 200 0 0 1 140 35 Z" fill="#D1A526"/>
-      <path id="half-b" d="M 260 -35 A 200 200 0 0 1 -140 -35 Z" fill="#3869A2"/>
+      <path id="half-a" d="M -260 35 A 200 200 0 0 1 140 35 Z" fill="#C76C54"/>
+      <path id="half-b" d="M 260 -35 A 200 200 0 0 1 -140 -35 Z" fill="#8CB9A4"/>
       <!-- overlap tone, formerly produced by 80% opacity -->
-      <path id="overlap" d="M 260 -35 A 200 200 0 0 1 -140 -35 Z" fill="#5B84A4" clip-path="url(#clip-a)"/>
+      <path id="overlap" d="M 260 -35 A 200 200 0 0 1 -140 -35 Z" fill="#AEC2AA" clip-path="url(#clip-a)"/>
     </g>
-    <circle id="partner-a" cx="140" cy="35" r="40" fill="#E5482F"/>
-    <circle id="partner-b" cx="-140" cy="-35" r="40" fill="#F5F1E8"/>
+    <circle id="partner-a" cx="140" cy="35" r="40" fill="#F6B42C"/>
+    <circle id="partner-b" cx="-140" cy="-35" r="40" fill="#F6F1E7"/>
   </g>
 </svg>

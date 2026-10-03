@@ -75,7 +75,7 @@ const markers = venueMap.buildings.map((building) => ({
   .venue-map__frame {
     position: relative;
     overflow: hidden;
-    border: var(--rule) solid var(--charcoal);
+    border: var(--rule) solid var(--dark);
     line-height: 0;
   }
 
@@ -109,15 +109,15 @@ const markers = venueMap.buildings.map((building) => ({
 
   /* Tones: warm = training rooms, dark = supporting facilities. */
   .venue-map__marker--warm {
-    --marker-color: var(--vermilion);
-    --label-bg: var(--charcoal);
-    --label-fg: var(--bone);
+    --marker-color: var(--accent);
+    --label-bg: var(--dark);
+    --label-fg: var(--light);
   }
 
   .venue-map__marker--dark {
-    --marker-color: var(--charcoal);
-    --label-bg: var(--bone);
-    --label-fg: var(--charcoal);
+    --marker-color: var(--dark);
+    --label-bg: var(--light);
+    --label-fg: var(--dark);
   }
 
   .venue-map__pin {
@@ -125,16 +125,16 @@ const markers = venueMap.buildings.map((building) => ({
     width: var(--pin-size);
     height: var(--pin-size);
     border-radius: 50%;
-    background: var(--marker-color, var(--vermilion));
-    box-shadow: 0 0 0 3px var(--bone), 0 0 0 5px var(--charcoal);
+    background: var(--marker-color, var(--accent));
+    box-shadow: 0 0 0 3px var(--light), 0 0 0 5px var(--dark);
   }
 
   .venue-map__label {
     display: block;
     padding: 0.35rem 0.6rem;
-    background: var(--label-bg, var(--charcoal));
-    color: var(--label-fg, var(--bone));
-    border-left: 4px solid var(--marker-color, var(--vermilion));
+    background: var(--label-bg, var(--dark));
+    color: var(--label-fg, var(--light));
+    border-left: 4px solid var(--marker-color, var(--accent));
     font-family: var(--font-heading);
     font-weight: 600;
     font-size: var(--fs-300);
@@ -162,7 +162,7 @@ const markers = venueMap.buildings.map((building) => ({
     }
 
     .venue-map__pin {
-      box-shadow: 0 0 0 2px var(--bone), 0 0 0 3px var(--charcoal);
+      box-shadow: 0 0 0 2px var(--light), 0 0 0 3px var(--dark);
     }
   }
 </style>
