@@ -205,7 +205,7 @@ export const headCoach = {
   name: 'Ben',
   role: { de: 'Cheftrainer', en: 'Head Coach' } satisfies Localized,
   belt: { de: 'Schwarzgurt', en: 'Black Belt' } satisfies Localized,
-  photo: '/images/coach-1.svg', // TODO: add a real photo under /public/images
+  photo: '/images/coach-ben.jpg',
   photoAlt: {
     de: 'Porträtfoto von Cheftrainer Ben',
     en: 'Portrait photo of head coach Ben',
