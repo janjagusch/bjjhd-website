@@ -75,8 +75,7 @@ const markers = venueMap.buildings.map((building) => ({
   .venue-map__frame {
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md, 10px);
+    border: var(--rule) solid var(--charcoal);
     line-height: 0;
   }
 
@@ -110,11 +109,15 @@ const markers = venueMap.buildings.map((building) => ({
 
   /* Tones: warm = training rooms, dark = supporting facilities. */
   .venue-map__marker--warm {
-    --marker-color: var(--color-warm);
+    --marker-color: var(--vermilion);
+    --label-bg: var(--charcoal);
+    --label-fg: var(--bone);
   }
 
   .venue-map__marker--dark {
-    --marker-color: var(--color-accent);
+    --marker-color: var(--charcoal);
+    --label-bg: var(--bone);
+    --label-fg: var(--charcoal);
   }
 
   .venue-map__pin {
@@ -122,19 +125,19 @@ const markers = venueMap.buildings.map((building) => ({
     width: var(--pin-size);
     height: var(--pin-size);
     border-radius: 50%;
-    background: var(--marker-color, var(--color-warm));
-    box-shadow: 0 0 0 3px #fff, 0 1px 4px rgb(0 0 0 / 0.35);
+    background: var(--marker-color, var(--vermilion));
+    box-shadow: 0 0 0 3px var(--bone), 0 0 0 5px var(--charcoal);
   }
 
   .venue-map__label {
     display: block;
     padding: 0.35rem 0.6rem;
-    border-radius: var(--radius-sm);
-    background: var(--marker-color, var(--color-warm));
-    color: #fff;
-    font-weight: 700;
+    background: var(--label-bg, var(--charcoal));
+    color: var(--label-fg, var(--bone));
+    border-left: 4px solid var(--marker-color, var(--vermilion));
+    font-family: var(--font-heading);
+    font-weight: 600;
     font-size: var(--fs-300);
-    box-shadow: 0 1px 6px rgb(0 0 0 / 0.3);
     white-space: nowrap;
   }
 
@@ -154,11 +157,12 @@ const markers = venueMap.buildings.map((building) => ({
 
     .venue-map__label {
       padding: 0.2rem 0.4rem;
+      border-left-width: 3px;
       font-size: 0.7rem;
     }
 
     .venue-map__pin {
-      box-shadow: 0 0 0 2px #fff, 0 1px 3px rgb(0 0 0 / 0.35);
+      box-shadow: 0 0 0 2px var(--bone), 0 0 0 3px var(--charcoal);
     }
   }
 </style>

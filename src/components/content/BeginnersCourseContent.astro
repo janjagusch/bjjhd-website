@@ -376,23 +376,35 @@ const facts = de
   /* Typography scale used on this page:
      --fs-300 eyebrow · --fs-400 body copy · --fs-500 lead · --fs-600 headings */
   .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
+    font-family: var(--font-heading);
+    font-weight: 600;
     font-size: var(--fs-300);
-    color: var(--color-text-muted);
+    color: var(--color-text);
     margin-bottom: var(--space-xs);
+  }
+  .eyebrow::before {
+    content: '';
+    width: 1.75rem;
+    height: 3px;
+    background: var(--vermilion);
   }
 
   .lead {
     margin: var(--space-xl) 0 0;
     border-radius: var(--radius-md);
     overflow: hidden;
-    border: 1px solid var(--color-border);
+    border: var(--rule) solid var(--color-border);
     box-shadow: var(--shadow-md);
   }
 
   .lead :global(img) {
     display: block;
+    filter: grayscale(1) contrast(1.08);
     width: 100%;
     height: clamp(240px, 38vw, 460px);
     object-fit: cover;
@@ -442,8 +454,9 @@ const facts = de
   }
 
   .facts__item {
+    position: relative;
     background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
+    border: var(--rule) solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--space-lg);
     box-shadow: var(--shadow-sm);
@@ -456,13 +469,27 @@ const facts = de
     width: 2.75rem;
     height: 2.75rem;
     border-radius: var(--radius-md);
-    background-color: rgba(181, 86, 43, 0.1);
-    color: var(--color-warm);
+    background-color: var(--charcoal);
+    color: var(--bone);
     margin-bottom: var(--space-md);
   }
 
+  .facts__item:nth-child(3n + 1) .facts__icon {
+    background-color: var(--mustard);
+    color: var(--charcoal);
+  }
+  .facts__item:nth-child(3n + 2) .facts__icon {
+    background-color: var(--cobalt);
+    color: var(--bone);
+    border-radius: 50%;
+  }
+  .facts__item:nth-child(3n) .facts__icon {
+    background-color: var(--vermilion);
+    color: var(--charcoal);
+  }
+
   .facts__label {
-    font-size: var(--fs-400);
+    font-size: var(--fs-500);
     color: var(--color-heading);
     margin-bottom: var(--space-xs);
   }
@@ -492,11 +519,12 @@ const facts = de
 
   .gallery :global(img) {
     display: block;
+    filter: grayscale(1) contrast(1.08);
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
+    border: var(--rule) solid var(--color-border);
   }
 
   .booking {

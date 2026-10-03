@@ -4,6 +4,9 @@ import TrainingSchedule from '../TrainingSchedule.astro';
 import CampaiSignup from '../CampaiSignup.astro';
 import VenueMap from '../VenueMap.astro';
 import StructuredData from '../StructuredData.astro';
+import { Picture } from 'astro:assets';
+import instructionImage from '../../assets/beginners/instruction.jpg';
+import partnersImage from '../../assets/beginners/partners.jpg';
 import { beginnersCourse, campai, contact, pricing } from '../../config';
 import { withBase } from '../../utils/withBase';
 import { ui, routes, homeAnchor, defaultLocale } from '../../i18n';
@@ -17,6 +20,9 @@ const { lang = defaultLocale } = Astro.props;
 const t = ui[lang];
 const de = lang === 'de';
 const c = beginnersCourse;
+
+// Bauhaus primaries for the three price cards: circle, square, triangle.
+const priceShapes = ['circle', 'square', 'triangle'];
 ---
 
 <StructuredData />
@@ -25,7 +31,8 @@ const c = beginnersCourse;
 <!-- Beginners course teaser: keeps the course page reachable from home. -->
 <section id="course" class="course-teaser" aria-labelledby="course-teaser-title">
   <div class="container course-teaser__inner">
-    <div>
+    <div class="course-teaser__shape" aria-hidden="true"></div>
+    <div class="course-teaser__body">
       <p class="course-teaser__eyebrow">
         {de ? 'Anfängerkurs' : 'Beginners course'}
       </p>
@@ -44,16 +51,17 @@ const c = beginnersCourse;
         }
       </p>
     </div>
-    <a href={withBase(routes.course[lang])} class="btn btn--primary"
+    <a href={withBase(routes.course[lang])} class="btn course-teaser__btn"
       >{de ? 'Zum Anfängerkurs' : 'View the course'}</a
     >
   </div>
 </section>
 
 <!-- 0. What is BJJ? (intro + link to the beginner's guide) -->
-<section id="what" class="section section--alt">
-  <div class="container">
-    <h2>{t.whatHeading}</h2>
+<section id="what" class="section">
+  <div class="container split">
+    <div class="split__text">
+    <h2 class="heading-mark"><span class="shape shape--circle" aria-hidden="true"></span>{t.whatHeading}</h2>
     {
       lang === 'de' ? (
         <p class="section__intro">
@@ -74,16 +82,34 @@ const c = beginnersCourse;
         </p>
       )
     }
-    <p style="margin-top: var(--space-md);">
+    <p class="what__link">
       <a href={withBase(routes.beginners[lang])}>{t.whatLink}</a>
     </p>
+    </div>
+    <div class="what__art">
+      <div class="what__disc" aria-hidden="true"></div>
+      <div class="what__bar" aria-hidden="true"></div>
+      <Picture
+        src={instructionImage}
+        alt={
+          de
+            ? 'Zwei Trainingspartner üben eine Technik aus der Guard, im Hintergrund weitere Teilnehmer'
+            : 'Two training partners drilling a technique from the guard, with more participants in the background'
+        }
+        widths={[400, 640, 900]}
+        sizes="(min-width: 960px) 420px, 80vw"
+        formats={['avif', 'webp']}
+        loading="lazy"
+        class="what__photo photo-bw"
+      />
+    </div>
   </div>
 </section>
 
 <!-- 1 + 2. Training: Gi + days -->
-<section id="training" class="section">
+<section id="training" class="section section--cobalt">
   <div class="container">
-    <h2>{t.trainingHeading}</h2>
+    <h2 class="heading-mark"><span class="shape shape--triangle" aria-hidden="true"></span>{t.trainingHeading}</h2>
     {
       lang === 'de' ? (
         <p class="section__intro">
@@ -112,11 +138,14 @@ const c = beginnersCourse;
 </section>
 
 <!-- 3. Location -->
-<section id="location" class="section section--alt">
+<section id="location" class="section">
   <div class="container">
-    <h2>{t.locationHeading}</h2>
+    <div class="location__head">
+    <div>
+    <h2 class="heading-mark"><span class="shape shape--square" aria-hidden="true"></span>{t.locationHeading}</h2>
     <p class="section__intro">{t.locationIntro}</p>
-    <div class="card" style="margin-top: var(--space-lg); max-width: 60ch;">
+    </div>
+    <div class="card location__card">
       <address class="contact__address">
         {contact.venue}<br />
         {contact.venueStreet}<br />
@@ -130,6 +159,7 @@ const c = beginnersCourse;
           aria-label={t.mapsAria}>{t.mapsLink}</a
         >
       </p>
+    </div>
     </div>
     <VenueMap lang={lang} />
     <ul class="venue-info">
@@ -159,9 +189,10 @@ const c = beginnersCourse;
 </section>
 
 <!-- 4. Free trial class -->
-<section id="trial" class="section">
-  <div class="container">
-    <h2>{t.trialHeading}</h2>
+<section id="trial" class="section section--alt">
+  <div class="container trial">
+    <div class="trial__text">
+    <h2 class="heading-mark"><span class="shape shape--circle" aria-hidden="true"></span>{t.trialHeading}</h2>
     {
       lang === 'de' ? (
         <p class="section__intro">
@@ -177,20 +208,34 @@ const c = beginnersCourse;
         </p>
       )
     }
-    <div style="margin-top: var(--space-xl);">
+    </div>
+    <div class="trial__art" aria-hidden="true">
+      <Picture
+        src={partnersImage}
+        alt=""
+        widths={[400, 640]}
+        sizes="(min-width: 1080px) 340px, 60vw"
+        formats={['avif', 'webp']}
+        loading="lazy"
+        class="trial__photo photo-bw"
+      />
+      <span class="trial__quarter"></span>
+    </div>
+    <div class="trial__form">
       <CampaiSignup src={campai.trialFormSrc} lang={lang} />
     </div>
   </div>
 </section>
 
 <!-- 5. Prices -->
-<section id="prices" class="section section--alt">
+<section id="prices" class="section">
   <div class="container">
-    <h2>{t.pricesHeading}</h2>
-    <div class="grid grid--3" style="margin-top: var(--space-xl);">
+    <h2 class="heading-mark"><span class="shape shape--square" aria-hidden="true"></span>{t.pricesHeading}</h2>
+    <div class="prices__grid">
       {
-        pricing.map((item) => (
-          <div class="card price">
+        pricing.map((item, i) => (
+          <div class={`card price price--${priceShapes[i % priceShapes.length]}`}>
+            <span class="price__shape" aria-hidden="true"></span>
             <h3 class="price__name">{item.name[lang]}</h3>
             <p class="price__amount">
               {item.price} <span class="price__suffix">{t.priceSuffix}</span>
@@ -223,63 +268,317 @@ const c = beginnersCourse;
 </section>
 
 <!-- 6. Become a member -->
-<section id="signup" class="section">
-  <div class="container">
-    <h2>{t.joinHeading}</h2>
-    <p class="section__intro">{t.joinIntro}</p>
-    <div style="margin-top: var(--space-xl);">
-      <a href={withBase(routes.signup[lang])} class="btn btn--primary"
-        >{t.ctaMember}</a
-      >
+<section id="signup" class="section section--charcoal join">
+  <div class="container join__inner">
+    <div>
+      <h2>{t.joinHeading}</h2>
+      <p class="section__intro">{t.joinIntro}</p>
+      <div style="margin-top: var(--space-xl);">
+        <a href={withBase(routes.signup[lang])} class="btn btn--primary"
+          >{t.ctaMember}</a
+        >
+      </div>
     </div>
+    <img
+      class="join__mark"
+      src={withBase('/images/brand/mark.svg')}
+      alt=""
+      width="534"
+      height="337"
+      loading="lazy"
+    />
   </div>
 </section>
 
 <style>
+  /* --- Beginners course teaser: Mustard band --------------------------- */
   .course-teaser {
-    background-color: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+    background-color: var(--mustard);
+    color: var(--charcoal);
+    border-bottom: var(--rule) solid var(--charcoal);
     padding-block: var(--space-xl);
   }
   .course-teaser__inner {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-lg);
   }
+  .course-teaser__body {
+    position: relative;
+    max-width: 60ch;
+  }
+  .course-teaser__shape {
+    position: absolute;
+    right: 24%;
+    top: 50%;
+    width: 13rem;
+    height: 13rem;
+    border-radius: 50%;
+    border: 2.25rem solid rgba(31, 29, 27, 0.08);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  @media (max-width: 760px) {
+    .course-teaser__shape {
+      top: auto;
+      bottom: -6rem;
+      right: -5rem;
+      transform: none;
+    }
+  }
   .course-teaser__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.14em;
+    font-family: var(--font-heading);
     font-size: var(--fs-300);
-    color: var(--color-warm);
-    font-weight: 700;
+    color: var(--charcoal);
+    font-weight: 600;
     margin-bottom: var(--space-xs);
   }
+  .course-teaser__eyebrow::before {
+    content: '';
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: var(--charcoal);
+  }
   .course-teaser__title {
-    font-size: var(--fs-600);
+    font-size: clamp(1.6rem, 3.2vw, 2.25rem);
   }
   .course-teaser__text {
-    color: var(--color-text-muted);
     margin-top: var(--space-xs);
+    font-size: var(--fs-500);
+  }
+  .course-teaser__btn {
+    position: relative;
+    background-color: var(--charcoal);
+    color: var(--bone);
+  }
+  .course-teaser__btn:hover {
+    background-color: var(--bone);
+    color: var(--charcoal);
   }
 
+  /* --- What is BJJ: text + framed photo ------------------------------- */
+  .split {
+    display: grid;
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+  @media (min-width: 960px) {
+    .split {
+      grid-template-columns: 7fr 5fr;
+    }
+  }
+  .what__link {
+    margin-top: var(--space-lg);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--fs-500);
+  }
+  .what__art {
+    position: relative;
+    max-width: 420px;
+    width: 85%;
+    justify-self: center;
+    padding: 0 0 2.5rem 2.5rem;
+  }
+  .what__disc {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 62%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--mustard);
+  }
+  .what__bar {
+    position: absolute;
+    right: -1.25rem;
+    top: 12%;
+    width: 1.25rem;
+    height: 46%;
+    background: var(--vermilion);
+  }
+  .what__art :global(.what__photo) {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: var(--rule) solid var(--charcoal);
+  }
+
+  /* --- Location -------------------------------------------------------- */
+  .location__head {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: end;
+  }
+  @media (min-width: 900px) {
+    .location__head {
+      grid-template-columns: 1fr minmax(320px, 420px);
+    }
+  }
+  .location__card {
+    border-left: 10px solid var(--cobalt);
+  }
+
+  .contact__address {
+    font-style: normal;
+    line-height: var(--lh-base);
+    color: var(--charcoal);
+    font-size: var(--fs-500);
+    font-family: var(--font-heading);
+    font-weight: 500;
+  }
+
+  .venue-info {
+    margin: var(--space-lg) 0 0;
+    padding: 0;
+    list-style: none;
+    max-width: 70ch;
+    display: grid;
+    gap: var(--space-xs);
+    color: var(--color-text-muted);
+  }
+  .venue-info li {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+  .venue-info li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.6rem;
+    height: 0.6rem;
+    background: var(--vermilion);
+  }
+
+  /* --- Trial: text + art left, form right ------------------------------ */
+  .trial {
+    display: grid;
+    gap: var(--space-xl);
+  }
+  @media (min-width: 900px) {
+    .trial {
+      grid-template-columns: 1fr 300px;
+      column-gap: var(--space-2xl);
+      align-items: center;
+    }
+    .trial__form {
+      grid-column: 1 / -1;
+    }
+  }
+  .trial__art {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    justify-self: end;
+    aspect-ratio: 1;
+  }
+  .trial__art :global(.trial__photo) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: var(--rule) solid var(--charcoal);
+  }
+  .trial__quarter {
+    position: absolute;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    width: 38%;
+    height: 38%;
+    background: var(--cobalt);
+    border-radius: 100% 0 0 0;
+    border: var(--rule) solid var(--charcoal);
+  }
+  @media (max-width: 899px) {
+    .trial__art {
+      display: none;
+    }
+  }
+  .trial__form :global(.campai) {
+    max-width: none;
+  }
+
+  /* --- Prices ---------------------------------------------------------- */
+  .prices__grid {
+    margin-top: var(--space-xl);
+    display: grid;
+    gap: 0;
+    border: var(--rule) solid var(--charcoal);
+  }
+  @media (min-width: 760px) {
+    .prices__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
   .price {
-    text-align: center;
+    position: relative;
+    border: 0;
+    padding: var(--space-xl) var(--space-lg);
+    padding-top: calc(var(--space-lg) + 5rem);
+  }
+  .price + .price {
+    border-top: var(--rule) solid var(--charcoal);
+  }
+  @media (min-width: 760px) {
+    .price + .price {
+      border-top: 0;
+      border-left: var(--rule) solid var(--charcoal);
+    }
+  }
+  .price__shape {
+    position: absolute;
+    top: var(--space-lg);
+    right: var(--space-lg);
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  .price--circle .price__shape {
+    border-radius: 50%;
+    background: var(--vermilion);
+  }
+  .price--square .price__shape {
+    background: var(--cobalt);
+  }
+  .price--triangle .price__shape {
+    background: var(--mustard);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
   }
   .price__name {
     font-size: var(--fs-500);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
   .price__amount {
-    color: var(--color-accent);
-    font-size: var(--fs-700);
-    font-weight: 800;
-    margin-top: var(--space-xs);
+    font-family: var(--font-heading);
+    color: var(--charcoal);
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-top: var(--space-sm);
   }
   .price__suffix {
     color: var(--color-text-muted);
+    font-family: var(--font-sans);
     font-size: var(--fs-400);
     font-weight: 500;
+    letter-spacing: 0;
   }
   .price__note {
     color: var(--color-text-muted);
@@ -288,23 +587,33 @@ const c = beginnersCourse;
   }
   .prices__tickets {
     color: var(--color-text-muted);
-    text-align: center;
-    max-width: 60ch;
-    margin: var(--space-lg) auto 0;
-  }
-
-  .contact__address {
-    font-style: normal;
-    line-height: var(--lh-base);
-    color: var(--color-text);
-  }
-
-  .venue-info {
+    max-width: 70ch;
     margin: var(--space-lg) 0 0;
-    padding-left: 1.25rem;
-    max-width: 60ch;
+  }
+
+  /* --- Become a member: Charcoal band with the mark -------------------- */
+  .join {
+    overflow: hidden;
+  }
+  .join__inner {
     display: grid;
-    gap: var(--space-xs);
-    color: var(--color-text-muted);
+    gap: var(--space-xl);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .join__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .join__mark {
+    width: 100%;
+    max-width: 520px;
+    justify-self: end;
+  }
+  @media (max-width: 899px) {
+    .join__mark {
+      max-width: 280px;
+      justify-self: start;
+    }
   }
 </style>

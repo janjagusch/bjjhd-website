@@ -24,63 +24,73 @@
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-/* Newsreader (variable) – headings */
+/* Jost (variable) – headings. Geometric sans in the Futura tradition (OFL). */
 @font-face {
-  font-family: "Newsreader";
+  font-family: "Jost";
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 100 900;
   font-display: swap;
-  src: url(../fonts/newsreader-latin.woff2) format("woff2");
+  src: url(../fonts/jost-latin.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Newsreader";
+  font-family: "Jost";
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 100 900;
   font-display: swap;
-  src: url(../fonts/newsreader-latin-ext.woff2) format("woff2");
+  src: url(../fonts/jost-latin-ext.woff2) format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
     U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
     U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+
 :root {
-  /* --- Colors: minimal light, editorial -------------------------------- */
-  --color-bg: #ffffff;
-  --color-bg-elevated: #f6f6f4;
-  --color-surface: #ffffff;
-  --color-border: #e6e4df;
-  --color-text: #16181d;
-  --color-text-muted: #6b7079;
-  --color-heading: #0e1013;
+  /* --- Brand palette (Gravity BJJ, "Night Charcoal") -------------------- */
+  --mustard: #d1a526;
+  --cobalt: #3869a2;
+  --vermilion: #e5482f;
+  --bone: #f5f1e8;
+  --charcoal: #1f1d1b;
 
-  /* Primary actions/links use deep ink. Change these to re-brand. */
-  --color-accent: #16181d;
-  --color-accent-hover: #3a3d44;
-  --color-accent-contrast: #ffffff;
+  /* --- Semantic colours -------------------------------------------------- */
+  --color-bg: var(--bone);
+  --color-bg-elevated: #ebe5d7;
+  --color-surface: #fbf9f4;
+  --color-border: var(--charcoal);
+  --color-rule: rgba(31, 29, 27, 0.18);
+  --color-text: var(--charcoal);
+  --color-text-muted: #4d4944;
+  --color-heading: var(--charcoal);
 
-  /* A single restrained warm tint for small decorative highlights. */
-  --color-warm: #b5562b;
-  --color-warm-hover: #9a4623;
+  /* Primary actions: Vermilion with Charcoal text (large, bold only). */
+  --color-accent: var(--vermilion);
+  --color-accent-hover: var(--charcoal);
+  --color-accent-contrast: var(--charcoal);
 
-  --color-focus: #2563eb;
+  /* Small accent text on Bone must not be Vermilion or Mustard (contrast),
+     so the "warm" accent token resolves to Cobalt. */
+  --color-warm: var(--cobalt);
+  --color-warm-hover: var(--charcoal);
+
+  --color-focus: var(--cobalt);
 
   /* --- Typography ------------------------------------------------------ */
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
-    Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  --font-heading: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Avenir Next", "Inter", "Helvetica Neue", Arial, system-ui,
+    sans-serif;
+  --font-heading: "Futura", "Jost", "Century Gothic", "Avenir Next", sans-serif;
 
   --fs-300: 0.875rem;
-  --fs-400: 1rem;
+  --fs-400: 1.0625rem;
   --fs-500: 1.25rem;
-  --fs-600: 1.5rem;
-  --fs-700: 2rem;
-  --fs-800: 2.75rem;
-  --fs-900: 3.5rem;
+  --fs-600: 1.625rem;
+  --fs-700: 2.25rem;
+  --fs-800: 3.25rem;
+  --fs-900: 5rem;
 
-  --lh-tight: 1.15;
+  --lh-tight: 1.05;
   --lh-base: 1.6;
 
   /* --- Spacing --------------------------------------------------------- */
@@ -90,23 +100,24 @@
   --space-lg: 1.5rem;
   --space-xl: 2.5rem;
   --space-2xl: 4rem;
-  --space-3xl: 6rem;
+  --space-3xl: 6.5rem;
 
   /* --- Layout ---------------------------------------------------------- */
-  --container-width: 1100px;
+  --container-width: 1200px;
   --container-pad: 1.25rem;
 
-  /* --- Radius & shadow ------------------------------------------------- */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-full: 999px;
+  /* --- Geometry: Bauhaus = hard edges. Only circles are round. --------- */
+  --rule: 2px;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-full: 0;
 
-  --shadow-sm: 0 1px 2px rgba(16, 18, 29, 0.06);
-  --shadow-md: 0 8px 24px rgba(16, 18, 29, 0.08);
-  --shadow-lg: 0 20px 50px rgba(16, 18, 29, 0.1);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 
-  --transition: 180ms ease;
+  --transition: 160ms ease;
 }
 
 /* --- Reset / base -------------------------------------------------------- */
@@ -123,7 +134,7 @@
 html {
   scroll-behavior: smooth;
   /* Offset for the sticky header when jumping to anchors. */
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 5.5rem;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -154,16 +165,17 @@ h4 {
   font-family: var(--font-heading);
   line-height: var(--lh-tight);
   color: var(--color-heading);
-  font-weight: 600;
-  letter-spacing: -0.005em;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.25rem, 6vw, var(--fs-900));
+  font-size: clamp(2.5rem, 7vw, var(--fs-900));
+  letter-spacing: -0.025em;
 }
 h2 {
-  font-size: clamp(1.75rem, 4vw, var(--fs-800));
+  font-size: clamp(2rem, 4.5vw, var(--fs-800));
 }
 h3 {
   font-size: var(--fs-600);
@@ -173,14 +185,21 @@ p {
   text-wrap: pretty;
 }
 
+/* Links: Charcoal text with a Vermilion underline (small Vermilion text on
+   Bone is not legible enough). */
 a {
-  color: var(--color-warm);
-  text-decoration: none;
-  transition: color var(--transition);
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--vermilion);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  transition: color var(--transition), text-decoration-color var(--transition),
+    background-color var(--transition);
 }
 
 a:hover {
-  color: var(--color-warm-hover);
+  color: inherit;
+  text-decoration-color: currentColor;
 }
 
 ul,
@@ -188,11 +207,15 @@ ol {
   padding-left: 1.25rem;
 }
 
+::selection {
+  background: var(--mustard);
+  color: var(--charcoal);
+}
+
 /* --- Accessibility: visible focus --------------------------------------- */
 :focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 2px;
-  border-radius: var(--radius-sm);
+  outline: 3px solid var(--mustard);
+  outline-offset: 3px;
 }
 
 /* Skip link */
@@ -201,11 +224,11 @@ ol {
   left: var(--space-md);
   top: -100px;
   z-index: 1000;
-  background: var(--color-accent);
-  color: var(--color-accent-contrast);
+  background: var(--mustard);
+  color: var(--charcoal);
   padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-sm);
   font-weight: 700;
+  text-decoration: none;
   transition: top var(--transition);
 }
 .skip-link:focus {
@@ -221,33 +244,103 @@ ol {
 }
 
 .section {
+  position: relative;
   padding-block: var(--space-3xl);
+}
+@media (max-width: 640px) {
+  .section {
+    padding-block: var(--space-2xl);
+  }
 }
 
 .section--alt {
   background-color: var(--color-bg-elevated);
 }
 
-.section__eyebrow {
+/* Dark and blue grounds. Text flips to Bone. */
+.section--charcoal,
+.section--cobalt {
+  color: var(--bone);
+  --color-text: var(--bone);
+  --color-heading: var(--bone);
+  --color-text-muted: rgba(245, 241, 232, 0.82);
+}
+.section--charcoal {
+  background-color: var(--charcoal);
+}
+.section--cobalt {
+  background-color: var(--cobalt);
+}
+.section--charcoal a,
+.section--cobalt a {
+  text-decoration-color: var(--mustard);
+}
+
+/* Bauhaus marker in front of section headings: a small primary shape. */
+.shape {
   display: inline-block;
-  color: var(--color-warm);
-  font-weight: 700;
+  width: 0.7em;
+  height: 0.7em;
+  flex: none;
+}
+.shape--circle {
+  border-radius: 50%;
+  background: var(--vermilion);
+}
+.shape--square {
+  background: var(--cobalt);
+}
+.shape--triangle {
+  background: var(--mustard);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.heading-mark {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4em;
+}
+.heading-mark .shape {
+  width: 0.55em;
+  height: 0.55em;
+  margin-top: 0.27em;
+}
+
+.section__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   font-size: var(--fs-300);
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+.section__eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 3px;
+  background: var(--vermilion);
 }
 
 .section__intro {
-  max-width: 60ch;
+  max-width: 62ch;
   color: var(--color-text-muted);
   font-size: var(--fs-500);
-  margin-top: var(--space-md);
+  margin-top: var(--space-lg);
 }
 
 .lead {
   font-size: var(--fs-500);
   color: var(--color-text-muted);
+}
+
+/* Black-and-white photography, as in Bauhaus print. */
+.photo-bw,
+.photo-bw img {
+  filter: grayscale(1) contrast(1.08);
 }
 
 /* --- Buttons ------------------------------------------------------------- */
@@ -256,11 +349,14 @@ ol {
   align-items: center;
   justify-content: center;
   gap: var(--space-xs);
-  padding: 0.85rem 1.6rem;
-  font-size: var(--fs-400);
+  padding: 0.8rem 1.6rem;
+  font-family: var(--font-heading);
+  font-size: 1.1875rem; /* 19px bold: minimum for Charcoal on Vermilion */
   font-weight: 700;
-  border-radius: var(--radius-full);
-  border: 2px solid transparent;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: var(--rule) solid var(--charcoal);
   cursor: pointer;
   transition: background-color var(--transition), color var(--transition),
     border-color var(--transition), transform var(--transition);
@@ -268,35 +364,47 @@ ol {
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translate(-2px, -2px);
 }
 
 .btn--primary {
-  background-color: var(--color-accent);
-  color: var(--color-accent-contrast);
+  background-color: var(--vermilion);
+  color: var(--charcoal);
 }
 .btn--primary:hover {
-  background-color: var(--color-accent-hover);
-  color: var(--color-accent-contrast);
+  background-color: var(--charcoal);
+  border-color: var(--charcoal);
+  color: var(--bone);
 }
 
 .btn--ghost {
   background-color: transparent;
   color: var(--color-text);
-  border-color: var(--color-border);
+  border-color: currentColor;
 }
 .btn--ghost:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+/* Buttons on dark grounds */
+.section--charcoal .btn--primary:hover,
+.section--cobalt .btn--primary:hover {
+  background-color: var(--bone);
+  border-color: var(--bone);
+  color: var(--charcoal);
+}
+.section--charcoal .btn--ghost:hover {
+  background-color: var(--bone);
+  color: var(--charcoal);
 }
 
 /* --- Cards --------------------------------------------------------------- */
 .card {
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: var(--rule) solid var(--color-border);
   padding: var(--space-lg);
-  box-shadow: var(--shadow-sm);
+  color: var(--charcoal);
 }
 
 /* --- Generic grid -------------------------------------------------------- */
@@ -320,6 +428,42 @@ ol {
   }
 }
 
+/* --- Page headers -------------------------------------------------------- */
+/* The first section on every sub-page doubles as its header: a heavy rule and
+   the three primary shapes in the corner. */
+main > .section:first-child:not(.section--charcoal):not(.section--cobalt) {
+  background-image:
+    radial-gradient(circle at center, var(--vermilion) 0 70%, transparent 71%),
+    linear-gradient(var(--cobalt), var(--cobalt)),
+    linear-gradient(var(--mustard), var(--mustard));
+  background-repeat: no-repeat;
+  background-size: 2.5rem 2.5rem, 2.5rem 2.5rem, 2.5rem 2.5rem;
+  background-position:
+    right var(--container-pad) top 2rem,
+    right calc(var(--container-pad) + 3rem) top 2rem,
+    right calc(var(--container-pad) + 6rem) top 2rem;
+}
+@media (min-width: 1240px) {
+  main > .section:first-child:not(.section--charcoal):not(.section--cobalt) {
+    background-position:
+      right calc((100vw - var(--container-width)) / 2 + var(--container-pad)) top 2.5rem,
+      right calc((100vw - var(--container-width)) / 2 + var(--container-pad) + 3rem) top 2.5rem,
+      right calc((100vw - var(--container-width)) / 2 + var(--container-pad) + 6rem) top 2.5rem;
+  }
+}
+main > .section:first-child h1 {
+  padding-top: var(--space-md);
+}
+@media (max-width: 640px) {
+  main > .section:first-child:not(.section--charcoal):not(.section--cobalt) {
+    background-size: 1.5rem 1.5rem, 1.5rem 1.5rem, 1.5rem 1.5rem;
+    background-position:
+      right var(--container-pad) top 1.5rem,
+      right calc(var(--container-pad) + 2rem) top 1.5rem,
+      right calc(var(--container-pad) + 4rem) top 1.5rem;
+  }
+}
+
 /* --- Prose (legal pages) ------------------------------------------------- */
 .prose {
   max-width: 75ch;
@@ -340,16 +484,15 @@ ol {
   color: var(--color-text);
 }
 .prose .placeholder {
-  color: var(--color-warm);
+  color: var(--cobalt);
   font-weight: 600;
 }
 
 /* Reviewer note box used on legal pages */
 .note {
-  border-left: 4px solid var(--color-warm);
+  border-left: 6px solid var(--mustard);
   background-color: var(--color-bg-elevated);
   padding: var(--space-md) var(--space-lg);
-  border-radius: var(--radius-sm);
   margin-bottom: var(--space-lg);
   color: var(--color-text-muted);
 }
