@@ -7,8 +7,6 @@
  * Campai event form (`campai.ticketsSrc` in src/config.ts).
  */
 import CampaiSignup from '../CampaiSignup.astro';
-import { Picture } from 'astro:assets';
-import trainingImage from '../../assets/tickets/training.jpg';
 import { campai } from '../../config';
 import { withBase } from '../../utils/withBase';
 import { routes, homeAnchor, defaultLocale } from '../../i18n';
@@ -61,22 +59,6 @@ const de = lang === 'de';
       )
     }
 
-    <figure class="lead">
-      <Picture
-        src={trainingImage}
-        alt={
-          de
-            ? 'Mehrere Paare im Gi trainieren am Boden auf der Matte'
-            : 'Several pairs in the Gi training on the ground on the mat'
-        }
-        widths={[640, 960, 1360, 2000]}
-        sizes="(min-width: 1100px) 1040px, 100vw"
-        formats={['avif', 'webp']}
-        loading="eager"
-      />
-    </figure>
-
-
     <div class="checkout">
       <CampaiSignup
         src={campai.ticketsSrc}
@@ -92,23 +74,6 @@ const de = lang === 'de';
 </section>
 
 <style>
-  /* Same treatment as the lead image on the beginners course page. */
-  .lead {
-    margin: var(--space-xl) 0 0;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-md);
-  }
-
-  .lead :global(img) {
-    display: block;
-    width: 100%;
-    height: clamp(240px, 38vw, 460px);
-    object-fit: cover;
-    object-position: center 60%;
-  }
-
   /* CampaiSignup centers itself by default; align it with the text here. */
   .checkout {
     margin-top: var(--space-xl);
