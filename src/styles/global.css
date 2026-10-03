@@ -48,34 +48,42 @@
 
 
 :root {
-  /* --- Brand palette (Gravity BJJ, "Night Charcoal") -------------------- */
-  --mustard: #d1a526;
-  --cobalt: #3869a2;
-  --vermilion: #e5482f;
-  --bone: #f5f1e8;
-  --charcoal: #1f1d1b;
+  /* --- Brand palette (Gravity BJJ, "Night Forest") ---------------------- */
+  /* Role-based tokens: swap these five values to re-theme the whole site.
+     primary   = Ember     (mark half A, rules/ticks, decorative shapes)
+     secondary = Sage      (mark half B, section grounds with dark text)
+     accent    = Marigold  (partner disc, buttons, highlights on dark)
+     light     = Cream     (light grounds, text on dark)
+     dark      = Forest    (dark grounds, all body text on light) */
+  --primary: #c76c54;
+  --secondary: #8cb9a4;
+  --accent: #f6b42c;
+  --light: #f6f1e7;
+  --dark: #1d3b33;
+  --light-rgb: 246, 241, 231;
+  --dark-rgb: 29, 59, 51;
 
   /* --- Semantic colours -------------------------------------------------- */
-  --color-bg: var(--bone);
-  --color-bg-elevated: #ebe5d7;
-  --color-surface: #fbf9f4;
-  --color-border: var(--charcoal);
-  --color-rule: rgba(31, 29, 27, 0.18);
-  --color-text: var(--charcoal);
-  --color-text-muted: #4d4944;
-  --color-heading: var(--charcoal);
+  --color-bg: var(--light);
+  --color-bg-elevated: #ebe6d9;
+  --color-surface: #fcfaf5;
+  --color-border: var(--dark);
+  --color-rule: rgba(var(--dark-rgb), 0.18);
+  --color-text: var(--dark);
+  --color-text-muted: #3e5a51;
+  --color-heading: var(--dark);
 
-  /* Primary actions: Vermilion with Charcoal text (large, bold only). */
-  --color-accent: var(--vermilion);
-  --color-accent-hover: var(--charcoal);
-  --color-accent-contrast: var(--charcoal);
+  /* Primary actions: Marigold with Forest text. */
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--dark);
+  --color-accent-contrast: var(--dark);
 
-  /* Small accent text on Bone must not be Vermilion or Mustard (contrast),
-     so the "warm" accent token resolves to Cobalt. */
-  --color-warm: var(--cobalt);
-  --color-warm-hover: var(--charcoal);
+  /* Small accent text on Cream must not be Ember, Sage or Marigold
+     (contrast), so the "warm" accent token resolves to Forest. */
+  --color-warm: var(--dark);
+  --color-warm-hover: var(--dark);
 
-  --color-focus: var(--cobalt);
+  --color-focus: var(--primary);
 
   /* --- Typography ------------------------------------------------------ */
   --font-sans: "Avenir Next", "Inter", "Helvetica Neue", Arial, system-ui,
@@ -185,12 +193,12 @@ p {
   text-wrap: pretty;
 }
 
-/* Links: Charcoal text with a Vermilion underline (small Vermilion text on
-   Bone is not legible enough). */
+/* Links: Forest text with an Ember underline (small Ember text on Cream is
+   not legible enough). */
 a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: var(--vermilion);
+  text-decoration-color: var(--primary);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.2em;
   transition: color var(--transition), text-decoration-color var(--transition),
@@ -208,13 +216,13 @@ ol {
 }
 
 ::selection {
-  background: var(--mustard);
-  color: var(--charcoal);
+  background: var(--accent);
+  color: var(--dark);
 }
 
 /* --- Accessibility: visible focus --------------------------------------- */
 :focus-visible {
-  outline: 3px solid var(--mustard);
+  outline: 3px solid var(--primary);
   outline-offset: 3px;
 }
 
@@ -224,8 +232,8 @@ ol {
   left: var(--space-md);
   top: -100px;
   z-index: 1000;
-  background: var(--mustard);
-  color: var(--charcoal);
+  background: var(--accent);
+  color: var(--dark);
   padding: var(--space-sm) var(--space-md);
   font-weight: 700;
   text-decoration: none;
@@ -257,23 +265,27 @@ ol {
   background-color: var(--color-bg-elevated);
 }
 
-/* Dark and blue grounds. Text flips to Bone. */
-.section--charcoal,
-.section--cobalt {
-  color: var(--bone);
-  --color-text: var(--bone);
-  --color-heading: var(--bone);
-  --color-text-muted: rgba(245, 241, 232, 0.82);
+/* Dark ground: text flips to Cream. */
+.section--dark {
+  color: var(--light);
+  --color-text: var(--light);
+  --color-heading: var(--light);
+  --color-text-muted: rgba(var(--light-rgb), 0.82);
+  background-color: var(--dark);
 }
-.section--charcoal {
-  background-color: var(--charcoal);
+.section--dark a {
+  text-decoration-color: var(--accent);
 }
-.section--cobalt {
-  background-color: var(--cobalt);
+/* Sage ground: text stays Forest (Cream on Sage is not legible). */
+.section--secondary {
+  color: var(--dark);
+  --color-text: var(--dark);
+  --color-heading: var(--dark);
+  --color-text-muted: var(--dark);
+  background-color: var(--secondary);
 }
-.section--charcoal a,
-.section--cobalt a {
-  text-decoration-color: var(--mustard);
+.section--secondary a {
+  text-decoration-color: var(--dark);
 }
 
 /* Bauhaus marker in front of section headings: a small primary shape. */
@@ -285,13 +297,13 @@ ol {
 }
 .shape--circle {
   border-radius: 50%;
-  background: var(--vermilion);
+  background: var(--accent);
 }
 .shape--square {
-  background: var(--cobalt);
+  background: var(--secondary);
 }
 .shape--triangle {
-  background: var(--mustard);
+  background: var(--primary);
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
 
@@ -322,7 +334,7 @@ ol {
   content: "";
   width: 1.75rem;
   height: 3px;
-  background: var(--vermilion);
+  background: var(--primary);
 }
 
 .section__intro {
@@ -351,12 +363,12 @@ ol {
   gap: var(--space-xs);
   padding: 0.8rem 1.6rem;
   font-family: var(--font-heading);
-  font-size: 1.1875rem; /* 19px bold: minimum for Charcoal on Vermilion */
+  font-size: 1.1875rem;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0.01em;
   text-decoration: none;
-  border: var(--rule) solid var(--charcoal);
+  border: var(--rule) solid var(--dark);
   cursor: pointer;
   transition: background-color var(--transition), color var(--transition),
     border-color var(--transition), transform var(--transition);
@@ -368,13 +380,13 @@ ol {
 }
 
 .btn--primary {
-  background-color: var(--vermilion);
-  color: var(--charcoal);
+  background-color: var(--accent);
+  color: var(--dark);
 }
 .btn--primary:hover {
-  background-color: var(--charcoal);
-  border-color: var(--charcoal);
-  color: var(--bone);
+  background-color: var(--dark);
+  border-color: var(--dark);
+  color: var(--light);
 }
 
 .btn--ghost {
@@ -388,15 +400,14 @@ ol {
 }
 
 /* Buttons on dark grounds */
-.section--charcoal .btn--primary:hover,
-.section--cobalt .btn--primary:hover {
-  background-color: var(--bone);
-  border-color: var(--bone);
-  color: var(--charcoal);
+.section--dark .btn--primary:hover {
+  background-color: var(--light);
+  border-color: var(--light);
+  color: var(--dark);
 }
-.section--charcoal .btn--ghost:hover {
-  background-color: var(--bone);
-  color: var(--charcoal);
+.section--dark .btn--ghost:hover {
+  background-color: var(--light);
+  color: var(--dark);
 }
 
 /* --- Cards --------------------------------------------------------------- */
@@ -404,7 +415,7 @@ ol {
   background-color: var(--color-surface);
   border: var(--rule) solid var(--color-border);
   padding: var(--space-lg);
-  color: var(--charcoal);
+  color: var(--dark);
 }
 
 /* --- Generic grid -------------------------------------------------------- */
@@ -431,11 +442,11 @@ ol {
 /* --- Page headers -------------------------------------------------------- */
 /* The first section on every sub-page doubles as its header: a heavy rule and
    the three primary shapes in the corner. */
-main > .section:first-child:not(.section--charcoal):not(.section--cobalt) {
+main > .section:first-child:not(.section--dark):not(.section--secondary) {
   background-image:
-    radial-gradient(circle at center, var(--vermilion) 0 70%, transparent 71%),
-    linear-gradient(var(--cobalt), var(--cobalt)),
-    linear-gradient(var(--mustard), var(--mustard));
+    radial-gradient(circle at center, var(--accent) 0 70%, transparent 71%),
+    linear-gradient(var(--secondary), var(--secondary)),
+    linear-gradient(var(--primary), var(--primary));
   background-repeat: no-repeat;
   background-size: 2.5rem 2.5rem, 2.5rem 2.5rem, 2.5rem 2.5rem;
   background-position:
@@ -444,7 +455,7 @@ main > .section:first-child:not(.section--charcoal):not(.section--cobalt) {
     right calc(var(--container-pad) + 6rem) top 2rem;
 }
 @media (min-width: 1240px) {
-  main > .section:first-child:not(.section--charcoal):not(.section--cobalt) {
+  main > .section:first-child:not(.section--dark):not(.section--secondary) {
     background-position:
       right calc((100vw - var(--container-width)) / 2 + var(--container-pad)) top 2.5rem,
       right calc((100vw - var(--container-width)) / 2 + var(--container-pad) + 3rem) top 2.5rem,
@@ -455,7 +466,7 @@ main > .section:first-child h1 {
   padding-top: var(--space-md);
 }
 @media (max-width: 640px) {
-  main > .section:first-child:not(.section--charcoal):not(.section--cobalt) {
+  main > .section:first-child:not(.section--dark):not(.section--secondary) {
     background-size: 1.5rem 1.5rem, 1.5rem 1.5rem, 1.5rem 1.5rem;
     background-position:
       right var(--container-pad) top 1.5rem,
@@ -484,13 +495,14 @@ main > .section:first-child h1 {
   color: var(--color-text);
 }
 .prose .placeholder {
-  color: var(--cobalt);
+  color: var(--dark);
+  background: rgba(var(--dark-rgb), 0.06);
   font-weight: 600;
 }
 
 /* Reviewer note box used on legal pages */
 .note {
-  border-left: 6px solid var(--mustard);
+  border-left: 6px solid var(--primary);
   background-color: var(--color-bg-elevated);
   padding: var(--space-md) var(--space-lg);
   margin-bottom: var(--space-lg);

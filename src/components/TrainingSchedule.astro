@@ -61,10 +61,10 @@ const dayLabel = (day: string) =>
 
 <style>
   .schedule {
-    border: var(--rule) solid var(--charcoal);
+    border: var(--rule) solid var(--dark);
     overflow: hidden;
-    background-color: var(--bone);
-    color: var(--charcoal);
+    background-color: var(--light);
+    color: var(--dark);
     --color-text-muted: #4d4944;
   }
 
@@ -80,8 +80,8 @@ const dayLabel = (day: string) =>
   }
 
   .schedule__table thead th {
-    background-color: var(--charcoal);
-    color: var(--bone);
+    background-color: var(--dark);
+    color: var(--light);
     font-family: var(--font-heading);
     font-weight: 600;
     font-size: var(--fs-300);
@@ -90,14 +90,14 @@ const dayLabel = (day: string) =>
   }
 
   .schedule__table tbody tr {
-    border-top: var(--rule) solid var(--charcoal);
+    border-top: var(--rule) solid var(--dark);
   }
   .schedule__table tbody tr:first-child {
     border-top: 0;
   }
 
   .schedule__table tbody th[scope='row'] {
-    color: var(--charcoal);
+    color: var(--dark);
     font-family: var(--font-heading);
     font-size: var(--fs-500);
     font-weight: 700;
@@ -110,15 +110,15 @@ const dayLabel = (day: string) =>
     flex: none;
     width: 0.85rem;
     height: 0.85rem;
-    background: var(--mustard);
+    background: var(--primary);
     border-radius: 50%;
   }
   .schedule__table tbody tr:nth-child(3n + 2) th[scope='row']::before {
-    background: var(--vermilion);
+    background: var(--accent);
     border-radius: 0;
   }
   .schedule__table tbody tr:nth-child(3n) th[scope='row']::before {
-    background: var(--cobalt);
+    background: var(--secondary);
     border-radius: 0;
     clip-path: polygon(50% 0, 100% 100%, 0 100%);
   }
@@ -128,8 +128,8 @@ const dayLabel = (day: string) =>
   }
 
   .schedule__table a {
-    color: var(--charcoal);
-    text-decoration-color: var(--vermilion);
+    color: var(--dark);
+    text-decoration-color: var(--primary);
   }
 
   .schedule__level,
@@ -137,8 +137,8 @@ const dayLabel = (day: string) =>
     display: inline-block;
     margin-left: var(--space-xs);
     padding: 0.15rem 0.6rem;
-    background-color: var(--mustard);
-    color: var(--charcoal);
+    background-color: var(--accent);
+    color: var(--dark);
     font-size: var(--fs-300);
     font-weight: 600;
   }

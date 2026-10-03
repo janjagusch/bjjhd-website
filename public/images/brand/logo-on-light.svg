@@ -11,24 +11,24 @@
   </defs>
   <g id="mark" transform="rotate(-15)">
     <g id="halves" mask="url(#cuts)">
-      <path id="half-a" d="M -260 35 A 200 200 0 0 1 140 35 Z" fill="#D1A526"/>
-      <path id="half-b" d="M 260 -35 A 200 200 0 0 1 -140 -35 Z" fill="#3869A2"/>
+      <path id="half-a" d="M -260 35 A 200 200 0 0 1 140 35 Z" fill="#C76C54"/>
+      <path id="half-b" d="M 260 -35 A 200 200 0 0 1 -140 -35 Z" fill="#8CB9A4"/>
       <!-- overlap tone, formerly produced by 80% opacity -->
-      <path id="overlap" d="M 260 -35 A 200 200 0 0 1 -140 -35 Z" fill="#5B84A4" clip-path="url(#clip-a)"/>
+      <path id="overlap" d="M 260 -35 A 200 200 0 0 1 -140 -35 Z" fill="#AEC2AA" clip-path="url(#clip-a)"/>
     </g>
-    <circle id="partner-a" cx="140" cy="35" r="40" fill="#E5482F"/>
-    <circle id="partner-b" cx="-140" cy="-35" r="40" fill="#1F1D1B"/>
+    <circle id="partner-a" cx="140" cy="35" r="40" fill="#F6B42C"/>
+    <circle id="partner-b" cx="-140" cy="-35" r="40" fill="#1D3B33"/>
   </g>
   <g id="wordmark" transform="translate(-248.90 265.74) scale(0.9543)">
-      <g transform="translate(0.00 0)"><g fill="none" stroke="#1F1D1B" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 5.70 -24.34 A 18.63 18.63 0 1 1 42.97 -24.34 A 18.63 18.63 0 1 1 5.70 -24.34 Z"/><path d="M 42.97 -48.67 V 2.43 A 18.63 18.63 0 0 1 5.70 2.43"/></g></g>
-      <g transform="translate(6.96 0)"><g fill="none" stroke="#1F1D1B" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 67.31 0.00 V -24.34 A 18.63 18.63 0 0 1 85.94 -42.97"/></g></g>
-      <g transform="translate(4.29 0)"><g fill="none" stroke="#1F1D1B" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 103.16 -24.34 A 18.63 18.63 0 1 1 140.43 -24.34 A 18.63 18.63 0 1 1 103.16 -24.34 Z"/><path d="M 140.43 -48.67 V 0.00"/></g></g>
-      <g transform="translate(7.70 0)"><g fill="#1F1D1B"><path d="M 155.83 -48.67 L 168.58 -48.67 L 180.17 -25.51 L 191.75 -48.67 L 204.50 -48.67 L 180.17 0.00 Z"/></g></g>
-      <g transform="translate(9.26 0)"><g fill="none" stroke="#1F1D1B" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 221.84 -48.67 V 0.00"/></g><g fill="#1F1D1B"><circle cx="221.84" cy="-67.72" r="7.07"/></g></g>
-      <g transform="translate(9.27 0)"><g fill="none" stroke="#1F1D1B" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 261.08 -64.25 V 0.00"/><path d="M 240.47 -42.97 H 281.69"/></g></g>
-      <g transform="translate(11.54 0)"><g fill="none" stroke="#1F1D1B" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 295.80 -48.67 V -24.34 A 18.63 18.63 0 0 0 333.07 -24.34"/><path d="M 333.07 -48.67 V 2.43 A 18.63 18.63 0 0 1 295.80 2.43"/></g></g>
-      <g transform="translate(20.71 0)"><g fill="none" stroke="#1F1D1B" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 384.02 -78.85 V 0.00"/><path d="M 384.02 -24.34 A 18.63 18.63 0 1 1 421.29 -24.34 A 18.63 18.63 0 1 1 384.02 -24.34 Z"/></g></g>
-      <g transform="translate(20.23 0)"><g fill="none" stroke="#1F1D1B" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 455.72 -48.67 V 10.07 A 11.00 11.00 0 0 1 444.72 21.07"/></g><g fill="#1F1D1B"><circle cx="455.72" cy="-67.72" r="7.07"/></g></g>
-      <g transform="translate(22.43 0)"><g fill="none" stroke="#1F1D1B" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 492.09 -48.67 V 10.07 A 11.00 11.00 0 0 1 481.09 21.07"/></g><g fill="#1F1D1B"><circle cx="492.09" cy="-67.72" r="7.07"/></g></g>
+      <g transform="translate(0.00 0)"><g fill="none" stroke="#1D3B33" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 5.70 -24.34 A 18.63 18.63 0 1 1 42.97 -24.34 A 18.63 18.63 0 1 1 5.70 -24.34 Z"/><path d="M 42.97 -48.67 V 2.43 A 18.63 18.63 0 0 1 5.70 2.43"/></g></g>
+      <g transform="translate(6.96 0)"><g fill="none" stroke="#1D3B33" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 67.31 0.00 V -24.34 A 18.63 18.63 0 0 1 85.94 -42.97"/></g></g>
+      <g transform="translate(4.29 0)"><g fill="none" stroke="#1D3B33" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 103.16 -24.34 A 18.63 18.63 0 1 1 140.43 -24.34 A 18.63 18.63 0 1 1 103.16 -24.34 Z"/><path d="M 140.43 -48.67 V 0.00"/></g></g>
+      <g transform="translate(7.70 0)"><g fill="#1D3B33"><path d="M 155.83 -48.67 L 168.58 -48.67 L 180.17 -25.51 L 191.75 -48.67 L 204.50 -48.67 L 180.17 0.00 Z"/></g></g>
+      <g transform="translate(9.26 0)"><g fill="none" stroke="#1D3B33" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 221.84 -48.67 V 0.00"/></g><g fill="#1D3B33"><circle cx="221.84" cy="-67.72" r="7.07"/></g></g>
+      <g transform="translate(9.27 0)"><g fill="none" stroke="#1D3B33" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 261.08 -64.25 V 0.00"/><path d="M 240.47 -42.97 H 281.69"/></g></g>
+      <g transform="translate(11.54 0)"><g fill="none" stroke="#1D3B33" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 295.80 -48.67 V -24.34 A 18.63 18.63 0 0 0 333.07 -24.34"/><path d="M 333.07 -48.67 V 2.43 A 18.63 18.63 0 0 1 295.80 2.43"/></g></g>
+      <g transform="translate(20.71 0)"><g fill="none" stroke="#1D3B33" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 384.02 -78.85 V 0.00"/><path d="M 384.02 -24.34 A 18.63 18.63 0 1 1 421.29 -24.34 A 18.63 18.63 0 1 1 384.02 -24.34 Z"/></g></g>
+      <g transform="translate(20.23 0)"><g fill="none" stroke="#1D3B33" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 455.72 -48.67 V 10.07 A 11.00 11.00 0 0 1 444.72 21.07"/></g><g fill="#1D3B33"><circle cx="455.72" cy="-67.72" r="7.07"/></g></g>
+      <g transform="translate(22.43 0)"><g fill="none" stroke="#1D3B33" stroke-width="11.41" stroke-linecap="butt" stroke-linejoin="miter"><path d="M 492.09 -48.67 V 10.07 A 11.00 11.00 0 0 1 481.09 21.07"/></g><g fill="#1D3B33"><circle cx="492.09" cy="-67.72" r="7.07"/></g></g>
   </g>
 </svg>
