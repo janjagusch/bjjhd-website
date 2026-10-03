@@ -14,8 +14,19 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
+  <div class="site-footer__stripe" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
+      <img
+        class="site-footer__logo"
+        src={withBase('/images/brand/logo-on-dark.svg')}
+        alt=""
+        width="551"
+        height="496"
+        loading="lazy"
+      />
       <span class="brand__name">{club.name}</span>
       {
         social.instagram && (
@@ -76,10 +87,30 @@ const year = new Date().getFullYear();
 
 <style>
   .site-footer {
-    background-color: var(--color-bg-elevated);
-    border-top: 1px solid var(--color-border);
-    padding-block: var(--space-2xl) var(--space-lg);
-    color: var(--color-text-muted);
+    background-color: var(--charcoal);
+    padding-block: 0 var(--space-lg);
+    color: rgba(245, 241, 232, 0.78);
+  }
+
+  .site-footer__stripe {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr;
+    height: 6px;
+    margin-bottom: var(--space-2xl);
+  }
+  .site-footer__stripe span:nth-child(1) {
+    background: var(--vermilion);
+  }
+  .site-footer__stripe span:nth-child(2) {
+    background: var(--cobalt);
+  }
+  .site-footer__stripe span:nth-child(3) {
+    background: var(--mustard);
+  }
+
+  .site-footer a {
+    color: var(--bone);
+    text-decoration-color: var(--mustard);
   }
 
   .site-footer__inner {
@@ -94,19 +125,36 @@ const year = new Date().getFullYear();
     }
   }
 
+  .site-footer__logo {
+    width: 140px;
+    height: auto;
+    margin-bottom: var(--space-lg);
+  }
+
   .brand__name {
-    color: var(--color-heading);
+    color: var(--bone);
     font-family: var(--font-heading);
-    font-weight: 600;
+    font-weight: 700;
     font-size: var(--fs-600);
+    letter-spacing: -0.01em;
   }
 
   .site-footer__heading {
-    color: var(--color-heading);
-    font-size: var(--fs-400);
+    color: var(--bone);
+    font-size: var(--fs-300);
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.14em;
     margin-bottom: var(--space-sm);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .site-footer__heading::before {
+    content: '';
+    width: 1.25rem;
+    height: 3px;
+    background: var(--vermilion);
   }
 
   address {
@@ -131,6 +179,7 @@ const year = new Date().getFullYear();
   .site-footer__social:hover,
   .site-footer__social:focus-visible {
     text-decoration: underline;
+    text-decoration-color: var(--mustard);
   }
 
   .site-footer__social-icon {
@@ -138,7 +187,7 @@ const year = new Date().getFullYear();
   }
 
   .site-footer__social-label {
-    color: var(--color-text-muted);
+    color: rgba(245, 241, 232, 0.78);
   }
 
   .site-footer__links {
@@ -150,9 +199,9 @@ const year = new Date().getFullYear();
   }
 
   .site-footer__bottom {
-    margin-top: var(--space-xl);
+    margin-top: var(--space-2xl);
     padding-top: var(--space-md);
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid rgba(245, 241, 232, 0.18);
     font-size: var(--fs-300);
   }
 </style>

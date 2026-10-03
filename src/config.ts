@@ -218,10 +218,10 @@ export const headCoach = {
   ] satisfies Localized[],
 };
 
-// === Hero slideshow / Diashow =============================================
-// Optional crossfading background images for the landing-page hero.
+// === Hero photos ==========================================================
+// The landing-page hero arranges the first three photos in a Bauhaus grid:
+//   1st = wide band on top, 2nd = small strip bottom right, 3rd = circle crop.
 // Drop your photos into /public/images/slideshow/ and list them here.
-// Leave the array empty to keep the plain gradient background.
 export interface SlideshowImage {
   /** Path relative to /public, e.g. "/images/slideshow/mat-1.jpg". */
   src: string;
