@@ -200,6 +200,25 @@ const c = beginnersCourse;
         ))
       }
     </div>
+    {/* Tickets for non-members; membership stays the primary option. */}
+    <p class="prices__tickets">
+      {
+        de ? (
+          <>
+            Noch kein Mitglied? Mit einem{' '}
+            <a href={withBase(routes.tickets[lang])}>Ticket</a> kannst du am
+            angeleiteten Training teilnehmen. Die Open Mat ist kostenlos für
+            alle.
+          </>
+        ) : (
+          <>
+            Not a member yet? With a{' '}
+            <a href={withBase(routes.tickets[lang])}>ticket</a> you can join the
+            instructed classes. The open mat is free for everyone.
+          </>
+        )
+      }
+    </p>
   </div>
 </section>
 
@@ -266,6 +285,12 @@ const c = beginnersCourse;
     color: var(--color-text-muted);
     font-size: var(--fs-300);
     margin-top: var(--space-xs);
+  }
+  .prices__tickets {
+    color: var(--color-text-muted);
+    text-align: center;
+    max-width: 60ch;
+    margin: var(--space-lg) auto 0;
   }
 
   .contact__address {

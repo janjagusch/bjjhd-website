@@ -1,0 +1,89 @@
+---
+/**
+ * Ticket purchase page for non-members.
+ *
+ * After the free trial class, non-members need a ticket for instructed
+ * classes. The open mat stays free for everyone. The checkout itself is a
+ * Campai event form (`campai.ticketsSrc` in src/config.ts).
+ */
+import CampaiSignup from '../CampaiSignup.astro';
+import { campai } from '../../config';
+import { withBase } from '../../utils/withBase';
+import { routes, homeAnchor, defaultLocale } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const de = lang === 'de';
+---
+
+<section class="section">
+  <div class="container">
+    <h1>Tickets</h1>
+    {
+      de ? (
+        <div class="section__intro">
+          <p>
+            Dir hat dein <a href={withBase(homeAnchor(lang, 'trial'))}>kostenloses
+            Probetraining</a> gefallen? Dann <a href={withBase(routes.signup[lang])}>werde
+            Mitglied</a> und trainiere so oft du willst. Alle Trainings sind im
+            Beitrag enthalten.
+          </p>
+          <p>
+            Du willst noch kein Mitglied werden? Dann kannst du mit einem Ticket
+            am angeleiteten Training teilnehmen.
+          </p>
+          <p>
+            Die Open Mat ist kostenlos für alle, dafür brauchst du kein Ticket.
+          </p>
+        </div>
+      ) : (
+        <div class="section__intro">
+          <p>
+            Enjoyed your <a href={withBase(homeAnchor(lang, 'trial'))}>free
+            trial class</a>? <a href={withBase(routes.signup[lang])}>Become a
+            member</a> and train as often as you like. All classes are included
+            in the membership fee.
+          </p>
+          <p>
+            Not ready to become a member yet? You can join the instructed
+            classes by buying a ticket.
+          </p>
+          <p>
+            The open mat is free for everyone, no ticket needed.
+          </p>
+        </div>
+      )
+    }
+
+    <div class="checkout">
+      <CampaiSignup
+        src={campai.ticketsSrc}
+        lang={lang}
+        title={
+          de
+            ? 'Ticketkauf (bereitgestellt von Campai)'
+            : 'Ticket purchase (provided by Campai)'
+        }
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* CampaiSignup centers itself by default; align it with the text here. */
+  .checkout {
+    margin-top: var(--space-xl);
+  }
+
+  .checkout :global(.campai) {
+    margin-inline: 0;
+  }
+
+  .section__intro p + p {
+    margin-top: var(--space-md);
+  }
+</style>
