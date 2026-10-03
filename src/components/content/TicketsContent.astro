@@ -34,25 +34,47 @@ const openMatWhen = openMat
     <h1>Tickets</h1>
     {
       de ? (
-        <p class="section__intro">
-          Nach deinem <a href={withBase(homeAnchor(lang, 'trial'))}>kostenlosen
-          Probetraining</a> brauchst du ein Ticket, um an unseren angeleiteten
-          Trainings teilzunehmen, sofern du kein Mitglied bist. Als
-          <a href={withBase(routes.signup[lang])}>Mitglied</a> ist das Training
-          im Beitrag enthalten. Die Ausnahme ist unser Open
-          Mat{openMatWhen && <> ({openMatWhen})</>}: Es ist offen und kostenlos
-          für alle, du brauchst dafür kein Ticket.
-        </p>
+        <div class="section__intro">
+          <p>
+            Dir hat dein <a href={withBase(homeAnchor(lang, 'trial'))}>kostenloses
+            Probetraining</a> gefallen? Dann werde Mitglied und trainiere so oft
+            du willst. Alle Trainings sind im Beitrag enthalten.
+          </p>
+          <p>
+            <a href={withBase(routes.signup[lang])} class="btn btn--primary">
+              Mitglied werden
+            </a>
+          </p>
+          <p>
+            Du willst noch kein Mitglied werden? Dann kannst du mit einem Ticket
+            am angeleiteten Training teilnehmen.
+          </p>
+          <p>
+            Das Open Mat{openMatWhen && <> ({openMatWhen})</>} ist kostenlos
+            für alle, dafür brauchst du kein Ticket.
+          </p>
+        </div>
       ) : (
-        <p class="section__intro">
-          After your <a href={withBase(homeAnchor(lang, 'trial'))}>free trial
-          class</a>, you need a ticket to attend our instructed training classes
-          if you are not a member. As a
-          <a href={withBase(routes.signup[lang])}>member</a>, training is
-          included in your membership fee. The exception is our open
-          mat{openMatWhen && <> ({openMatWhen})</>}: it is open and free for
-          everyone, no ticket needed.
-        </p>
+        <div class="section__intro">
+          <p>
+            Enjoyed your <a href={withBase(homeAnchor(lang, 'trial'))}>free
+            trial class</a>? Become a member and train as often as you like. All
+            classes are included in the membership fee.
+          </p>
+          <p>
+            <a href={withBase(routes.signup[lang])} class="btn btn--primary">
+              Become a member
+            </a>
+          </p>
+          <p>
+            Not ready to become a member yet? You can join the instructed
+            classes by buying a ticket.
+          </p>
+          <p>
+            The open mat{openMatWhen && <> ({openMatWhen})</>} is free for
+            everyone, no ticket needed.
+          </p>
+        </div>
       )
     }
 
@@ -123,6 +145,10 @@ const openMatWhen = openMat
 
   .checkout :global(.campai) {
     margin-inline: 0;
+  }
+
+  .section__intro p + p {
+    margin-top: var(--space-md);
   }
 
   .schedule-wrap h2 {
