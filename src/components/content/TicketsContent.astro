@@ -10,9 +10,9 @@ import CampaiSignup from '../CampaiSignup.astro';
 import TrainingSchedule from '../TrainingSchedule.astro';
 import { Picture } from 'astro:assets';
 import trainingImage from '../../assets/tickets/training.jpg';
-import { campai, trainingSchedule } from '../../config';
+import { campai } from '../../config';
 import { withBase } from '../../utils/withBase';
-import { ui, routes, homeAnchor, defaultLocale } from '../../i18n';
+import { routes, homeAnchor, defaultLocale } from '../../i18n';
 import type { Locale } from '../../i18n';
 
 interface Props {
@@ -21,12 +21,6 @@ interface Props {
 
 const { lang = defaultLocale } = Astro.props;
 const de = lang === 'de';
-const t = ui[lang];
-
-const openMat = trainingSchedule.find((s) => s.title.en === 'Open Mat');
-const openMatWhen = openMat
-  ? `${t.weekdays[openMat.day.toLowerCase()] ?? openMat.day}, ${openMat.time}`
-  : undefined;
 ---
 
 <section class="section">
@@ -46,8 +40,7 @@ const openMatWhen = openMat
             am angeleiteten Training teilnehmen.
           </p>
           <p>
-            Das Open Mat{openMatWhen && <> ({openMatWhen})</>} ist kostenlos
-            für alle, dafür brauchst du kein Ticket.
+            Die Open Mat ist kostenlos für alle, dafür brauchst du kein Ticket.
           </p>
         </div>
       ) : (
@@ -63,8 +56,7 @@ const openMatWhen = openMat
             classes by buying a ticket.
           </p>
           <p>
-            The open mat{openMatWhen && <> ({openMatWhen})</>} is free for
-            everyone, no ticket needed.
+            The open mat is free for everyone, no ticket needed.
           </p>
         </div>
       )
