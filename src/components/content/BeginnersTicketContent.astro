@@ -1,0 +1,75 @@
+---
+/**
+ * Ticket purchase page for the beginners course.
+ *
+ * Not linked in the nav: we send this link to people who signed up on the
+ * course landing page (`routes.course`). The checkout is a Campai event form
+ * (`campai.beginnersTicketSrc` in src/config.ts).
+ */
+import CampaiSignup from '../CampaiSignup.astro';
+import { beginnersCourse as c, campai } from '../../config';
+import { defaultLocale } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = defaultLocale } = Astro.props;
+const de = lang === 'de';
+---
+
+<section class="section">
+  <div class="container">
+    <h1>{de ? 'Ticket für den Anfängerkurs' : 'Beginners course ticket'}</h1>
+    {
+      de ? (
+        <div class="section__intro">
+          <p>
+            Hier kannst du dein Ticket für den Anfängerkurs kaufen.
+          </p>
+          <p>
+            Bitte überweise den Betrag spätestens bis zum zweiten Kurstermin
+            am {c.secondClassDate.de}.
+          </p>
+        </div>
+      ) : (
+        <div class="section__intro">
+          <p>
+            Buy your ticket for the beginners course here.
+          </p>
+          <p>
+            Please wire the money by the day of the second class,
+            {c.secondClassDate.en}, at the latest.
+          </p>
+        </div>
+      )
+    }
+
+    <div class="checkout">
+      <CampaiSignup
+        src={campai.beginnersTicketSrc}
+        lang={lang}
+        title={
+          de
+            ? 'Ticketkauf Anfängerkurs (bereitgestellt von Campai)'
+            : 'Beginners course ticket purchase (provided by Campai)'
+        }
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .checkout {
+    margin-top: var(--space-xl);
+  }
+
+  .checkout :global(.campai) {
+    margin-inline: 0;
+  }
+
+  .section__intro p + p {
+    margin-top: var(--space-md);
+  }
+</style>

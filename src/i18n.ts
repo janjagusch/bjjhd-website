@@ -30,6 +30,8 @@ export const routes = {
   beginners: { de: '/einsteiger', en: '/en/beginners' },
   // Landing page for the 8-week beginners course (not in the main nav).
   course: { de: '/beginners', en: '/en/beginners-course' },
+  // Ticket purchase for beginners course participants (sent by mail, not in nav).
+  courseTicket: { de: '/beginners-ticket', en: '/en/beginners-ticket' },
   // Ticket purchase for non-members (linked from the prices section on home).
   tickets: { de: '/tickets', en: '/en/tickets' },
   rules: { de: '/regeln', en: '/en/rules' },

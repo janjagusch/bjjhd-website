@@ -13,7 +13,7 @@ export default defineConfig({
     sitemap({
       // Keep the (noindex) confirmation pages out of the sitemap.
       filter: (page) =>
-        !/\/(danke|en\/thank-you)\/?$/.test(page),
+        !/\/(danke|en\/thank-you|beginners-ticket|en\/beginners-ticket)\/?$/.test(page),
     }),
   ],
 

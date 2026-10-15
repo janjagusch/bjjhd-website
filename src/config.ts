@@ -330,6 +330,9 @@ export const campai = {
   // Registration form for the beginners course (signup only, no payment).
   beginnersCourseSrc:
     'https://app.campai.com/em/a3f04/applications/6abf8fe5f4fcc9b0e43d9ddd',
+  // Ticket checkout for the beginners course (payment, sent to people who signed up).
+  beginnersTicketSrc:
+    'https://app.campai.com/em/a3f04/events/6ab2660b1bdd63520e9d176e',
   // Ticket checkout for instructed classes (non-members, after the trial).
   ticketsSrc:
     'https://app.campai.com/em/a3f04/events/6ab695e169253fe02a1d7677/checkout',
@@ -342,6 +345,8 @@ export const beginnersCourse = {
   weekday: { de: 'Donnerstag', en: 'Thursday' } satisfies Localized,
   time: '18:00',
   startDate: { de: '22. Oktober 2026', en: '22 October 2026' } satisfies Localized,
+  /** Second session: payment is due by this day. */
+  secondClassDate: { de: '29. Oktober 2026', en: '29 October 2026' } satisfies Localized,
   endDate: { de: '10. Dezember 2026', en: '10 December 2026' } satisfies Localized,
   /** Fee for the rest of the course, due only if you continue after the
    *  free first session. */
