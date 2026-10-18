@@ -13,21 +13,34 @@ const { coach, lang = defaultLocale } = Astro.props;
 ---
 
 <article class="coach card">
-  <img
-    class="coach__photo"
-    src={withBase(coach.photo)}
-    alt={coach.photoAlt[lang]}
-    width="320"
-    height="320"
-    loading="lazy"
-    decoding="async"
-  />
+  <div class="coach__media">
+    <img
+      class="coach__photo"
+      src={withBase(coach.photo)}
+      alt={coach.photoAlt[lang]}
+      width="800"
+      height="800"
+      loading="lazy"
+      decoding="async"
+    />
+    {
+      coach.photoHover && (
+        <img
+          class="coach__photo coach__photo--hover"
+          src={withBase(coach.photoHover)}
+          alt=""
+          aria-hidden="true"
+          width="800"
+          height="800"
+          loading="lazy"
+          decoding="async"
+        />
+      )
+    }
+  </div>
   <div class="coach__body">
     <h3 class="coach__name">{coach.name}</h3>
-    <p class="coach__meta">
-      <span class="coach__role">{coach.role[lang]}</span>
-      <span class="coach__belt">{coach.belt[lang]}</span>
-    </p>
+    <p class="coach__belt">{coach.belt[lang]}</p>
     {coach.tagline && <p class="coach__tagline">{coach.tagline[lang]}</p>}
     {coach.bio && <p class="coach__bio">{coach.bio[lang]}</p>}
   </div>
@@ -41,11 +54,36 @@ const { coach, lang = defaultLocale } = Astro.props;
     flex-direction: column;
   }
 
+  .coach__media {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-bg-elevated);
+  }
+
   .coach__photo {
+    display: block;
     width: 100%;
+    height: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    background-color: var(--color-bg-elevated);
+  }
+
+  .coach__photo--hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .coach:hover .coach__photo--hover,
+  .coach:focus-within .coach__photo--hover {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .coach__photo--hover {
+      transition: none;
+    }
   }
 
   .coach__body {
@@ -56,30 +94,19 @@ const { coach, lang = defaultLocale } = Astro.props;
     font-size: var(--fs-600);
   }
 
-  .coach__meta {
-    display: flex;
-    flex-direction: column;
-    margin-top: var(--space-xs);
-  }
-
-  .coach__role {
-    color: var(--color-text-muted);
-    font-weight: 600;
-  }
-
   .coach__belt {
+    margin-top: 0.15rem;
     color: var(--color-warm);
     font-weight: 600;
   }
 
-  .coach__bio {
+  .coach__tagline {
     margin-top: var(--space-sm);
     color: var(--color-text-muted);
   }
 
-  .coach__tagline {
-    margin-top: var(--space-xs);
-    font-style: italic;
+  .coach__bio {
+    margin-top: var(--space-sm);
     color: var(--color-text-muted);
   }
 </style>
