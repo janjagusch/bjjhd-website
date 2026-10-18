@@ -214,8 +214,16 @@ export const headCoach = {
   } satisfies Localized,
   paragraphs: [
     {
-      de: 'Ben trainiert seit über 14 Jahren Brazilian Jiu-Jitsu. Seinen schwarzen Gurt erhielt er 2023.',
-      en: 'Ben has been training Brazilian Jiu-Jitsu for over 14 years. He received his black belt in 2023.',
+      de: 'Bens BJJ-Reise startete 2011 in Hannover unter Douglas Mayer, nachdem er zwei Jahre lang Ju-Jutsu als Einstiegsdroge ausprobiert hatte. In den kommenden Jahren führte ihn das Leben nach Heidelberg, wo er im AC Ziegelhausen gemeinsam mit anderen Mitstreitern eine BJJ-Sparte ins Leben rief. In den ersten sieben Jahren seiner BJJ-Reise fand er sich häufig auf Wettkämpfen im In- und Ausland wieder. 2019 führte ihn die Reise von Ziegelhausen nach Handschuhsheim, wo er in einem Trainer-Duo die sportliche und strukturelle Leitung der BJJ-Sparte übernahm. 2023 verliehen ihm Tomi Kareela und Tuomas Ylinampa den Schwarzgurt. Seit 2026 ist er Teil der sportlichen Leitung im BJJ Heidelberg e.V.',
+      en: "Ben's BJJ journey started in 2011 in Hannover under Douglas Mayer, after two years of trying out Ju-Jutsu as a gateway drug. Over the following years, life brought him to Heidelberg, where he and a few fellow enthusiasts founded a BJJ department at AC Ziegelhausen. During the first seven years of his BJJ journey, he regularly found himself at competitions in Germany and abroad. In 2019 the journey led from Ziegelhausen to Handschuhsheim, where he took over the athletic and organizational leadership of the BJJ department as part of a coaching duo. In 2023, Tomi Kareela and Tuomas Ylinampa awarded him his black belt. Since 2026, he has been part of the athletic leadership at BJJ Heidelberg e.V.",
+    },
+    {
+      de: 'Bens Jiu-Jitsu ist von grundlegenden Basiselementen geprägt. Genau wie sein metallischer Musikgeschmack: simpel und intensiv. Er glaubt fest an stabile Fundamente und ein druckorientiertes Spiel. Er glaubt auch an eine offene Betrachtung des Sports und eine ebenso offene Lebenseinstellung. Training sollte immer fordernd sein, im besten Fall körperlich und kognitiv. In seinem Training soll es stets um die Sache Jiu-Jitsu gehen, um die innere und körperliche Auseinandersetzung und um das aktive Machen.',
+      en: "Ben's Jiu-Jitsu is shaped by fundamental basics, just like his taste in metal: simple and intense. He firmly believes in solid foundations and a pressure-oriented game. He also believes in an open view of the sport and an equally open attitude to life. Training should always be demanding, ideally both physically and cognitively. In his classes, it is always about the thing itself, Jiu-Jitsu: the inner and physical confrontation, and actively doing.",
+    },
+    {
+      de: 'Spread the love.',
+      en: 'Spread the love.',
     },
   ] satisfies Localized[],
 };
