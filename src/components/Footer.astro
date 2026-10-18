@@ -42,10 +42,7 @@ const year = new Date().getFullYear();
               <circle cx="12" cy="12" r="4.2" />
               <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />
             </svg>
-            <span>
-              <span class="site-footer__social-label">{t.footerFollow}:</span>{' '}
-              {social.instagramHandle ?? 'Instagram'}
-            </span>
+            <span>{social.instagramHandle ?? 'Instagram'}</span>
           </a>
         )
       }
@@ -135,10 +132,6 @@ const year = new Date().getFullYear();
 
   .site-footer__social-icon {
     flex: none;
-  }
-
-  .site-footer__social-label {
-    color: var(--color-text-muted);
   }
 
   .site-footer__links {
