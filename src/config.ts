@@ -284,7 +284,7 @@ export const coaches: Coach[] = [
     role: { de: 'Trainer', en: 'Coach' },
     belt: { de: 'Lila Gurt', en: 'Purple Belt' },
     tagline: {
-      de: 'Judo-Braungurt. Sorgt für überraschend viel Zeit mit der Hallendecke.',
+      de: 'Judo-Braungurt. Du lernst die Hallendecke gleich aus nächster Nähe kennen.',
       en: 'Judo brown belt. Will have you staring at the ceiling before you finish saying hello.',
     },
     photo: '/images/coaches/bjarne.jpg',
@@ -299,7 +299,7 @@ export const coaches: Coach[] = [
     role: { de: 'Trainer', en: 'Coach' },
     belt: { de: 'Lila Gurt', en: 'Purple Belt' },
     tagline: {
-      de: 'Sieht steif aus, ist es nicht. Nimmt deinen Rücken und entschuldigt sich danach.',
+      de: 'Sieht steif aus, ist es nicht. Holt sich deinen Rücken und entschuldigt sich danach.',
       en: 'Looks stiff, isn’t. Will take your back and apologise afterwards.',
     },
     photo: '/images/coaches/jan.jpg',
