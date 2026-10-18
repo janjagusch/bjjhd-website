@@ -51,10 +51,12 @@ export interface Coach {
   role: Localized;
   belt: Localized;
   bio?: Localized;
-  /** Optional short italic tagline shown under the belt. */
+  /** Quippy one-liner shown under the belt. */
   tagline?: Localized;
   /** Path relative to /public, e.g. "/images/coach-1.svg" */
   photo: string;
+  /** Optional action shot (square) shown on hover, e.g. "/images/coaches/bjarne-action.jpg" */
+  photoHover?: string;
   /** Alt text describing the photo for screen readers. */
   photoAlt: Localized;
 }
@@ -280,11 +282,13 @@ export const coaches: Coach[] = [
   {
     name: 'Bjarne',
     role: { de: 'Trainer', en: 'Coach' },
-    belt: {
-      de: 'Lila Gurt (BJJ) · Brauner Gurt (Judo)',
-      en: 'Purple Belt (BJJ) · Brown Belt (Judo)',
+    belt: { de: 'Lila Gurt', en: 'Purple Belt' },
+    tagline: {
+      de: 'Judo-Braungurt. Sorgt für überraschend viel Zeit mit der Hallendecke.',
+      en: 'Judo brown belt. Will have you staring at the ceiling before you finish saying hello.',
     },
-    photo: '/images/coach-2.svg',
+    photo: '/images/coaches/bjarne.jpg',
+    photoHover: '/images/coaches/bjarne-action.jpg',
     photoAlt: {
       de: 'Porträtfoto von Trainer Bjarne',
       en: 'Portrait photo of coach Bjarne',
@@ -294,7 +298,12 @@ export const coaches: Coach[] = [
     name: 'Jan',
     role: { de: 'Trainer', en: 'Coach' },
     belt: { de: 'Lila Gurt', en: 'Purple Belt' },
-    photo: '/images/coach-3.svg',
+    tagline: {
+      de: 'Sieht steif aus, ist es nicht. Nimmt deinen Rücken und entschuldigt sich danach.',
+      en: 'Looks stiff, isn’t. Will take your back and apologise afterwards.',
+    },
+    photo: '/images/coaches/jan.jpg',
+    photoHover: '/images/coaches/jan-action.jpg',
     photoAlt: {
       de: 'Porträtfoto von Trainer Jan',
       en: 'Portrait photo of coach Jan',
