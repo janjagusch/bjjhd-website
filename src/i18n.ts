@@ -114,7 +114,6 @@ interface UI {
   footerImpressum: string;
   footerDatenschutz: string;
   footerDocuments: string;
-  footerFollow: string;
 }
 
 export const ui: Record<Locale, UI> = {
@@ -185,7 +184,6 @@ export const ui: Record<Locale, UI> = {
     footerImpressum: 'Impressum',
     footerDatenschutz: 'Datenschutz',
     footerDocuments: 'Dokumente',
-    footerFollow: 'Folgen',
   },
   en: {
     nav: {
@@ -254,7 +252,6 @@ export const ui: Record<Locale, UI> = {
     footerImpressum: 'Impressum',
     footerDatenschutz: 'Privacy',
     footerDocuments: 'Documents',
-    footerFollow: 'Follow',
   },
 };
 
