@@ -87,7 +87,7 @@ const t = ui[lang];
   }
   @media (min-width: 760px) {
     .head-coach {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 340px 1fr;
     }
   }
   .head-coach__photo {
@@ -98,10 +98,12 @@ const t = ui[lang];
     align-self: start;
     background-color: var(--color-bg-elevated);
   }
+
   @media (min-width: 760px) {
     .head-coach__photo {
-      position: sticky;
-      top: 5rem;
+      width: calc(100% - 2 * var(--space-lg));
+      margin: var(--space-lg) 0 var(--space-lg) var(--space-lg);
+      border-radius: var(--radius-md);
     }
   }
   .head-coach__body {
@@ -128,6 +130,9 @@ const t = ui[lang];
   .head-coach__text {
     color: var(--color-text-muted);
     max-width: 75ch;
+  }
+  .head-coach__text:last-child:not(:first-of-type) {
+    font-style: italic;
   }
   .head-coach__text + .head-coach__text {
     margin-top: var(--space-md);
