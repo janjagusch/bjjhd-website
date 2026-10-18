@@ -14,7 +14,7 @@ const t = ui[lang];
 ---
 
 <section class="section">
-  <div class="container">
+  <div class="container container--wide">
     <div class="about">
       <h1>{t.aboutHeading}</h1>
       <div class="about__intro">
@@ -25,7 +25,7 @@ const t = ui[lang];
 </section>
 
 <section class="section section--alt">
-  <div class="container">
+  <div class="container container--wide">
     <h2>{t.teamHeading}</h2>
 
     <article class="head-coach card">
@@ -59,23 +59,20 @@ const t = ui[lang];
 </section>
 
 <style>
+  .container--wide {
+    max-width: 1360px;
+  }
+
   .about {
     display: grid;
     gap: var(--space-lg);
-    align-items: start;
-  }
-  @media (min-width: 900px) {
-    .about {
-      grid-template-columns: 1fr 2fr;
-      gap: var(--space-2xl);
-    }
   }
   .about__intro {
     display: grid;
     gap: var(--space-md);
     font-size: var(--fs-500);
     color: var(--color-text-muted);
-    max-width: 65ch;
+    max-width: 110ch;
   }
   .about__intro p:first-child {
     color: var(--color-text);
@@ -130,7 +127,7 @@ const t = ui[lang];
   }
   .head-coach__text {
     color: var(--color-text-muted);
-    max-width: 65ch;
+    max-width: 75ch;
   }
   .head-coach__text + .head-coach__text {
     margin-top: var(--space-md);
