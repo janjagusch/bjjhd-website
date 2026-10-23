@@ -347,9 +347,9 @@ export const campai = {
   // Registration form for the beginners course (signup only, no payment).
   beginnersCourseSrc:
     'https://app.campai.com/em/a3f04/applications/6abf8fe5f4fcc9b0e43d9ddd',
-  // Ticket checkout for the beginners course (payment, sent to people who signed up).
+  // Ticket checkout for the beginners course, session 2 (payment, sent to people who signed up). Bookable until 2026-11-05 18:00 Berlin time.
   beginnersTicketSrc:
-    'https://app.campai.com/em/a3f04/events/6ab2660b1bdd63520e9d176e',
+    'https://app.campai.com/em/a3f04/events/6ab2660b1bdd63520e9d176f',
   // Ticket checkout for instructed classes (non-members, after the trial).
   ticketsSrc:
     'https://app.campai.com/em/a3f04/events/6ab695e169253fe02a1d7677/checkout',
