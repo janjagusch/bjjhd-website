@@ -13,7 +13,7 @@ const { lang = defaultLocale } = Astro.props;
 const t = ui[lang];
 ---
 
-<section class="section">
+<section class="section about-section">
   <div class="container container--wide">
     <div class="about">
       <h1>{t.aboutHeading}</h1>
@@ -21,6 +21,14 @@ const t = ui[lang];
         {about.paragraphs.map((p) => <p>{p[lang]}</p>)}
       </div>
     </div>
+    <img
+      class="about__photo"
+      src={withBase(about.photo)}
+      alt={about.photoAlt[lang]}
+      width="2000"
+      height="1000"
+      decoding="async"
+    />
   </div>
 </section>
 
@@ -61,6 +69,17 @@ const t = ui[lang];
 <style>
   .container--wide {
     max-width: 1360px;
+  }
+
+  .about__photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-top: var(--space-2xl);
+    background-color: var(--color-bg-elevated);
   }
 
   .about {
