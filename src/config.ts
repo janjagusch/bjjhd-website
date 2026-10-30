@@ -190,6 +190,11 @@ export const venueMap = {
 // === About / Club =========================================================
 export const about = {
   founded: '2026',
+  photo: '/images/about-group.jpg',
+  photoAlt: {
+    de: 'Gruppenfoto der Mitglieder von BJJ Heidelberg nach dem Training',
+    en: 'Group photo of BJJ Heidelberg members after training',
+  } satisfies Localized,
   paragraphs: [
     {
       de: 'BJJ Heidelberg wurde 2026 gegründet. Unser Ziel ist es, dir solides Brazilian Jiu-Jitsu in einer Atmosphäre beizubringen, in der sich absolute Anfänger und erfahrene Kampfsportler gleichermaßen willkommen fühlen.',
