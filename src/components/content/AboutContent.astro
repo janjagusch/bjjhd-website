@@ -15,6 +15,12 @@ const t = ui[lang];
 
 <section class="section about-section">
   <div class="container container--wide">
+    <div class="about">
+      <h1>{t.aboutHeading}</h1>
+      <div class="about__intro">
+        {about.paragraphs.map((p) => <p>{p[lang]}</p>)}
+      </div>
+    </div>
     <img
       class="about__photo"
       src={withBase(about.photo)}
@@ -23,12 +29,6 @@ const t = ui[lang];
       height="1000"
       decoding="async"
     />
-    <div class="about">
-      <h1>{t.aboutHeading}</h1>
-      <div class="about__intro">
-        {about.paragraphs.map((p) => <p>{p[lang]}</p>)}
-      </div>
-    </div>
   </div>
 </section>
 
@@ -71,9 +71,6 @@ const t = ui[lang];
     max-width: 1360px;
   }
 
-  .about-section {
-    padding-top: var(--space-xl);
-  }
   .about__photo {
     display: block;
     width: 100%;
@@ -81,7 +78,7 @@ const t = ui[lang];
     aspect-ratio: 2 / 1;
     object-fit: cover;
     border-radius: var(--radius-md);
-    margin-bottom: var(--space-2xl);
+    margin-top: var(--space-2xl);
     background-color: var(--color-bg-elevated);
   }
 
