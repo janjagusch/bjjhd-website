@@ -50,20 +50,14 @@ const { coach, lang = defaultLocale } = Astro.props;
   .coach {
     padding: 0;
     overflow: hidden;
-    display: grid;
-    align-items: center;
-  }
-
-  @media (min-width: 640px) {
-    .coach {
-      grid-template-columns: 280px 1fr;
-    }
+    display: flex;
+    flex-direction: column;
   }
 
   .coach__media {
     position: relative;
     overflow: hidden;
-    margin: var(--space-lg);
+    margin: var(--space-lg) var(--space-lg) 0;
     border-radius: var(--radius-md);
     aspect-ratio: 1 / 1;
     background-color: var(--color-bg-elevated);
@@ -96,14 +90,9 @@ const { coach, lang = defaultLocale } = Astro.props;
   }
 
   .coach__body {
-    padding: var(--space-lg);
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
   }
 
-  @media (min-width: 640px) {
-    .coach__body {
-      padding-left: 0;
-    }
-  }
 
   .coach__name {
     font-size: var(--fs-600);
