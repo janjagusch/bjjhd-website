@@ -52,7 +52,7 @@ const t = ui[lang];
       </div>
     </article>
 
-    <div class="grid grid--2 co-trainers">
+    <div class="grid grid--3 co-trainers">
       {coaches.map((coach) => <CoachCard coach={coach} lang={lang} />)}
     </div>
   </div>
@@ -87,7 +87,7 @@ const t = ui[lang];
   }
   @media (min-width: 760px) {
     .head-coach {
-      grid-template-columns: 340px 1fr;
+      grid-template-columns: 440px 1fr;
     }
   }
   .head-coach__photo {

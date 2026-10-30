@@ -317,6 +317,20 @@ export const coaches: Coach[] = [
       en: 'Portrait photo of coach Jan',
     },
   },
+  {
+    name: 'Katja',
+    role: { de: 'Trainerin', en: 'Coach' },
+    belt: { de: 'Blauer Gurt', en: 'Blue Belt' },
+    tagline: {
+      de: 'Ihre Guard zu passieren ist ein Langzeitprojekt. Proviant nicht vergessen.',
+      en: 'Passing her guard is a long-term project. Bring snacks.',
+    },
+    photo: '/images/coaches/katja.jpg',
+    photoAlt: {
+      de: 'Porträtfoto von Trainerin Katja',
+      en: 'Portrait photo of coach Katja',
+    },
+  },
 ];
 
 // === Pricing ==============================================================
