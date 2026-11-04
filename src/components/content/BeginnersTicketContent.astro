@@ -7,7 +7,7 @@
  * (`campai.beginnersTicketSrc` in src/config.ts).
  */
 import CampaiSignup from '../CampaiSignup.astro';
-import { beginnersCourse as c, campai } from '../../config';
+import { beginnersCourse as c, beginnersTicketSessions, campai } from '../../config';
 import { defaultLocale } from '../../i18n';
 import type { Locale } from '../../i18n';
 
@@ -17,6 +17,14 @@ interface Props {
 
 const { lang = defaultLocale } = Astro.props;
 const de = lang === 'de';
+
+// The site only rebuilds on push, so the build-time pick goes stale; the
+// inline script below re-picks in the browser. Falls back to the last session.
+const eventBase = campai.beginnersTicketSrc.replace(/[^/]+$/, '');
+const nextSession = (now: number) =>
+  beginnersTicketSessions.find((s) => Date.parse(s.start) > now) ??
+  beginnersTicketSessions[beginnersTicketSessions.length - 1];
+const ticketSrc = eventBase + nextSession(Date.now()).id;
 ---
 
 <section class="section">
@@ -48,7 +56,7 @@ const de = lang === 'de';
 
     <div class="checkout">
       <CampaiSignup
-        src={campai.beginnersTicketSrc}
+        src={ticketSrc}
         lang={lang}
         title={
           de
@@ -59,6 +67,21 @@ const de = lang === 'de';
     </div>
   </div>
 </section>
+
+<script
+  is:inline
+  define:vars={{ sessions: beginnersTicketSessions, eventBase }}
+>
+  var now = Date.now();
+  var next =
+    sessions.find(function (s) {
+      return Date.parse(s.start) > now;
+    }) || sessions[sessions.length - 1];
+  var frame = document.querySelector('.checkout iframe');
+  if (frame && frame.getAttribute('src') !== eventBase + next.id) {
+    frame.setAttribute('src', eventBase + next.id);
+  }
+</script>
 
 <style>
   .checkout {

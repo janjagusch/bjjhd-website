@@ -355,6 +355,20 @@ export const pricing: PriceItem[] = [
 ];
 
 // === Campai application forms =============================================
+/**
+ * Sessions of the beginners course (Thursdays, 18:00 Europe/Berlin), each a
+ * Campai event. `start` is a UTC instant: 18:00 CET (UTC+1) is 17:00Z.
+ * Sessions 1 and 2 (22.10., 29.10.) are over and not listed.
+ */
+export const beginnersTicketSessions = [
+  { start: '2026-11-05T17:00:00Z', id: '6ab2660b1bdd63520e9d1770' },
+  { start: '2026-11-12T17:00:00Z', id: '6ab2660b1bdd63520e9d1771' },
+  { start: '2026-11-19T17:00:00Z', id: '6ab2660b1bdd63520e9d1772' },
+  { start: '2026-11-26T17:00:00Z', id: '6ab2660b1bdd63520e9d1773' },
+  { start: '2026-12-03T17:00:00Z', id: '6ab2660b1bdd63520e9d1774' },
+  { start: '2026-12-10T17:00:00Z', id: '6ab2660b1bdd63520e9d1775' },
+];
+
 export const campai = {
   scriptSrc: 'https://app.campai.com/scripts/embeddable.js',
   // Free trial class registration – the primary call to action.
@@ -366,9 +380,11 @@ export const campai = {
   // Registration form for the beginners course (signup only, no payment).
   beginnersCourseSrc:
     'https://app.campai.com/em/a3f04/applications/6abf8fe5f4fcc9b0e43d9ddd',
-  // Ticket checkout for the beginners course, session 2 (payment, sent to people who signed up). Bookable until 2026-11-05 18:00 Berlin time.
+  // Ticket checkout for the beginners course (series ESnwjB0VUR). Booking any
+  // session gives the full-course ticket, so the page embeds the next session
+  // that has not started yet (see `beginnersTicketSessions`).
   beginnersTicketSrc:
-    'https://app.campai.com/em/a3f04/events/6ab2660b1bdd63520e9d176f',
+    'https://app.campai.com/em/a3f04/events/6ab2660b1bdd63520e9d1775',
   // Ticket checkout for instructed classes (non-members, after the trial).
   ticketsSrc:
     'https://app.campai.com/em/a3f04/events/6ab695e169253fe02a1d7677/checkout',
